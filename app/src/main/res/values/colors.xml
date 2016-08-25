@@ -5,6 +5,6 @@
     <color name="colorAccent">@color/colorPrimary</color>
 
     <color name="loginButton">#05328D</color>
-    <color name="registerText">#6BA7CB</color>
+    <color name="registerColor">#6BA7CB</color>
 
 </resources>

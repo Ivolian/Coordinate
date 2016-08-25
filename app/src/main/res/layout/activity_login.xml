@@ -53,10 +53,13 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/login"
-        app:layout_heightPercent="40%sh"
-        app:layout_widthPercent="23%sh" />
+        app:layout_heightPercent="37%sh"
+        app:layout_widthPercent="21.275%sh" />
+
+    <!-- 45 剩余 55 -->
 
     <!-- 账户 & 密码 -->
+
     <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +79,7 @@
         android:textColorHint="@color/md_grey_400"
         app:layout_marginLeftPercent="10%sw"
         app:layout_marginTopPercent="1%sh"
-        app:layout_textSizePercent="3%sh" />
+        app:layout_textSizePercent="3.2%sh" />
 
     <!-- 登录按钮 -->
     <android.support.v7.widget.AppCompatButton
@@ -86,11 +89,11 @@
         android:gravity="center"
         android:text="登 录"
         android:textColor="@color/md_white"
-        app:layout_heightPercent="8%sh"
+        app:layout_heightPercent="7%sh"
         app:layout_marginLeftPercent="14%sw"
         app:layout_marginRightPercent="14%sw"
-        app:layout_marginTopPercent="5%sh"
-        app:layout_textSizePercent="3%sh" />
+        app:layout_marginTopPercent="6%sh"
+        app:layout_textSizePercent="3.2%sh" />
 
     <!-- 注册 & 忘记密码 -->
     <com.zhy.android.percent.support.PercentLinearLayout
@@ -98,16 +101,22 @@
         android:layout_height="0dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_heightPercent="8%sh">
-
+        app:layout_heightPercent="10%sh"
+        app:layout_marginLeftPercent="15%sw"
+        app:layout_marginRightPercent="15%sw">
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="注 册"
-            android:textColor="@color/registerText"
-            app:layout_textSizePercent="3%sh" />
+            android:textColor="@color/registerColor"
+            app:layout_textSizePercent="2.8%sh" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/forgetPwd"
@@ -115,11 +124,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="忘记密码"
-            android:textColor="@color/registerText"
-            app:layout_textSizePercent="3%sh" />
-
+            android:textColor="@color/registerColor"
+            app:layout_textSizePercent="2.8%sh" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
-
 
 </com.zhy.android.percent.support.PercentLinearLayout>

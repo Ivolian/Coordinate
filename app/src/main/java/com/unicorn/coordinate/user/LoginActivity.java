@@ -38,6 +38,7 @@ public class LoginActivity extends BaseActivity {
 
     private void drawUnderline(AppCompatTextView textView) {
         textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        textView.getPaint().setAntiAlias(true);
     }
 
 }
