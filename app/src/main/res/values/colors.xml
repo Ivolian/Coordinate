@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#2F4777</color>
     <color name="colorPrimaryDark">#2F4777</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+
+    <color name="loginButton">#05328D</color>
+    <color name="registerText">#6BA7CB</color>
+
 </resources>

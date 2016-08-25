@@ -45,6 +45,9 @@ dependencies {
     compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
     //  eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
+    //  editext
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+
 //  dialog
 //    compile 'com.afollestad.material-dialogs:core:0.9.0.0'
 //  divider

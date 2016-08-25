@@ -16,6 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setContentView(@LayoutRes int layoutResId) {
         super.setContentView(layoutResId);
         ButterKnife.bind(this);
+        initViews();
     }
 
     @Override
@@ -27,6 +28,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void startActivity(Class activityClazz){
         Intent intent =new Intent(this,activityClazz);
         startActivity(intent);
+    }
+
+    public void initViews(){
+
     }
 
 }
