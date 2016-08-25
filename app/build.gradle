@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.unicorn.coordinate"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+//  support
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+//  butterknife
+    compile 'com.jakewharton:butterknife:8.3.0'
+    apt 'com.jakewharton:butterknife-compiler:8.3.0'
+//  dart
+//    compile 'com.f2prateek.dart:dart:2.0.1'
+//    provided 'com.f2prateek.dart:dart-processor:2.0.1'
+//  color
+//    compile 'com.wada811:android-material-design-colors:2.0.0'
+//  percent layout
+//    compile(name: 'percent-support-extends', ext: 'aar')
+//  icon
+//    compile "com.mikepenz:iconics-core:2.7.2@aar"
+//    compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
+//  eventbus
+//    compile 'org.greenrobot:eventbus:3.0.0'
+//  dialog
+//    compile 'com.afollestad.material-dialogs:core:0.9.0.0'
+//  volley
+//    compile 'com.mcxiaoke.volley:library:1.0.19'
+//  banner
+//    compile 'com.youth.banner:banner:1.2.1'
+//  glide
+//    compile 'com.github.bumptech.glide:glide:3.7.0'
+//  joda
+//    compile 'net.danlew:android.joda:2.9.4.1'
+//  divider
+//    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+//  loadingView
+//    compile 'com.wang.avi:library:2.1.2'
+}
