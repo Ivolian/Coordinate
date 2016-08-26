@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_white"
+    android:background="@color/md_grey_200"
     android:orientation="vertical">
 
     <!-- 标题栏 -->
@@ -40,93 +40,92 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="登录"
+            android:text="注册"
             android:textColor="@color/md_white"
             app:layout_marginRightPercent="8%sh"
             app:layout_textSizePercent="3%sh" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
-    <!-- LOGO -->
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/login"
-        app:layout_heightPercent="37%sh"
-        app:layout_widthPercent="21.275%sh" />
-
-    <!-- 45 剩余 55 -->
-
-    <!-- 账户 & 密码 -->
-
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="账号"
-        android:maxLines="1"
-        android:textColor="@color/md_black"
-        android:textColorHint="@color/md_grey_400"
-        app:layout_marginLeftPercent="10%sw"
-        app:layout_marginTopPercent="5%sh"
-        app:layout_textSizePercent="3%sh" />
-
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="密码"
-        android:textColor="@color/md_black"
-        android:textColorHint="@color/md_grey_400"
-        app:layout_marginLeftPercent="10%sw"
-        app:layout_marginTopPercent="1%sh"
-        app:layout_textSizePercent="3.2%sh" />
-
-    <!-- 登录按钮 -->
-    <android.support.v7.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/loginButton"
-        android:gravity="center"
-        android:text="登 录"
-        android:textColor="@color/md_white"
-        app:layout_heightPercent="7.5%sh"
-        app:layout_marginLeftPercent="14%sw"
-        app:layout_marginRightPercent="14%sw"
-        app:layout_marginTopPercent="6%sh"
-        app:layout_textSizePercent="3.2%sh" />
-
-    <!-- 注册 & 忘记密码 -->
+    <!-- 获取验证码 -->
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_heightPercent="10%sh"
-        app:layout_marginLeftPercent="15%sw"
-        app:layout_marginRightPercent="15%sw">
+        app:layout_marginTopPercent="14%sh">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注 册"
-            android:textColor="@color/register"
-            app:layout_textSizePercent="2.8%sh" />
-
-        <View
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/tel"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/forgetPwd"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="忘记密码"
-            android:textColor="@color/register"
-            app:layout_textSizePercent="2.8%sh" />
+            android:hint="请输入您的手机号"
+            android:paddingBottom="20dp"
+            android:textColor="@color/md_black"
+            android:textColorHint="@color/md_grey_400"
+            app:layout_marginLeftPercent="5%sw"
+            app:layout_marginRightPercent="5%sw"
+            app:layout_textSizePercent="2.8%sh"
+            app:layout_widthPercent="45%sw" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/getVerificationCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/verificationCode"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textColor="@color/md_white"
+            app:layout_marginRightPercent="5%sw"
+            app:layout_textSizePercent="2.8%sh"
+            app:layout_widthPercent="40%sw" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- 请输入验证码 -->
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/verificationCode"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_white"
+        android:gravity="center"
+        android:hint="请输入验证码"
+        android:maxLines="1"
+        android:textColor="@color/md_black"
+        android:textColorHint="@color/md_grey_300"
+        app:layout_heightPercent="12%sh"
+        app:layout_marginTopPercent="6%sh"
+        app:layout_textSizePercent="3%sh" />
+
+    <!-- 下一步 -->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/nextStep"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/loginButton"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/md_white"
+        app:layout_heightPercent="9%sh"
+        app:layout_marginLeftPercent="14%sw"
+        app:layout_marginRightPercent="14%sw"
+        app:layout_marginTopPercent="12%sh"
+        app:layout_textSizePercent="3.2%sh" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="注册时请阅读"
+        android:textColor="@color/md_black"
+        app:layout_heightPercent="9%sh"
+        app:layout_textSizePercent="2.5%sh" />
 
 </com.zhy.android.percent.support.PercentLinearLayout>
