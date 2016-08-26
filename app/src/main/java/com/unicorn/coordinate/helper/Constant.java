@@ -13,6 +13,13 @@ public class Constant {
 
     public static String K_USER_ID = "userId";
 
+    public static String K_ACCOUNT = "account";
+
+    public static String K_PASSWORD = "password";
+
+    public static String K_PWD = "pwd";
+
+
 
     public static  String SUCCESS_CODE = "0";
 
