@@ -34,7 +34,9 @@
         <activity
             android:name=".user.RegisterActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".user.SetPasswordActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
