@@ -64,7 +64,7 @@
         android:id="@+id/account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="账号"
+        android:hint="手机号码"
         android:maxLines="1"
         android:textColor="@color/md_black"
         android:textColorHint="@color/md_grey_400"

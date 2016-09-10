@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#2F4777</color>
     <color name="colorAccent">@color/colorPrimary</color>
 
-    <color name="loginButton">#05328D</color>
-    <color name="register">#6BA7CB</color>
+    <color name="loginButton">#04328C</color>
+    <color name="register">#4AB1F7</color>
     <color name="verificationCode">#4EB3F7</color>
 
 </resources>

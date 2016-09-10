@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void delayToMainActivity() {
-        final int delay = 1500;
+        final int delay = 1000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
