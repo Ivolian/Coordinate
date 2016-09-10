@@ -1,6 +1,7 @@
 package com.unicorn.coordinate.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.helper.ClickHelper;
+import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.GlideRoundTransform;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.utils.ConfigUtils;
@@ -60,9 +62,17 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         @OnClick(R.id.item)
         public void itemOnClick() {
             if (ClickHelper.isSafe()) {
-                //  TODO
+                Context context = picture.getContext();
+                Match match = matchList.get(getAdapterPosition());
+                startMatchDetailActivity(context, match);
             }
         }
+    }
+
+    private void startMatchDetailActivity(Context context, Match match) {
+        Intent intent = new Intent(context, MatchDetailActivity.class);
+        intent.putExtra(Constant.K_MATCH, match);
+        context.startActivity(intent);
     }
 
 
@@ -74,8 +84,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         String imgUrl = ConfigUtils.getImageBaseUrl() + match.getPic1();
         loadPicture(imgUrl, holder.picture);
         holder.name.setText(match.getMatch_name());
-        String date = match.getDate4().substring(0, 10);
-        holder.date.setText(date);
+        holder.date.setText(match.getDate());
         holder.status.setText(match.getStatus());
     }
 

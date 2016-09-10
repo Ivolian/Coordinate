@@ -1,7 +1,9 @@
 package com.unicorn.coordinate.home.model;
 
+import java.io.Serializable;
 
-public class Match  {
+
+public class Match implements Serializable {
 
     /**
      * Match_id : 776aa0e6-2d41-4ee1-881c-7fcfb9e20553
@@ -165,6 +167,12 @@ public class Match  {
 
     public void setStatus(String Status) {
         this.Status = Status;
+    }
+
+    //
+
+    public String getDate(){
+        return Date4.substring(0, 10);
     }
 
 }

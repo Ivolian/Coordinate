@@ -75,11 +75,13 @@ public class HomeFragment extends LazyLoadFragment {
         SimpleVolley.addRequest(request);
     }
 
+
+    // ====================== copeResponse ======================
+
     private void copeResponse(String responseString) throws Exception {
         if (!isResponseSuccessful(responseString)) {
             return;
         }
-
         JSONObject response = new JSONObject(responseString);
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<Match> matchList = new Gson().fromJson(data.toString(), new TypeToken<List<Match>>() {
@@ -91,14 +93,14 @@ public class HomeFragment extends LazyLoadFragment {
     private boolean isResponseSuccessful(String responseString) throws Exception {
         JSONObject response = new JSONObject(responseString);
         String code = response.getString(Constant.K_CODE);
-        boolean success = code != null && code.equals(Constant.RESPONSE_SUCCESS_CODE);
+        boolean success = (code != null && code.equals(Constant.RESPONSE_SUCCESS_CODE));
         if (!success) {
-            showErrorMsg(responseString);
+            showMsg(responseString);
         }
         return success;
     }
 
-    private void showErrorMsg(String responseString) throws Exception {
+    private void showMsg(String responseString) throws Exception {
         JSONObject response = new JSONObject(responseString);
         String msg = response.getString(Constant.K_MSG);
         if (msg != null) {
