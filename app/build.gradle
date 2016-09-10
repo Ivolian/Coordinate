@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.unicorn.coordinate"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -22,11 +22,11 @@ android {
 
 dependencies {
     //  support
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
     //  butterknife
-    compile 'com.jakewharton:butterknife:8.3.0'
-    apt 'com.jakewharton:butterknife-compiler:8.3.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
     //  dart
     compile 'com.f2prateek.dart:dart:2.0.1'
     provided 'com.f2prateek.dart:dart-processor:2.0.1'
@@ -41,17 +41,12 @@ dependencies {
     //  joda
     compile 'net.danlew:android.joda:2.9.4.1'
     //  icon
-    compile 'com.mikepenz:iconics-core:2.8.0@aar'
+    compile "com.mikepenz:iconics-core:2.8.1@aar"
     compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
     //  eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
-    //  editext
-    compile 'com.rengwuxian.materialedittext:library:2.1.4'
-
-    // ios
-    compile 'com.kaopiz:kprogresshud:1.0.5'
-//  dialog
-//    compile 'com.afollestad.material-dialogs:core:0.9.0.0'
+    // dialog
+    compile 'com.afollestad.material-dialogs:core:0.9.0.1'
 //  divider
 //    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
 //  loadingView

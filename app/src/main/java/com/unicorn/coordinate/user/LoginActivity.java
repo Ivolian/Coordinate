@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kaopiz.kprogresshud.KProgressHUD;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
@@ -46,11 +45,12 @@ public class LoginActivity extends BaseActivity {
     AppCompatEditText pwd;
 
 
-
     private String getLoginUrl(String account, String pwd) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/userlogin?").buildUpon();
         builder.appendQueryParameter(Constant.K_ACCOUNT, account);
-        builder.appendQueryParameter(Constant.K_PWD, pwd);
+        builder.appendQueryParameter("passwd", pwd);
+        // 代表安卓端
+        builder.appendQueryParameter("typ", "02");
         return builder.toString();
     }
 
@@ -76,14 +76,6 @@ public class LoginActivity extends BaseActivity {
         if (!isInputValid()) {
             return;
         }
-        final KProgressHUD mask = KProgressHUD.create(this)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("Please wait")
-                .setDetailsLabel("Downloading data")
-                .setCancellable(true)
-                .setAnimationSpeed(2)
-                .setDimAmount(0.5f)
-                .show();
 
 
         Request stringRequest = new JsonObjectRequest(
@@ -92,22 +84,21 @@ public class LoginActivity extends BaseActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        mask.dismiss();
                         try {
-//                            copeResponse2(response);
+                            copeResponse2(response);
                         } catch (Exception e) {
                             //
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener(mask)
+                SimpleVolley.getDefaultErrorListener()
         );
         SimpleVolley.addRequest(stringRequest);
 
     }
 
-    private String getAccount(){
-        return  account.getText().toString().replace(" ","");
+    private String getAccount() {
+        return account.getText().toString().replace(" ", "");
     }
 
 
@@ -117,12 +108,33 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-        if (code.equals(Constant.SUCCESS_CODE)) {
-            String userId = response.getString(Constant.K_DATA);
-            if (userId != null) {
-//                TinyDB tinyDB = new TinyDB(SimpleApplication.getInstance());
-//                tinyDB.putString(Constant.K_USER_ID, userId);
-            }
+        if (code.equals(Constant.RESPONSE_SUCCESS_CODE)) {
+            /*
+            {
+status: "ok",
+code: "0",
+msg: null,
+data: {
+userid: "45f8f7f7-9d3e-4ee9-b5db-88b7e35575ae",
+Name: null,
+Playerid: 0,
+Mobile: "13611840424",
+Passwd: "96E79218965EB72C92A549DD5A330112",
+sexy: null,
+cardtype: null,
+cardno: null,
+mono: "383848",
+birthday: null,
+Last_Time: "2016-08-26 15:43:45",
+Status: 0,
+DeviceToken: "-"
+}
+}
+             */
+            JSONObject data = response.getJSONObject(Constant.K_DATA);
+            // TODO
+            ToastUtils.show("登录成功!");
+
         } else {
             // TODO 抽象
             String errorMsg = response.getString(Constant.K_MSG);
@@ -132,7 +144,6 @@ public class LoginActivity extends BaseActivity {
         }
 
     }
-
 
 
     // ======================== 注册 & 忘记密码 =========================

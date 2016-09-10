@@ -19,12 +19,9 @@ public class Constant {
 
     public static String K_PWD = "pwd";
 
+    public static String RESPONSE_SUCCESS_CODE = "0";
 
-
-    public static  String SUCCESS_CODE = "0";
-
-
-    public static  int REGISTER_SUCCESS_CODE = 10001;
+    public static int REGISTER_SUCCESS_CODE = 10001;
 
 
 }

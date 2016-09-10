@@ -9,7 +9,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.f2prateek.dart.InjectExtra;
-import com.kaopiz.kprogresshud.KProgressHUD;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
@@ -68,15 +67,6 @@ public class SetPasswordActivity extends BaseActivity {
         if (!isPwdValid()) {
             return;
         }
-        // TODO
-        final KProgressHUD mask = KProgressHUD.create(this)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("Please wait")
-                .setDetailsLabel("Downloading data")
-                .setCancellable(true)
-                .setAnimationSpeed(2)
-                .setDimAmount(0.5f)
-                .show();
 
 
         Request stringRequest = new JsonObjectRequest(
@@ -85,7 +75,6 @@ public class SetPasswordActivity extends BaseActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        mask.dismiss();
                         try {
                             copeResponse2(response);
                         } catch (Exception e) {
@@ -93,7 +82,7 @@ public class SetPasswordActivity extends BaseActivity {
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener(mask)
+                SimpleVolley.getDefaultErrorListener()
         );
         SimpleVolley.addRequest(stringRequest);
 
@@ -106,7 +95,7 @@ public class SetPasswordActivity extends BaseActivity {
             return;
         }
 
-        if (code.equals(Constant.SUCCESS_CODE)) {
+        if (code.equals(Constant.RESPONSE_SUCCESS_CODE)) {
             String successMsg = response.getString(Constant.K_DATA);
             if (successMsg != null) {
                 ToastUtils.show(successMsg);

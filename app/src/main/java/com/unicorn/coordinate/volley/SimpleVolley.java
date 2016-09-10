@@ -8,7 +8,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.kaopiz.kprogresshud.KProgressHUD;
 import com.unicorn.coordinate.utils.ToastUtils;
 
 
@@ -46,15 +45,15 @@ public class SimpleVolley {
         };
     }
 
-    public static Response.ErrorListener getDefaultErrorListener(final KProgressHUD mask) {
-        return new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                mask.dismiss();
-                ToastUtils.show(VolleyErrorHelper.getErrorMessage(volleyError));
-            }
-        };
-    }
+//    public static Response.ErrorListener getDefaultErrorListener(final KProgressHUD mask) {
+//        return new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                mask.dismiss();
+//                ToastUtils.show(VolleyErrorHelper.getErrorMessage(volleyError));
+//            }
+//        };
+//    }
 
 
 }

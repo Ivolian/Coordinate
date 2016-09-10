@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kaopiz.kprogresshud.KProgressHUD;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
@@ -50,14 +49,7 @@ public class RegisterActivity extends BaseActivity {
         if (!isTelValid()) {
             return;
         }
-        final KProgressHUD mask = KProgressHUD.create(this)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("Please wait")
-                .setDetailsLabel("Downloading data")
-                .setCancellable(true)
-                .setAnimationSpeed(2)
-                .setDimAmount(0.5f)
-                .show();
+
 
 
         Request stringRequest = new JsonObjectRequest(
@@ -66,7 +58,6 @@ public class RegisterActivity extends BaseActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        mask.dismiss();
                         try {
                             copeResponse(response);
                         } catch (Exception e) {
@@ -74,7 +65,7 @@ public class RegisterActivity extends BaseActivity {
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener(mask)
+                SimpleVolley.getDefaultErrorListener()
         );
         SimpleVolley.addRequest(stringRequest);
 
@@ -87,7 +78,7 @@ public class RegisterActivity extends BaseActivity {
 
     private void copeResponse(JSONObject response) throws Exception {
         String code = response.getString(Constant.K_CODE);
-        if (code != null && !code.equals(Constant.SUCCESS_CODE)) {
+        if (code != null && !code.equals(Constant.RESPONSE_SUCCESS_CODE)) {
             String errorMsg = response.getString(Constant.K_MSG);
             if (errorMsg != null) {
                 ToastUtils.show(errorMsg);
@@ -141,14 +132,7 @@ public class RegisterActivity extends BaseActivity {
         if (!isVercodeValid()) {
             return;
         }
-        final KProgressHUD mask = KProgressHUD.create(this)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("Please wait")
-                .setDetailsLabel("Downloading data")
-                .setCancellable(true)
-                .setAnimationSpeed(2)
-                .setDimAmount(0.5f)
-                .show();
+
 
 
         Request stringRequest = new JsonObjectRequest(
@@ -157,7 +141,6 @@ public class RegisterActivity extends BaseActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        mask.dismiss();
                         try {
                             copeResponse2(response);
                         } catch (Exception e) {
@@ -165,7 +148,7 @@ public class RegisterActivity extends BaseActivity {
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener(mask)
+                SimpleVolley.getDefaultErrorListener()
         );
         SimpleVolley.addRequest(stringRequest);
 
@@ -178,7 +161,7 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
 
-        if (code.equals(Constant.SUCCESS_CODE)) {
+        if (code.equals(Constant.RESPONSE_SUCCESS_CODE)) {
             String userId = response.getString(Constant.K_DATA);
             if (userId != null) {
 //                TinyDB tinyDB = new TinyDB(SimpleApplication.getInstance());
