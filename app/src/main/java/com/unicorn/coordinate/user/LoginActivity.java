@@ -5,25 +5,30 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
-import android.text.TextUtils;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.user.model.UserInfo;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
-
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {
+
+
+    // ======================== onCreate =========================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,8 @@ public class LoginActivity extends BaseActivity {
         addUnderlines();
     }
 
-    // ======================== 登录 =========================
+
+    // ======================== views =========================
 
     @BindView(R.id.account)
     AppCompatEditText account;
@@ -45,104 +51,45 @@ public class LoginActivity extends BaseActivity {
     AppCompatEditText pwd;
 
 
-    private String getLoginUrl(String account, String pwd) {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/userlogin?").buildUpon();
-        builder.appendQueryParameter(Constant.K_ACCOUNT, account);
-        builder.appendQueryParameter("passwd", pwd);
-        // 代表安卓端
-        builder.appendQueryParameter("typ", "02");
-        return builder.toString();
-    }
-
-    private boolean isInputValid() {
-        if (TextUtils.isEmpty(account.getText())) {
-            ToastUtils.show("账号不能为空");
-            return false;
-        }
-        if (TextUtils.isEmpty(pwd.getText())) {
-            ToastUtils.show("密码不能为空");
-            return false;
-        }
-
-        return true;
-    }
+    // ======================== loginOnClick =========================
 
     @OnClick(R.id.login)
-    public void login() {
-        if (!ClickHelper.isSafe()) {
-            return;
+    public void loginOnClick() {
+        if (ClickHelper.isSafe() && isInputValid()) {
+            login(getAccount(), getPwd());
         }
+    }
 
-        if (!isInputValid()) {
-            return;
-        }
-
-
-        Request stringRequest = new JsonObjectRequest(
-                getLoginUrl(getAccount(), pwd.getText().toString()),
-                null,
-                new Response.Listener<JSONObject>() {
+    private void login(String account, String pwd) {
+        final MaterialDialog mask = DialogUtils.showIndeterminateDialog(this, "登录中", "请稍后...");
+        String url = getLoginUrl(account, pwd);
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
                         try {
-                            copeResponse2(response);
+                            mask.dismiss();
+                            copeResponse(response);
                         } catch (Exception e) {
                             //
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener()
+                SimpleVolley.getDefaultErrorListener(mask)
         );
-        SimpleVolley.addRequest(stringRequest);
-
-    }
-
-    private String getAccount() {
-        return account.getText().toString().replace(" ", "");
+        SimpleVolley.addRequest(request);
     }
 
 
-    private void copeResponse2(JSONObject response) throws Exception {
-        String code = response.getString(Constant.K_CODE);
-        if (code == null) {
+    private void copeResponse(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
             return;
         }
-
-        if (code.equals(Constant.RESPONSE_SUCCESS_CODE)) {
-            /*
-            {
-status: "ok",
-code: "0",
-msg: null,
-data: {
-userid: "45f8f7f7-9d3e-4ee9-b5db-88b7e35575ae",
-Name: null,
-Playerid: 0,
-Mobile: "13611840424",
-Passwd: "96E79218965EB72C92A549DD5A330112",
-sexy: null,
-cardtype: null,
-cardno: null,
-mono: "383848",
-birthday: null,
-Last_Time: "2016-08-26 15:43:45",
-Status: 0,
-DeviceToken: "-"
-}
-}
-             */
-            JSONObject data = response.getJSONObject(Constant.K_DATA);
-            // TODO
-            ToastUtils.show("登录成功!");
-
-        } else {
-            // TODO 抽象
-            String errorMsg = response.getString(Constant.K_MSG);
-            if (errorMsg != null) {
-                ToastUtils.show(errorMsg);
-            }
-        }
-
+        String dataString = ResponseHelper.getData(responseString);
+        UserInfo userInfo = new Gson().fromJson(dataString, UserInfo.class);
+        ConfigUtils.saveUserInfo(userInfo);
+        ToastUtils.show("登录成功");
     }
 
 
@@ -171,6 +118,7 @@ DeviceToken: "-"
         }
     }
 
+
     // ======================== 退回 =========================
 
     @OnClick(R.id.back)
@@ -178,6 +126,43 @@ DeviceToken: "-"
         if (ClickHelper.isSafe()) {
             finish();
         }
+    }
+
+
+    // ======================== 底层方法 =========================
+
+    private String getLoginUrl(final String account, final String pwd) {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/userlogin?").buildUpon();
+        builder.appendQueryParameter(Constant.K_ACCOUNT, account);
+        builder.appendQueryParameter("passwd", pwd);
+        builder.appendQueryParameter("typ", "02");
+        return builder.toString();
+    }
+
+    private boolean isInputValid() {
+        String account = getAccount();
+        if (account.equals("")) {
+            ToastUtils.show("账号不能为空");
+            return false;
+        }
+        if (account.length() != 11) {
+            ToastUtils.show("手机号位数不正确");
+            return false;
+        }
+        String pwd = getPwd();
+        if (pwd.equals("")) {
+            ToastUtils.show("密码不能为空");
+            return false;
+        }
+        return true;
+    }
+
+    private String getAccount() {
+        return account.getText().toString().trim();
+    }
+
+    private String getPwd() {
+        return pwd.getText().toString().trim();
     }
 
 

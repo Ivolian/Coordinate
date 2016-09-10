@@ -1,5 +1,9 @@
 package com.unicorn.coordinate.utils;
 
+import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.TinyDB;
+import com.unicorn.coordinate.user.model.UserInfo;
+
 public class ConfigUtils {
 
     final static private String IP = "applink.chengshidingxiang.com";
@@ -12,6 +16,23 @@ public class ConfigUtils {
 
     public static String getImageBaseUrl() {
         return getBaseUrl() + "/upfiles/";
+    }
+
+    public static String getUserId() {
+        return TinyDB.getNewInstance().getString(Constant.K_USER_ID);
+    }
+
+    public static boolean isLogin() {
+        return getUserId() != null;
+    }
+
+    public static void removeUserInfo(){
+        TinyDB.getNewInstance().remove(Constant.K_USER_ID);
+    }
+
+    public static void saveUserInfo(UserInfo userInfo){
+        TinyDB tinyDB= TinyDB.getNewInstance();
+        tinyDB.putString(Constant.K_USER_ID,userInfo.getUserid());
     }
 
 //    public static String getBaseDirPath() {

@@ -26,7 +26,7 @@ public class VolleyErrorHelper {
     }
 
     // Handle your error types accordingly.For Timeout & No connection error, you can show 'retry' button.
-    // For AuthFailure, you can re login with user credentials.
+    // For AuthFailure, you can re loginOnClick with user credentials.
     // For ClientError, 400 & 401, Errors happening on client side when sending api request.
     // In this case you can check how client is forming the api and debug accordingly.
     // For ServerError 5xx, you can do retry or handle accordingly.

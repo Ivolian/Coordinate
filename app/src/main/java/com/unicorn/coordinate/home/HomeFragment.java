@@ -10,14 +10,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.LazyLoadFragment;
-import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.utils.ConfigUtils;
-import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -79,33 +75,14 @@ public class HomeFragment extends LazyLoadFragment {
     // ====================== copeResponse ======================
 
     private void copeResponse(String responseString) throws Exception {
-        if (!isResponseSuccessful(responseString)) {
+        if (ResponseHelper.isWrong(responseString)) {
             return;
         }
-        JSONObject response = new JSONObject(responseString);
-        JSONArray data = response.getJSONArray(Constant.K_DATA);
-        List<Match> matchList = new Gson().fromJson(data.toString(), new TypeToken<List<Match>>() {
+        String dataString = ResponseHelper.getData(responseString);
+        List<Match> matchList = new Gson().fromJson(dataString, new TypeToken<List<Match>>() {
         }.getType());
         matchAdapter.setMatchList(matchList);
         matchAdapter.notifyDataSetChanged();
-    }
-
-    private boolean isResponseSuccessful(String responseString) throws Exception {
-        JSONObject response = new JSONObject(responseString);
-        String code = response.getString(Constant.K_CODE);
-        boolean success = (code != null && code.equals(Constant.RESPONSE_SUCCESS_CODE));
-        if (!success) {
-            showMsg(responseString);
-        }
-        return success;
-    }
-
-    private void showMsg(String responseString) throws Exception {
-        JSONObject response = new JSONObject(responseString);
-        String msg = response.getString(Constant.K_MSG);
-        if (msg != null) {
-            ToastUtils.show(msg);
-        }
     }
 
 
