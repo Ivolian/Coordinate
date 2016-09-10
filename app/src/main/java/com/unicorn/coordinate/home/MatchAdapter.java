@@ -1,17 +1,20 @@
 package com.unicorn.coordinate.home;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
+import com.bumptech.glide.Glide;
 import com.unicorn.coordinate.R;
+import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.helper.ClickHelper;
+import com.unicorn.coordinate.helper.GlideRoundTransform;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.utils.ConfigUtils;
-import com.unicorn.coordinate.utils.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +41,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.picture)
-        RoundedImageView picture;
+        ImageView picture;
 
         @BindView(R.id.name)
         TextView name;
@@ -69,11 +72,20 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Match match = matchList.get(position);
         String imgUrl = ConfigUtils.getImageBaseUrl() + match.getPic1();
-        GlideUtils.loadPicture(imgUrl, holder.picture);
+        loadPicture(imgUrl, holder.picture);
         holder.name.setText(match.getMatch_name());
         String date = match.getDate4().substring(0, 10);
         holder.date.setText(date);
         holder.status.setText(match.getStatus());
+    }
+
+    private void loadPicture(String imgUrl, ImageView imageView) {
+        Context context = SimpleApplication.getInstance();
+        Glide.with(context)
+                .load(imgUrl)
+                .placeholder(R.drawable.placeholder)
+                .transform(new GlideRoundTransform(SimpleApplication.getInstance(), 8))
+                .into(imageView);
     }
 
 

@@ -7,13 +7,12 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <ImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        app:layout_heightPercent="40%sh"
-        app:riv_corner_radius="10dp" />
+        app:layout_heightPercent="40%sh" />
 
     <TextView
         android:id="@+id/name"
