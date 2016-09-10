@@ -10,6 +10,10 @@ public class ConfigUtils {
         return "http://" + IP + ":" + PORT;
     }
 
+    public static String getImageBaseUrl() {
+        return getBaseUrl() + "/upfiles/";
+    }
+
 //    public static String getBaseDirPath() {
 //        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "hems");
 //        if (!dir.exists()) {

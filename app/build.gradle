@@ -41,14 +41,16 @@ dependencies {
     //  joda
     compile 'net.danlew:android.joda:2.9.4.1'
     //  icon
-    compile "com.mikepenz:iconics-core:2.8.1@aar"
+    compile 'com.mikepenz:iconics-core:2.8.1@aar'
     compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
     //  eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
     // dialog
     compile 'com.afollestad.material-dialogs:core:0.9.0.1'
-//  divider
-//    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
-//  loadingView
-//    compile 'com.wang.avi:library:2.1.2'
+    compile 'com.makeramen:roundedimageview:2.2.1'
+    //  divider
+    //    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    //  loadingView
+    //    compile 'com.wang.avi:library:2.1.2'
+    compile 'com.google.code.gson:gson:2.7'
 }
