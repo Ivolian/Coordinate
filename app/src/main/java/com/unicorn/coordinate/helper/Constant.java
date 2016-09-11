@@ -24,7 +24,7 @@ public class Constant {
 
     public static final String RESPONSE_SUCCESS_CODE = "0";
 
-    public static int REGISTER_SUCCESS_CODE = 10001;
+    public static int RC_REGISTER_SUCCESS = 10001;
 
 
 }

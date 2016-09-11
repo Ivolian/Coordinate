@@ -22,6 +22,8 @@ import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -86,10 +88,12 @@ public class LoginActivity extends BaseActivity {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
-        String dataString = ResponseHelper.getData(responseString);
-        UserInfo userInfo = new Gson().fromJson(dataString, UserInfo.class);
+        JSONObject response = new JSONObject(responseString);
+        JSONObject data = response.getJSONObject(Constant.K_DATA);
+        UserInfo userInfo = new Gson().fromJson(data.toString(), UserInfo.class);
         ConfigUtils.saveUserInfo(userInfo);
         ToastUtils.show("登录成功");
+        finish();
     }
 
 

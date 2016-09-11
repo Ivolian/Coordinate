@@ -67,7 +67,7 @@
             android:textColorHint="@color/md_grey_400"
             app:layout_marginLeftPercent="5%sw"
             app:layout_marginRightPercent="5%sw"
-            app:layout_textSizePercent="2.8%sh"
+            app:layout_textSizePercent="2.4%sh"
             app:layout_widthPercent="45%sw" />
 
         <android.support.v7.widget.AppCompatButton
@@ -79,7 +79,7 @@
             android:text="获取验证码"
             android:textColor="@color/md_white"
             app:layout_marginRightPercent="5%sw"
-            app:layout_textSizePercent="2.8%sh"
+            app:layout_textSizePercent="2.4%sh"
             app:layout_widthPercent="40%sw" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>

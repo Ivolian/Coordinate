@@ -2,34 +2,30 @@ package com.unicorn.coordinate.user;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
-import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.f2prateek.dart.InjectExtra;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
-import org.json.JSONObject;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * Created by ivolianer on 2016/8/26.
- */
+
 public class SetPasswordActivity extends BaseActivity {
 
 
-    @InjectExtra("userId")
-    String userId;
+    // ======================== onCreate =========================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,46 +33,44 @@ public class SetPasswordActivity extends BaseActivity {
         setContentView(R.layout.activity_set_password);
     }
 
+
+    // ======================== InjectExtra =========================
+
+    @Nullable
+    @InjectExtra(Constant.K_USER_ID)
+    String userId;
+
+
+    // ======================== views =========================
+
     @BindView(R.id.pwd)
     AppCompatEditText pwd;
 
+    @BindView(R.id.confirmPwd)
+    AppCompatEditText confirmPwd;
 
-    private boolean isPwdValid() {
-        if (TextUtils.isEmpty(pwd.getText())) {
-            ToastUtils.show("验证码不能为空");
-            return false;
-        }
-        // TODO 密码本身有什么要求
-        return true;
-    }
 
-    private String getSetPasswordUrl(String userId, String pwd) {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/set_pwd?").buildUpon();
-        // TODO 为啥 account 一会是手机号，一会是 userId..
-        builder.appendQueryParameter("account", userId);
-        builder.appendQueryParameter("pwd", pwd);
-        return builder.toString();
-    }
+    // ======================== views =========================
 
     @OnClick(R.id.register)
     public void registerOnClick() {
-        if (!ClickHelper.isSafe()) {
-            return;
+        if (ClickHelper.isSafe() && isInputValid()) {
+            register();
         }
+    }
 
-        if (!isPwdValid()) {
-            return;
-        }
-
-
-        Request stringRequest = new JsonObjectRequest(
-                getSetPasswordUrl(userId, pwd.getText().toString()),
-                null,
-                new Response.Listener<JSONObject>() {
+    private void register() {
+        String url = getSetPasswordUrl(userId, getPwd());
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String responseString) {
                         try {
-                            copeResponse2(response);
+                            if (ResponseHelper.isRight(responseString)) {
+                                ToastUtils.show("用户注册成功");
+                                finishWithResult();
+                            }
                         } catch (Exception e) {
                             //
                         }
@@ -84,32 +78,58 @@ public class SetPasswordActivity extends BaseActivity {
                 },
                 SimpleVolley.getDefaultErrorListener()
         );
-        SimpleVolley.addRequest(stringRequest);
+        SimpleVolley.addRequest(request);
+    }
 
+    private void finishWithResult(){
+        setResult(Constant.RC_REGISTER_SUCCESS);
+        finish();
     }
 
 
-    private void copeResponse2(JSONObject response) throws Exception {
-        String code = response.getString(Constant.K_CODE);
-        if (code == null) {
-            return;
-        }
+    // ======================== 底层方法 =========================
 
-        if (code.equals(Constant.RESPONSE_SUCCESS_CODE)) {
-            String successMsg = response.getString(Constant.K_DATA);
-            if (successMsg != null) {
-                ToastUtils.show(successMsg);
-                setResult(Constant.REGISTER_SUCCESS_CODE);
-                finish();
-            }
-        } else {
-            // TODO 抽象
-            String errorMsg = response.getString(Constant.K_MSG);
-            if (errorMsg != null) {
-                ToastUtils.show(errorMsg);
-            }
+    private boolean isInputValid() {
+        final int pwdMinLength = 6;
+        String pwd = getPwd();
+        if (pwd.equals("")) {
+            ToastUtils.show("密码不能为空");
+            return false;
         }
+        if (pwd.length() < pwdMinLength) {
+            ToastUtils.show("密码至少6位");
+            return false;
+        }
+        String confirmPwd = getConfirmPwd();
+        if (confirmPwd.equals("")) {
+            ToastUtils.show("确认密码不能为空");
+            return false;
+        }
+        if (confirmPwd.length() < pwdMinLength) {
+            ToastUtils.show("确认密码至少6位");
+            return false;
+        }
+        if (!pwd.equals(confirmPwd)) {
+            ToastUtils.show("两次密码不一致");
+            return false;
+        }
+        return true;
+    }
 
+    private String getSetPasswordUrl(String userId, String pwd) {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/set_pwd?").buildUpon();
+        builder.appendQueryParameter(Constant.K_ACCOUNT, userId);
+        builder.appendQueryParameter("pwd", pwd);
+        return builder.toString();
+    }
+
+    private String getPwd() {
+        return pwd.getText().toString().trim();
+    }
+
+
+    private String getConfirmPwd() {
+        return confirmPwd.getText().toString().trim();
     }
 
 
