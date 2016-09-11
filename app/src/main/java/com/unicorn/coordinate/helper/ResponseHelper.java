@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 public class ResponseHelper {
 
+
     public static boolean isRight(String responseString) throws Exception {
         JSONObject response = new JSONObject(responseString);
         String code = response.getString(Constant.K_CODE);
@@ -29,10 +30,5 @@ public class ResponseHelper {
         }
     }
 
-    public static String getData(String responseString) throws Exception{
-        JSONObject response = new JSONObject(responseString);
-        JSONObject data = response.getJSONObject(Constant.K_DATA);
-        return data.toString();
-    }
 
 }

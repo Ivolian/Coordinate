@@ -7,5 +7,6 @@
     <color name="loginButton">#04328C</color>
     <color name="register">#4AB1F7</color>
     <color name="verificationCode">#4EB3F7</color>
+    <color name="bottomTabUnselected">#929292</color>
 
 </resources>

@@ -9,10 +9,6 @@ import com.unicorn.coordinate.home.HomeFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
-    public String[] TITLES = {
-            "首页", "消息", "图集", "我的"
-    };
-
     public MainPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -31,14 +27,10 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-     return 1;
+     return 4;
 //        return TITLES.length;
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return TITLES[0];
-//        return TITLES[position];
-    }
+
 
 }

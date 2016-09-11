@@ -22,6 +22,7 @@
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#EFF0F1"
         android:orientation="horizontal"
         app:layout_heightPercent="10%sh">
 
@@ -37,7 +38,6 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/home"
                 app:layout_heightPercent="4%sh"
                 app:layout_marginBottomPercent="0.5%sh"
                 app:layout_widthPercent="4%sh" />
@@ -46,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="首页"
-                android:textColor="@color/colorPrimary"
                 app:layout_textSizePercent="2.2%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
@@ -63,7 +62,6 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/message"
                 app:layout_heightPercent="4%sh"
                 app:layout_marginBottomPercent="0.5%sh"
                 app:layout_widthPercent="4%sh" />
@@ -72,7 +70,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="消息"
-                android:textColor="@color/colorPrimary"
                 app:layout_textSizePercent="2.2%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
@@ -107,7 +104,6 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/picture"
                 app:layout_heightPercent="4%sh"
                 app:layout_marginBottomPercent="0.5%sh"
                 app:layout_widthPercent="4%sh" />
@@ -116,7 +112,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="图集"
-                android:textColor="@color/colorPrimary"
                 app:layout_textSizePercent="2.2%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
@@ -133,7 +128,6 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/profile"
                 app:layout_heightPercent="4%sh"
                 app:layout_marginBottomPercent="0.5%sh"
                 app:layout_widthPercent="4%sh" />
@@ -142,7 +136,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的"
-                android:textColor="@color/colorPrimary"
                 app:layout_textSizePercent="2.2%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>

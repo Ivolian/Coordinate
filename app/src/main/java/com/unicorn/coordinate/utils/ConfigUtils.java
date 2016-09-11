@@ -1,7 +1,11 @@
 package com.unicorn.coordinate.utils;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.TinyDB;
+import com.unicorn.coordinate.user.LoginActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
 
 public class ConfigUtils {
@@ -23,16 +27,25 @@ public class ConfigUtils {
     }
 
     public static boolean isLogin() {
-        return getUserId() != null;
+        return !getUserId().equals("");
     }
 
-    public static void removeUserInfo(){
+    public static void removeUserInfo() {
         TinyDB.getNewInstance().remove(Constant.K_USER_ID);
     }
 
-    public static void saveUserInfo(UserInfo userInfo){
-        TinyDB tinyDB= TinyDB.getNewInstance();
-        tinyDB.putString(Constant.K_USER_ID,userInfo.getUserid());
+    public static void saveUserInfo(UserInfo userInfo) {
+        TinyDB tinyDB = TinyDB.getNewInstance();
+        tinyDB.putString(Constant.K_USER_ID, userInfo.getUserid());
+    }
+
+    public static boolean checkLogin(Activity activity) {
+        if (!isLogin()) {
+            Intent intent = new Intent(activity, LoginActivity.class);
+            activity.startActivity(intent);
+            return false;
+        }
+        return true;
     }
 
 //    public static String getBaseDirPath() {
