@@ -65,9 +65,9 @@ public class MainActivity extends BaseActivity {
 
     // ======================== 底部栏 =========================
 
-    private int[] drawableResSelected = {R.drawable.home, R.drawable.message, R.drawable.picture, R.drawable.profile};
+    private int[] drawableResSelected = {R.drawable.home, R.drawable.message, R.drawable.atlas, R.drawable.profile};
 
-    private int[] drawableResUnselected = {R.drawable.home_u, R.drawable.message_u, R.drawable.picture_u, R.drawable.profile_u};
+    private int[] drawableResUnselected = {R.drawable.home_u, R.drawable.message_u, R.drawable.atlas_u, R.drawable.profile_u};
 
     @BindViews({R.id.home, R.id.message, R.id.picture, R.id.profile})
     List<PercentLinearLayout> bottomTabList;

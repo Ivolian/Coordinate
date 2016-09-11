@@ -5,9 +5,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.unicorn.coordinate.home.HomeFragment;
+import com.unicorn.coordinate.pictrue.AtlasFragment;
 
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
+
 
     public MainPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -20,6 +22,8 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 //                return new HomeFragment();
             case 1:
 //                return new ProfileFragment();
+            case 2:
+                return new AtlasFragment();
             default:
                 return new HomeFragment();
         }
@@ -27,10 +31,8 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-     return 4;
-//        return TITLES.length;
+        return 4;
     }
-
 
 
 }

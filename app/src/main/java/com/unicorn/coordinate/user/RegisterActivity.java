@@ -42,11 +42,11 @@ public class RegisterActivity extends BaseActivity {
 
     // ======================== timing =========================
 
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
     private int time = 0;
 
-    private Runnable runnable = new Runnable() {
+    private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
             requestVercode.setText(time == 0 ? "获取验证码" : time + "秒后可重新获得");
@@ -120,7 +120,7 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-    public void checkVercode() {
+    private void checkVercode() {
         String url = getCheckVercodeUrl(getTel(), gerVercode());
         Request request = new StringRequest(
                 url,
