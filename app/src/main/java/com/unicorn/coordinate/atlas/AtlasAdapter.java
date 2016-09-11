@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.pictrue;
+package com.unicorn.coordinate.atlas;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,6 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
-import com.unicorn.coordinate.helper.GlideRoundTransform;
-import com.unicorn.coordinate.home.MatchDetailActivity;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.utils.ConfigUtils;
 
@@ -57,16 +55,16 @@ public class AtlasAdapter extends RecyclerView.Adapter<AtlasAdapter.ViewHolder> 
         @OnClick(R.id.item)
         public void itemOnClick() {
             if (ClickHelper.isSafe()) {
-//                Context context = logopic.getContext();
-//                Match match =/ matchList.get(getAdapterPosition());
-//                startMatchDetailActivity(context, match);
+                Context context = logopic.getContext();
+                Match match = matchList.get(getAdapterPosition());
+                startAtlasDetailActivity(context, match);
             }
         }
     }
 
-    private void startMatchDetailActivity(Context context, Match match) {
-        Intent intent = new Intent(context, MatchDetailActivity.class);
-        intent.putExtra(Constant.K_MATCH, match);
+    private void startAtlasDetailActivity(Context context, Match match) {
+        Intent intent = new Intent(context, AtlasPhotoActivity.class);
+        intent.putExtra(Constant.K_MATCH_ID, match.getMatch_id());
         context.startActivity(intent);
     }
 

@@ -17,10 +17,11 @@ public class Constant {
 
     public static final String K_MATCH = "match";
 
+    public static final String K_MATCH_ID = "match_id";
 
-    public static final String K_PASSWORD = "password";
+    public static final String K_IMG_URL = "imgUrl";
 
-    public static final String K_PWD = "pwd";
+
 
     public static final String RESPONSE_SUCCESS_CODE = "0";
 

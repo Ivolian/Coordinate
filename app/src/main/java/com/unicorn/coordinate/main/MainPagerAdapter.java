@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.unicorn.coordinate.home.HomeFragment;
-import com.unicorn.coordinate.pictrue.AtlasFragment;
+import com.unicorn.coordinate.atlas.AtlasFragment;
 
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {

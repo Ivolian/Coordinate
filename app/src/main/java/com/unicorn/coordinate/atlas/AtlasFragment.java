@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.pictrue;
+package com.unicorn.coordinate.atlas;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,7 +44,7 @@ public class AtlasFragment extends LazyLoadFragment {
     }
 
 
-    // ====================== 赛事列表 ======================
+    // ====================== 图集列表 ======================
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;

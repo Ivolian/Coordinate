@@ -43,6 +43,15 @@
         <activity
             android:name=".home.MatchDetailActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".atlas.AtlasPhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".atlas.PhotoDisplayActivity"
+            android:screenOrientation="portrait" />
+
+
     </application>
 
 </manifest>
