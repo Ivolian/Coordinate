@@ -49,11 +49,11 @@ public class AtlasFragment extends LazyLoadFragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    final private AtlasAdapter atlasAdapter = new AtlasAdapter();
+    final private AtlasAdapter adapter = new AtlasAdapter();
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(atlasAdapter);
+        recyclerView.setAdapter(adapter);
     }
 
     private void fetchAtlasList() {
@@ -86,8 +86,9 @@ public class AtlasFragment extends LazyLoadFragment {
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<Match> matchList = new Gson().fromJson(data.toString(), new TypeToken<List<Match>>() {
         }.getType());
-        atlasAdapter.setMatchList(matchList);
-        atlasAdapter.notifyDataSetChanged();
+        // 图集的 model 用的还是 match
+        adapter.setMatchList(matchList);
+        adapter.notifyDataSetChanged();
     }
 
 

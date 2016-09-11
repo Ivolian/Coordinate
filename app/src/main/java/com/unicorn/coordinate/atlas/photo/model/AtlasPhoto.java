@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.atlas.model;
+package com.unicorn.coordinate.atlas.photo.model;
 
 
 public class AtlasPhoto {

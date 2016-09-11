@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.unicorn.coordinate.R;
-import com.unicorn.coordinate.SimpleApplication;
+import com.unicorn.coordinate.atlas.photo.AtlasPhotoActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.ImageHelper;
 import com.unicorn.coordinate.home.model.Match;
-import com.unicorn.coordinate.utils.ConfigUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,17 +73,9 @@ public class AtlasAdapter extends RecyclerView.Adapter<AtlasAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Match match = matchList.get(position);
-        String imgUrl = ConfigUtils.getImageBaseUrl() + match.getLogopic();
-        loadPicture(imgUrl, holder.logopic);
+        String imgUrl = ImageHelper.getImgUrl(match.getLogopic());
+        ImageHelper.loadPicture(imgUrl, holder.logopic);
         holder.name.setText(match.getMatch_name());
-    }
-
-    private void loadPicture(String imgUrl, ImageView imageView) {
-        Context context = SimpleApplication.getInstance();
-        Glide.with(context)
-                .load(imgUrl)
-                .placeholder(R.drawable.placeholder)
-                .into(imageView);
     }
 
 

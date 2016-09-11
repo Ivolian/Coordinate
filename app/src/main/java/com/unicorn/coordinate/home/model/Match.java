@@ -38,7 +38,7 @@ public class Match implements Serializable {
     private String Pic1;
     private String Pic2;
     private String ispic;
-    private Object logopic;
+    private String logopic;
     private String Status;
 
     public String getMatch_id() {
@@ -153,11 +153,11 @@ public class Match implements Serializable {
         this.ispic = ispic;
     }
 
-    public Object getLogopic() {
+    public String getLogopic() {
         return logopic;
     }
 
-    public void setLogopic(Object logopic) {
+    public void setLogopic(String logopic) {
         this.logopic = logopic;
     }
 

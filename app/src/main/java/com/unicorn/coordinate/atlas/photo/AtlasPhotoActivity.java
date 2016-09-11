@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.atlas;
+package com.unicorn.coordinate.atlas.photo;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.f2prateek.dart.InjectExtra;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unicorn.coordinate.R;
-import com.unicorn.coordinate.atlas.model.AtlasPhoto;
+import com.unicorn.coordinate.atlas.photo.model.AtlasPhoto;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
@@ -38,7 +38,7 @@ public class AtlasPhotoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_atlas_detail);
+        setContentView(R.layout.activity_atlas_photo);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class AtlasPhotoActivity extends BaseActivity {
     final private AtlasPhotoAdapter adapter = new AtlasPhotoAdapter();
 
     private void initRecyclerView() {
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new SpaceItemDecoration());
@@ -108,11 +108,14 @@ public class AtlasPhotoActivity extends BaseActivity {
     }
 
 
+    // ====================== back ======================
+
     @OnClick(R.id.back)
     public void backOnClick() {
         if (ClickHelper.isSafe()) {
             finish();
         }
     }
+
 
 }

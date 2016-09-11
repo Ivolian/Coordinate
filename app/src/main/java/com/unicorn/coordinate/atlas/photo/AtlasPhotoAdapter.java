@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.atlas;
+package com.unicorn.coordinate.atlas.photo;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.SimpleApplication;
-import com.unicorn.coordinate.atlas.model.AtlasPhoto;
+import com.unicorn.coordinate.atlas.photo.model.AtlasPhoto;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.utils.ConfigUtils;
@@ -59,7 +59,7 @@ public class AtlasPhotoAdapter extends RecyclerView.Adapter<AtlasPhotoAdapter.Vi
     }
 
     private void startPhotoDisplayActivity(Context context, String imgUrl) {
-        Intent intent = new Intent(context, PhotoDisplayActivity.class);
+        Intent intent = new Intent(context, AtlasDisplayActivity.class);
         intent.putExtra(Constant.K_IMG_URL, imgUrl);
         context.startActivity(intent);
     }
