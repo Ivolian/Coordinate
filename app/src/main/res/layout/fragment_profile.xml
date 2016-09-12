@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_grey_200"
+    android:background="@color/md_white"
     android:orientation="vertical">
 
     <!-- 标题栏 -->
@@ -26,39 +26,243 @@
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
+    <!-- 间隔 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_grey_200"
+        app:layout_heightPercent="4%sh" />
+
+    <!-- profile -->
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_heightPercent="10%sh">
+        app:layout_heightPercent="8%sh">
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginLeft="16dp"
             android:scaleType="fitXY"
-            app:layout_heightPercent="5%sh"
-            app:layout_widthPercent="10%sh" />
+            android:src="@drawable/p_profile"
+            app:layout_heightPercent="4%sh"
+            app:layout_marginLeftPercent="10%sw"
+            app:layout_widthPercent="4%sh" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:textColor="@color/md_black" />
+            android:text="陈孝玲"
+            android:textColor="@color/md_black"
+            app:layout_marginLeftPercent="8%sw"
+            app:layout_textSizePercent="2.6%sh" />
 
         <com.mikepenz.iconics.view.IconicsImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_marginRight="16dp"
-            app:iiv_color="@color/md_grey_800"
+            app:iiv_color="@color/md_black"
             app:iiv_icon="ion-ios-arrow-right"
-            app:layout_heightPercent="2.8%sh"
-            app:layout_widthPercent="2.8%sh" />
+            app:layout_heightPercent="2.3%sh"
+            app:layout_marginRightPercent="10%sw"
+            app:layout_widthPercent="2.3%sh" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
+    <!-- 间隔 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_grey_200"
+        app:layout_heightPercent="4%sh" />
+
+    <!-- match -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/p_match"
+            app:layout_heightPercent="4%sh"
+            app:layout_marginLeftPercent="10%sw"
+            app:layout_widthPercent="4%sh" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="我的比赛"
+            android:textColor="@color/md_black"
+            app:layout_marginLeftPercent="8%sw"
+            app:layout_textSizePercent="2.6%sh" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            app:iiv_color="@color/md_black"
+            app:iiv_icon="ion-ios-arrow-right"
+            app:layout_heightPercent="2.3%sh"
+            app:layout_marginRightPercent="10%sw"
+            app:layout_widthPercent="2.3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/md_grey_300"
+        app:layout_marginLeftPercent="6%sw"
+        app:layout_marginRightPercent="6%sw" />
+
+    <!-- matchcert -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/p_matchcert"
+            app:layout_heightPercent="4%sh"
+            app:layout_marginLeftPercent="10%sw"
+            app:layout_widthPercent="4%sh" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="比赛证书"
+            android:textColor="@color/md_black"
+            app:layout_marginLeftPercent="8%sw"
+            app:layout_textSizePercent="2.6%sh" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            app:iiv_color="@color/md_black"
+            app:iiv_icon="ion-ios-arrow-right"
+            app:layout_heightPercent="2.3%sh"
+            app:layout_marginRightPercent="10%sw"
+            app:layout_widthPercent="2.3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- 间隔 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_grey_200"
+        app:layout_heightPercent="4%sh" />
+
+    <!-- message -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/p_message"
+            app:layout_heightPercent="4%sh"
+            app:layout_marginLeftPercent="10%sw"
+            app:layout_widthPercent="4%sh" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="消息通知"
+            android:textColor="@color/md_black"
+            app:layout_marginLeftPercent="8%sw"
+            app:layout_textSizePercent="2.6%sh" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            app:iiv_color="@color/md_black"
+            app:iiv_icon="ion-ios-arrow-right"
+            app:layout_heightPercent="2.3%sh"
+            app:layout_marginRightPercent="10%sw"
+            app:layout_widthPercent="2.3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- 间隔 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_grey_200"
+        app:layout_heightPercent="4%sh" />
+
+    <!-- 设置 -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/p_setting"
+            app:layout_heightPercent="4%sh"
+            app:layout_marginLeftPercent="10%sw"
+            app:layout_widthPercent="4%sh" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="设置"
+            android:textColor="@color/md_black"
+            app:layout_marginLeftPercent="8%sw"
+            app:layout_textSizePercent="2.6%sh" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            app:iiv_color="@color/md_black"
+            app:iiv_icon="ion-ios-arrow-right"
+            app:layout_heightPercent="2.3%sh"
+            app:layout_marginRightPercent="10%sw"
+            app:layout_widthPercent="2.3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- 间隔 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/md_grey_200" />
 
 </com.zhy.android.percent.support.PercentLinearLayout>

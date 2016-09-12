@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.unicorn.coordinate.atlas.AtlasFragment;
 import com.unicorn.coordinate.home.HomeFragment;
+import com.unicorn.coordinate.message.MessageFragment;
 import com.unicorn.coordinate.profile.ProfileFragment;
 
 
@@ -22,14 +23,13 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new HomeFragment();
             case 1:
-                // todo msg
-                return new ProfileFragment();
+                return new MessageFragment();
             case 2:
                 return new AtlasFragment();
             case 3:
                 return new ProfileFragment();
             default:
-                return new HomeFragment();
+                return null;
         }
     }
 
