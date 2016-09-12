@@ -11,7 +11,7 @@ public class Constant {
 
 
 
-    public static final String K_USER_ID = "userId";
+    public static final String K_USER_ID = "userid";
 
     public static final String K_ACCOUNT = "account";
 
@@ -19,10 +19,11 @@ public class Constant {
 
     public static final String K_MESSAGE = "message";
 
-    public static final String K_MATCH_ID = "match_id";
+    public static final String K_MATCH_ID = "matchid";
 
     public static final String K_IMG_URL = "imgUrl";
 
+    public static final String K_TITLE = "title";
 
 
     public static final String RESPONSE_SUCCESS_CODE = "0";

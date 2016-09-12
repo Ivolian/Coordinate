@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
-import com.unicorn.coordinate.message.MessageDetailActivity;
-import com.unicorn.coordinate.message.model.Message;
 import com.unicorn.coordinate.profile.model.UserMatch;
 
 import java.util.ArrayList;
@@ -53,16 +51,17 @@ public class UserMatchAdapter extends RecyclerView.Adapter<UserMatchAdapter.View
         @OnClick(R.id.item)
         public void itemOnClick() {
             if (ClickHelper.isSafe()) {
-//                Context context = content.getContext();
-//                Message message = userMatchList.get(getAdapterPosition());
-//                startMessageDetailActivity(context, message);
+                Context context = matchName.getContext();
+                UserMatch userMatch = userMatchList.get(getAdapterPosition());
+                startUserMatchDetailActivity(context, userMatch);
             }
         }
     }
 
-    private void startMessageDetailActivity(Context context, Message message) {
-        Intent intent = new Intent(context, MessageDetailActivity.class);
-        intent.putExtra(Constant.K_MESSAGE, message);
+    private void startUserMatchDetailActivity(Context context, UserMatch userMatch) {
+        Intent intent = new Intent(context, UserMatchDetailActivity.class);
+        intent.putExtra(Constant.K_TITLE, "我的比赛");
+        intent.putExtra(Constant.K_MATCH_ID, userMatch.getMatch_id());
         context.startActivity(intent);
     }
 

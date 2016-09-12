@@ -54,7 +54,6 @@
         <activity
             android:name=".message.MessageDetailActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".message.MessageActivity"
             android:screenOrientation="portrait" />
@@ -66,6 +65,10 @@
         <activity
             android:name=".profile.UserMatchActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".profile.UserMatchDetailActivity"
+            android:screenOrientation="portrait" />
+
 
     </application>
 
