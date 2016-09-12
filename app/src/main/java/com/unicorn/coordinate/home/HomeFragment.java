@@ -17,9 +17,9 @@ import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Match;
+import com.unicorn.coordinate.home.scan.ScanActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import org.json.JSONArray;
@@ -105,7 +105,7 @@ public class HomeFragment extends LazyLoadFragment {
     @OnClick(R.id.scan)
     public void scanOnClick() {
         if (ClickHelper.isSafe()) {
-            Intent intent = new Intent(getActivity(), CaptureActivity.class);
+            Intent intent = new Intent(getActivity(), ScanActivity.class);
             startActivityForResult(intent, SCAN_REQUEST_CODE);
         }
     }
