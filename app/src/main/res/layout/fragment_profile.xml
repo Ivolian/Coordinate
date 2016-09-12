@@ -222,9 +222,10 @@
 
     <!-- 设置 -->
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/setting"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/md_white"
+        android:background="?attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_heightPercent="8%sh">

@@ -30,13 +30,18 @@ public class ConfigUtils {
         return !getUserId().equals("");
     }
 
-    public static void removeUserInfo() {
+    public static void logout() {
         TinyDB.getNewInstance().remove(Constant.K_USER_ID);
     }
 
     public static void saveUserInfo(UserInfo userInfo) {
         TinyDB tinyDB = TinyDB.getNewInstance();
         tinyDB.putString(Constant.K_USER_ID, userInfo.getUserid());
+        tinyDB.putString(Constant.K_ACCOUNT, userInfo.getMobile());
+    }
+
+    public static String getAccount() {
+        return TinyDB.getNewInstance().getString(Constant.K_ACCOUNT);
     }
 
     public static boolean checkLogin(Activity activity) {

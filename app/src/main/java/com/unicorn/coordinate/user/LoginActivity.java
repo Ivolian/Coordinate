@@ -40,6 +40,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initViews() {
+        account.setText(ConfigUtils.getAccount());
         addUnderlines();
     }
 
