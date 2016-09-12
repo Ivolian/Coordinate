@@ -36,9 +36,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".user.SetPasswordActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
 
-            </activity>
+        </activity>
 
         <activity
             android:name=".home.MatchDetailActivity"
@@ -63,6 +63,9 @@
             android:name=".home.scan.ScanActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".profile.UserMatchActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
