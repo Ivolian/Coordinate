@@ -1,7 +1,9 @@
 package com.unicorn.coordinate.message.model;
 
 
-public class Message  {
+import java.io.Serializable;
+
+public class Message implements Serializable {
 
     /**
      * Infoid : 4ba7dfc2-db70-485f-a5ca-adb4e07cea11

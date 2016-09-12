@@ -51,7 +51,9 @@
             android:name=".atlas.photo.AtlasDisplayActivity"
             android:screenOrientation="portrait" />
 
-
+        <activity
+            android:name=".message.MessageDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

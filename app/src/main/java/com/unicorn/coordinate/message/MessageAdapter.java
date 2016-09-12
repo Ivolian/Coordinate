@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unicorn.coordinate.R;
-import com.unicorn.coordinate.atlas.photo.AtlasPhotoActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
-import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.message.model.Message;
 
 import java.util.ArrayList;
@@ -53,16 +51,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         @OnClick(R.id.item)
         public void itemOnClick() {
             if (ClickHelper.isSafe()) {
-//                Context context = logopic.getContext();
-//                Match match = messageList.get(getAdapterPosition());
-//                startAtlasDetailActivity(context, match);
+                Context context = content.getContext();
+                Message message = messageList.get(getAdapterPosition());
+                startMessageDetailActivity(context, message);
             }
         }
     }
 
-    private void startAtlasDetailActivity(Context context, Match match) {
-        Intent intent = new Intent(context, AtlasPhotoActivity.class);
-        intent.putExtra(Constant.K_MATCH_ID, match.getMatch_id());
+    private void startMessageDetailActivity(Context context, Message message) {
+        Intent intent = new Intent(context, MessageDetailActivity.class);
+        intent.putExtra(Constant.K_MESSAGE, message);
         context.startActivity(intent);
     }
 

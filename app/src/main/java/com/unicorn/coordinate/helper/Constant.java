@@ -17,6 +17,8 @@ public class Constant {
 
     public static final String K_MATCH = "match";
 
+    public static final String K_MESSAGE = "message";
+
     public static final String K_MATCH_ID = "match_id";
 
     public static final String K_IMG_URL = "imgUrl";
