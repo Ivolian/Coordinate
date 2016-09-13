@@ -71,14 +71,13 @@ public class ProfileFragment extends BaseFragment {
     TextView tvProfile;
 
     private void refreshProfile() {
-
         UserInfo userInfo = ConfigUtils.getUserInfo();
         if (userInfo == null) {
             tvProfile.setText("点击登录");
             return;
         }
-        String name = userInfo.getName();
-        tvProfile.setText(name);
+        String text = userInfo.getName() != null ? userInfo.getName() : userInfo.getMobile();
+        tvProfile.setText(text);
     }
 
     @Override

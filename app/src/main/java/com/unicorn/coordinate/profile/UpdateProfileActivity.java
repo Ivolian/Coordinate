@@ -45,11 +45,25 @@ public class UpdateProfileActivity extends BaseActivity {
     @Override
     public void initViews() {
         UserInfo userInfo = ConfigUtils.getUserInfo();
-        name.setText(userInfo.getName());
-        checkBySexy(userInfo.getSexy());
-        initDateTime(userInfo.getBirthday());
-        initCardType(userInfo.getCardtype());
-        cardNo.setText(userInfo.getCardno());
+        if (userInfo.getName() != null) {
+            name.setText(userInfo.getName());
+        }
+        if (userInfo.getCardno() != null) {
+            cardNo.setText(userInfo.getCardno());
+        }
+        if (userInfo.getSexy() != null) {
+            checkBySexy(userInfo.getSexy());
+        }
+
+        String birthday = userInfo.getBirthday();
+        if (birthday == null) {
+            birthday = "1980-01-01 00:00:00";
+        }
+        initDateTime(birthday);
+
+        if (userInfo.getCardtype() != null) {
+            initCardType(userInfo.getCardtype());
+        }
     }
 
 
@@ -109,7 +123,7 @@ public class UpdateProfileActivity extends BaseActivity {
     }
 
     private String getBirthdayFullString() {
-       return  getBirthdayString() +" 00:00:00";
+        return getBirthdayString() + " 00:00:00";
     }
 
     @OnClick(R.id.birthday)
@@ -211,14 +225,14 @@ public class UpdateProfileActivity extends BaseActivity {
 
 
     private boolean isInputValid() {
-        if (getName().equals("")) {
-            ToastUtils.show("姓名不能为空");
-            return false;
-        }
-        if (getCardNo().equals("")) {
-            ToastUtils.show("证件号码不能为空");
-            return false;
-        }
+//        if (getName().equals("")) {
+//            ToastUtils.show("姓名不能为空");
+//            return false;
+//        }
+//        if (getCardNo().equals("")) {
+//            ToastUtils.show("证件号码不能为空");
+//            return false;
+//        }
         return true;
     }
 

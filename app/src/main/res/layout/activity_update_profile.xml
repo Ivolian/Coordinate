@@ -79,7 +79,6 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="right"
-                android:text="张忠天"
                 android:textColor="@color/md_black"
                 app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />
@@ -178,7 +177,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="1982-11-15"
                 android:textColor="@color/md_black"
                 app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />
@@ -218,7 +216,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="身份证"
                 android:textColor="@color/md_black"
                 app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />
@@ -255,7 +252,6 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="right"
-                android:text="12345678912345"
                 android:textColor="@color/md_black"
                 app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />

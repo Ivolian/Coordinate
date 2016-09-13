@@ -26,11 +26,21 @@ public class ProfileActivity extends BaseActivity {
     @Override
     public void initViews() {
         UserInfo userInfo = ConfigUtils.getUserInfo();
-        tvName.setText(userInfo.getName());
-        tvSexy.setText(userInfo.getSexy().equals("1") ? "男" : "女");
-        tvBirthday.setText(userInfo.getBirthday().substring(0, 10));
-        tvCardType.setText(userInfo.getCardtype().equals("1") ? "身份证" : "护照");
-        tvCardNo.setText(userInfo.getCardno());
+        if (userInfo.getName() != null) {
+            tvName.setText(userInfo.getName());
+        }
+        if (userInfo.getSexy() != null) {
+            tvSexy.setText(userInfo.getSexy().equals("1") ? "男" : "女");
+        }
+        if (userInfo.getBirthday() != null) {
+            tvBirthday.setText(userInfo.getBirthday().substring(0, 10));
+        }
+        if (userInfo.getCardtype() != null) {
+            tvCardType.setText(userInfo.getCardtype().equals("1") ? "身份证" : "护照");
+        }
+        if (userInfo.getCardno() != null) {
+            tvCardNo.setText(userInfo.getCardno());
+        }
     }
 
     @Override
