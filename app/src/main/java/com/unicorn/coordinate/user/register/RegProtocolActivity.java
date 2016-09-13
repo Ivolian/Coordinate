@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.user;
+package com.unicorn.coordinate.user.register;
 
 import com.unicorn.coordinate.base.WebViewActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;

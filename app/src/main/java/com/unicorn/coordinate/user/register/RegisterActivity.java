@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.user;
+package com.unicorn.coordinate.user.register;
 
 import android.content.Intent;
 import android.net.Uri;

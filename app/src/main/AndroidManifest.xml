@@ -32,10 +32,10 @@
             android:name=".user.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".user.RegisterActivity"
+            android:name=".user.register.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".user.SetPasswordActivity"
+            android:name=".user.register.SetPasswordActivity"
             android:screenOrientation="portrait">
 
         </activity>
@@ -82,7 +82,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".user.RegProtocolActivity"
+            android:name=".user.register.RegProtocolActivity"
             android:screenOrientation="portrait" />
 
 
