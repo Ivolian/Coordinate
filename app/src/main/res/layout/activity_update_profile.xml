@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey_200"
+    android:orientation="vertical">
+
+    <!-- 标题栏 -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <!-- 退回 -->
+        <com.zhy.android.percent.support.PercentFrameLayout
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%sh"
+            app:layout_widthPercent="8%sh">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_white"
+                app:iiv_icon="ion-ios-arrow-left"
+                app:layout_heightPercent="2.8%sh"
+                app:layout_widthPercent="2.8%sh" />
+
+        </com.zhy.android.percent.support.PercentFrameLayout>
+
+        <!-- 标题 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="修改个人信息"
+            android:textColor="@color/md_white"
+            app:layout_marginRightPercent="8%sh"
+            app:layout_textSizePercent="3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- first -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_white"
+        android:orientation="vertical"
+        app:layout_marginTopPercent="4%sh">
+
+        <!-- 姓名 -->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%sh">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名"
+                android:textColor="@color/md_grey_500"
+                app:layout_marginLeftPercent="12%sw"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="张忠天"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_grey_400"
+                app:iiv_icon="ion-ios-arrow-right"
+                app:layout_heightPercent="2.4%sh"
+                app:layout_marginLeftPercent="6%sw"
+
+                app:layout_marginRightPercent="6%sw"
+                app:layout_widthPercent="2.4%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/md_grey_300"
+            app:layout_marginLeftPercent="6%sw" />
+
+        <!-- 性别 -->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/sexy"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%sh">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性别"
+                android:textColor="@color/md_grey_500"
+                app:layout_marginLeftPercent="12%sw"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <TextView
+                android:id="@+id/tvSexy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="男"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_grey_400"
+                app:iiv_icon="ion-ios-arrow-right"
+                app:layout_heightPercent="2.4%sh"
+                app:layout_marginLeftPercent="6%sw"
+
+                app:layout_marginRightPercent="6%sw"
+                app:layout_widthPercent="2.4%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/md_grey_300"
+            app:layout_marginLeftPercent="6%sw" />
+
+        <!-- 生日 -->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/birthday"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%sh">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="生日"
+                android:textColor="@color/md_grey_500"
+                app:layout_marginLeftPercent="12%sw"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <TextView
+                android:id="@+id/tvBirthday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="1982-11-15"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_grey_400"
+                app:iiv_icon="ion-ios-arrow-right"
+                app:layout_heightPercent="2.4%sh"
+                app:layout_marginLeftPercent="6%sw"
+
+                app:layout_marginRightPercent="6%sw"
+                app:layout_widthPercent="2.4%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- second -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_white"
+        android:orientation="vertical"
+        app:layout_marginTopPercent="4%sh">
+
+        <!-- 证件类型 -->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/cardType"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%sh">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="证件类型"
+                android:textColor="@color/md_grey_500"
+                app:layout_marginLeftPercent="12%sw"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <TextView
+                android:id="@+id/tvCardType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="身份证"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_grey_400"
+                app:iiv_icon="ion-ios-arrow-right"
+                app:layout_heightPercent="2.4%sh"
+                app:layout_marginLeftPercent="6%sw"
+
+                app:layout_marginRightPercent="6%sw"
+                app:layout_widthPercent="2.4%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/md_grey_300"
+            app:layout_marginLeftPercent="6%sw" />
+
+        <!-- 证件号码 -->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/cardNo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%sh">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="证件号码"
+                android:textColor="@color/md_grey_500"
+                app:layout_marginLeftPercent="12%sw"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <TextView
+                android:id="@+id/tvCardNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="12345678912345"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.6%sh" />
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_grey_400"
+                app:iiv_icon="ion-ios-arrow-right"
+                app:layout_heightPercent="2.4%sh"
+                app:layout_marginLeftPercent="6%sw"
+                app:layout_marginRightPercent="6%sw"
+                app:layout_widthPercent="2.4%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

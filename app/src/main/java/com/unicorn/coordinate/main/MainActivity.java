@@ -42,6 +42,7 @@ public class MainActivity extends BaseActivity {
 
     private void initViewpager() {
         MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

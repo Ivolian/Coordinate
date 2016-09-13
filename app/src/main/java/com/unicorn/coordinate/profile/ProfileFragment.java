@@ -24,6 +24,14 @@ public class ProfileFragment extends BaseFragment {
         return R.layout.fragment_profile;
     }
 
+    @OnClick(R.id.profile)
+    public void profile() {
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            startActivity(intent);
+        }
+    }
+
     @OnClick(R.id.match)
     public void match() {
         if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {

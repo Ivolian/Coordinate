@@ -90,6 +90,14 @@
             android:name=".user.UpdatePasswordActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".profile.UpdateProfileActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
