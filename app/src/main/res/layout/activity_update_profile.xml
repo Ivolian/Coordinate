@@ -57,7 +57,6 @@
 
         <!-- 姓名 -->
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="?attr/selectableItemBackground"
@@ -73,27 +72,17 @@
                 app:layout_marginLeftPercent="12%sw"
                 app:layout_textSizePercent="2.6%sh" />
 
-            <TextView
-                android:id="@+id/tvName"
+            <EditText
+                android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@null"
                 android:gravity="right"
                 android:text="张忠天"
                 android:textColor="@color/md_black"
+                app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />
-
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                app:iiv_color="@color/md_grey_400"
-                app:iiv_icon="ion-ios-arrow-right"
-                app:layout_heightPercent="2.4%sh"
-                app:layout_marginLeftPercent="6%sw"
-
-                app:layout_marginRightPercent="6%sw"
-                app:layout_widthPercent="2.4%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -105,7 +94,6 @@
 
         <!-- 性别 -->
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/sexy"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="?attr/selectableItemBackground"
@@ -114,34 +102,50 @@
             app:layout_heightPercent="8%sh">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="性别"
                 android:textColor="@color/md_grey_500"
                 app:layout_marginLeftPercent="12%sw"
                 app:layout_textSizePercent="2.6%sh" />
 
-            <TextView
-                android:id="@+id/tvSexy"
-                android:layout_width="0dp"
+            <info.hoang8f.android.segmented.SegmentedGroup
+                android:id="@+id/sgSexy"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="男"
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.6%sh" />
+                android:orientation="horizontal"
+                app:layout_marginRightPercent="8%sw"
+                app:sc_border_width="1dp"
+                app:sc_corner_radius="5dp"
 
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                app:iiv_color="@color/md_grey_400"
-                app:iiv_icon="ion-ios-arrow-right"
-                app:layout_heightPercent="2.4%sh"
-                app:layout_marginLeftPercent="6%sw"
+                app:sc_tint_color="@color/md_black">
 
-                app:layout_marginRightPercent="6%sw"
-                app:layout_widthPercent="2.4%sh" />
+                <RadioButton
+                    android:id="@+id/man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="4dp"
+                    android:text="男" />
+
+                <RadioButton
+                    android:id="@+id/woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="4dp"
+                    android:text="女" />
+
+            </info.hoang8f.android.segmented.SegmentedGroup>
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -153,7 +157,6 @@
 
         <!-- 生日 -->
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/birthday"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="?attr/selectableItemBackground"
@@ -170,26 +173,15 @@
                 app:layout_textSizePercent="2.6%sh" />
 
             <TextView
-                android:id="@+id/tvBirthday"
+                android:id="@+id/birthday"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="1982-11-15"
                 android:textColor="@color/md_black"
+                app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />
-
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                app:iiv_color="@color/md_grey_400"
-                app:iiv_icon="ion-ios-arrow-right"
-                app:layout_heightPercent="2.4%sh"
-                app:layout_marginLeftPercent="6%sw"
-
-                app:layout_marginRightPercent="6%sw"
-                app:layout_widthPercent="2.4%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -205,10 +197,9 @@
 
         <!-- 证件类型 -->
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/cardType"
+            android:id="@id/cardType"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="?attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_heightPercent="8%sh">
@@ -229,19 +220,8 @@
                 android:gravity="right"
                 android:text="身份证"
                 android:textColor="@color/md_black"
+                app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />
-
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                app:iiv_color="@color/md_grey_400"
-                app:iiv_icon="ion-ios-arrow-right"
-                app:layout_heightPercent="2.4%sh"
-                app:layout_marginLeftPercent="6%sw"
-
-                app:layout_marginRightPercent="6%sw"
-                app:layout_widthPercent="2.4%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -253,7 +233,6 @@
 
         <!-- 证件号码 -->
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/cardNo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="?attr/selectableItemBackground"
@@ -269,29 +248,33 @@
                 app:layout_marginLeftPercent="12%sw"
                 app:layout_textSizePercent="2.6%sh" />
 
-            <TextView
-                android:id="@+id/tvCardNo"
+            <EditText
+                android:id="@+id/cardNo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@null"
                 android:gravity="right"
                 android:text="12345678912345"
                 android:textColor="@color/md_black"
+                app:layout_marginRightPercent="8%sw"
                 app:layout_textSizePercent="2.6%sh" />
-
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                app:iiv_color="@color/md_grey_400"
-                app:iiv_icon="ion-ios-arrow-right"
-                app:layout_heightPercent="2.4%sh"
-                app:layout_marginLeftPercent="6%sw"
-                app:layout_marginRightPercent="6%sw"
-                app:layout_widthPercent="2.4%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
     </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!-- 保存 -->
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/md_white"
+        android:gravity="center"
+        android:text="保 存"
+        android:textColor="@color/colorPrimary"
+        app:layout_heightPercent="8%sh"
+        app:layout_marginTopPercent="4%sh"
+        app:layout_textSizePercent="3%sh" />
 
 </com.zhy.android.percent.support.PercentLinearLayout>

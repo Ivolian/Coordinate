@@ -6,7 +6,6 @@ import android.widget.TextView;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
-import com.unicorn.coordinate.user.UpdatePasswordActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
 import com.unicorn.coordinate.utils.ConfigUtils;
 
@@ -34,6 +33,12 @@ public class ProfileActivity extends BaseActivity {
         tvCardNo.setText(userInfo.getCardno());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initViews();
+    }
+
 
     // ======================== views =========================
 
@@ -56,35 +61,35 @@ public class ProfileActivity extends BaseActivity {
     // ======================== onClick =========================
 
     @OnClick(R.id.name)
-    public void nameOnClick(){
+    public void nameOnClick() {
         if (ClickHelper.isSafe()) {
             startActivity(UpdateProfileActivity.class);
         }
     }
 
     @OnClick(R.id.sexy)
-    public void sexyOnClick(){
+    public void sexyOnClick() {
         if (ClickHelper.isSafe()) {
             startActivity(UpdateProfileActivity.class);
         }
     }
 
     @OnClick(R.id.birthday)
-    public void birthdayOnClick(){
+    public void birthdayOnClick() {
         if (ClickHelper.isSafe()) {
             startActivity(UpdateProfileActivity.class);
         }
     }
 
     @OnClick(R.id.cardType)
-    public void cardTypeOnClick(){
+    public void cardTypeOnClick() {
         if (ClickHelper.isSafe()) {
             startActivity(UpdateProfileActivity.class);
         }
     }
 
     @OnClick(R.id.cardNo)
-    public void cardNoOnClick(){
+    public void cardNoOnClick() {
         if (ClickHelper.isSafe()) {
             startActivity(UpdateProfileActivity.class);
         }
