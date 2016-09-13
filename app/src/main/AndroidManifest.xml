@@ -73,6 +73,13 @@
             android:name=".profile.setting.SettingActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".profile.matchCert.MatchCertActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".profile.matchCert.MatchCertDetailActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

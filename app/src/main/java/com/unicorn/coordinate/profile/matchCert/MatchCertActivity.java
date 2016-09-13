@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.profile.userMatch;
+package com.unicorn.coordinate.profile.matchCert;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class UserMatchActivity extends BaseActivity {
+public class MatchCertActivity extends BaseActivity {
 
 
     // ======================== onCreate =========================
@@ -36,13 +36,13 @@ public class UserMatchActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_match);
+        setContentView(R.layout.activity_match_cert);
     }
 
     @Override
     public void initViews() {
         initRecyclerView();
-        fetchUserMatchList();
+        fetchMatchCertList();
     }
 
 
@@ -51,14 +51,14 @@ public class UserMatchActivity extends BaseActivity {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    final private UserMatchAdapter adapter = new UserMatchAdapter();
+    final private MatchCertAdapter adapter = new MatchCertAdapter();
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
 
-    private void fetchUserMatchList() {
+    private void fetchMatchCertList() {
         String url = getUrl(ConfigUtils.getUserId());
         Request request = new StringRequest(
                 url,
@@ -85,13 +85,15 @@ public class UserMatchActivity extends BaseActivity {
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<UserMatch> userMatchList = new Gson().fromJson(data.toString(), new TypeToken<List<UserMatch>>() {
         }.getType());
+        // MODEL 用的还是 UserMatch
         adapter.setUserMatchList(userMatchList);
         adapter.notifyDataSetChanged();
     }
 
     private String getUrl(final String userId) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getusermatch?").buildUpon();
-        builder.appendQueryParameter("userid", userId);
+        builder.appendQueryParameter(Constant.K_USER_ID, userId);
+        builder.appendQueryParameter("issuc", "1");
         return builder.toString();
     }
 

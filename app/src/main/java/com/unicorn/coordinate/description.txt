@@ -4,9 +4,15 @@
 18601720508
 123456
 
+完赛证书/api/matchcert?userid=&matchid=
+
+比赛详情/api/matchdetail?userid=&matchid=
+
+注册协议/api/regprotocol
+
+
+
 // TODO
-1. 设置
-修改密码 退出登录
 2. 注册
 注册时请阅读
 3. 个人信息
@@ -15,3 +21,4 @@
 5. 忘记密码
 6. Funny
 7. 任务书
+1. 修改密码

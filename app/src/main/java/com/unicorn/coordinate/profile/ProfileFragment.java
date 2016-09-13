@@ -6,6 +6,7 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseFragment;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.message.MessageActivity;
+import com.unicorn.coordinate.profile.matchCert.MatchCertActivity;
 import com.unicorn.coordinate.profile.setting.SettingActivity;
 import com.unicorn.coordinate.profile.userMatch.UserMatchActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
@@ -24,6 +25,14 @@ public class ProfileFragment extends BaseFragment {
     public void match() {
         if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {
             Intent intent = new Intent(getActivity(), UserMatchActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @OnClick(R.id.matchCert)
+    public void matchCert() {
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {
+            Intent intent = new Intent(getActivity(), MatchCertActivity.class);
             startActivity(intent);
         }
     }
