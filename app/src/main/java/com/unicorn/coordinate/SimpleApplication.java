@@ -3,7 +3,7 @@ package com.unicorn.coordinate;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.unicorn.coordinate.task.helper.TaskHelper;
+import com.unicorn.coordinate.task.TaskHelper;
 import com.unicorn.coordinate.task.model.DaoMaster;
 import com.unicorn.coordinate.task.model.DaoSession;
 import com.unicorn.coordinate.task.model.PointDao;
@@ -11,6 +11,8 @@ import com.unicorn.coordinate.volley.SimpleVolley;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import net.danlew.android.joda.JodaTimeAndroid;
+
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 
 public class SimpleApplication extends Application {
@@ -24,6 +26,7 @@ public class SimpleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        CustomActivityOnCrash.install(this);
         instance = this;
         doSomeInit();
         doSomeWork();
@@ -36,7 +39,7 @@ public class SimpleApplication extends Application {
         ZXingLibrary.initDisplayOpinion(instance);
     }
 
-    private void doSomeWork(){
+    private void doSomeWork() {
         String linesid = "1159c597-4e45-49f1-b23a-5a58354ac34d";
         if (TaskHelper.notInit()) {
             TaskHelper.getPoints(linesid);

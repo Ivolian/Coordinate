@@ -16,7 +16,7 @@
 
         <!-- 任务书 -->
         <com.zhy.android.percent.support.PercentFrameLayout
-            android:id="@+id/back"
+            android:id="@+id/task"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_heightPercent="8%sh"

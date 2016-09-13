@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.task.helper;
+package com.unicorn.coordinate.task;
 
 import android.net.Uri;
 
@@ -64,5 +64,12 @@ public class TaskHelper {
         return builder.toString();
     }
 
+    //
+
+    public static List<Point> getPointList() {
+        PointDao pointDao = SimpleApplication.getInstance().getPointDao();
+        return pointDao.queryBuilder()
+                .list();
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.home.scan;
+package com.unicorn.coordinate.task.scan;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

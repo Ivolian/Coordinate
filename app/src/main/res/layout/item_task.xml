@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/md_white">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_gravity="bottom"
+        android:background="@color/md_grey_200" />
+
+    <ImageView
+        android:layout_width="4dp"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="44dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/blue2" />
+
+    <ImageView
+        android:layout_width="4dp"
+        android:layout_height="35dp"
+        android:layout_gravity="top"
+        android:layout_marginLeft="44dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/blue2" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="top">
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="28dp"
+            android:src="@drawable/blue_p" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="80dp"
+            android:text="17-七点"
+            android:textColor="@color/md_black"
+            android:textSize="16dp" />
+
+    </FrameLayout>
+
+</FrameLayout>

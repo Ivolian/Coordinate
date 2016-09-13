@@ -59,7 +59,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".home.scan.ScanActivity"
+            android:name=".task.scan.ScanActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -106,9 +106,12 @@
             android:name=".user.forgetPwd.ResetPasswordActivity"
             android:screenOrientation="portrait" />
 
-
         <activity
             android:name=".task.TaskDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".task.TaskActivity"
             android:screenOrientation="portrait" />
 
     </application>
