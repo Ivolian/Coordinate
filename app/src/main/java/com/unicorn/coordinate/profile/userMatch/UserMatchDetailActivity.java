@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.profile;
+package com.unicorn.coordinate.profile.userMatch;
 
 import android.net.Uri;
 

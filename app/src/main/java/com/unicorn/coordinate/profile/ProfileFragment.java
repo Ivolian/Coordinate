@@ -6,6 +6,8 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseFragment;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.message.MessageActivity;
+import com.unicorn.coordinate.profile.setting.SettingActivity;
+import com.unicorn.coordinate.profile.userMatch.UserMatchActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 
 import butterknife.OnClick;
@@ -37,8 +39,8 @@ public class ProfileFragment extends BaseFragment {
     @OnClick(R.id.setting)
     public void settingOnClick() {
         if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {
-            // todo 目前是登出
-            ConfigUtils.logout();
+            Intent intent = new Intent(getActivity(), SettingActivity.class);
+            startActivity(intent);
         }
     }
 

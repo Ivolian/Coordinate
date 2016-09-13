@@ -63,10 +63,14 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".profile.UserMatchActivity"
+            android:name=".profile.userMatch.UserMatchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".profile.UserMatchDetailActivity"
+            android:name=".profile.userMatch.UserMatchDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".profile.setting.SettingActivity"
             android:screenOrientation="portrait" />
 
 
