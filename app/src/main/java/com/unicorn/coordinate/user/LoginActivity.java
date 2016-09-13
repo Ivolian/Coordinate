@@ -93,6 +93,7 @@ public class LoginActivity extends BaseActivity {
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         UserInfo userInfo = new Gson().fromJson(data.toString(), UserInfo.class);
         ConfigUtils.saveUserInfo(userInfo);
+        ConfigUtils.saveAccount(getAccount());
         ToastUtils.show("登录成功");
         finish();
     }

@@ -11,6 +11,8 @@ public class Constant {
 
 
 
+    public static final String K_USER_INFO = "userInfo";
+
     public static final String K_USER_ID = "userid";
 
     public static final String K_ACCOUNT = "account";

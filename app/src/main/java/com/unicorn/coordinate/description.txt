@@ -4,11 +4,6 @@
 18601720508
 123456
 
-完赛证书/api/matchcert?userid=&matchid=
-
-比赛详情/api/matchdetail?userid=&matchid=
-
-注册协议/api/regprotocol
 
 
 
@@ -18,4 +13,3 @@
 忘记密码
 Funny
 任务书
-修改密码

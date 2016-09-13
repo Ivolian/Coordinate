@@ -22,35 +22,50 @@ public class ConfigUtils {
         return getBaseUrl() + "/upfiles/";
     }
 
-    public static String getUserId() {
-        return TinyDB.getNewInstance().getString(Constant.K_USER_ID);
-    }
 
-    public static boolean isLogin() {
-        return !getUserId().equals("");
-    }
-
-    public static void logout() {
-        TinyDB.getNewInstance().remove(Constant.K_USER_ID);
-    }
+    //
 
     public static void saveUserInfo(UserInfo userInfo) {
         TinyDB tinyDB = TinyDB.getNewInstance();
-        tinyDB.putString(Constant.K_USER_ID, userInfo.getUserid());
-        tinyDB.putString(Constant.K_ACCOUNT, userInfo.getMobile());
+        tinyDB.putObject(Constant.K_USER_INFO, userInfo);
+    }
+
+    private static UserInfo getUserInfo() {
+        TinyDB tinyDB = TinyDB.getNewInstance();
+        return (UserInfo) tinyDB.getObject(Constant.K_USER_INFO, UserInfo.class);
+    }
+
+    private static boolean notLogin() {
+        return getUserInfo() == null;
+    }
+
+    public static boolean checkLogin(Activity activity) {
+        if (notLogin()) {
+            Intent intent = new Intent(activity, LoginActivity.class);
+            activity.startActivity(intent);
+            return false;
+        }
+        return true;
+    }
+
+    public static String getUserId() {
+        if (notLogin()) {
+            return "";
+        }
+        return getUserInfo().getUserid();
+    }
+
+    public static void logout() {
+        TinyDB tinyDB = TinyDB.getNewInstance();
+        tinyDB.remove(Constant.K_USER_INFO);
     }
 
     public static String getAccount() {
         return TinyDB.getNewInstance().getString(Constant.K_ACCOUNT);
     }
 
-    public static boolean checkLogin(Activity activity) {
-        if (!isLogin()) {
-            Intent intent = new Intent(activity, LoginActivity.class);
-            activity.startActivity(intent);
-            return false;
-        }
-        return true;
+    public static void saveAccount(String account) {
+         TinyDB.getNewInstance().putString(Constant.K_ACCOUNT,account);
     }
 
 //    public static String getBaseDirPath() {

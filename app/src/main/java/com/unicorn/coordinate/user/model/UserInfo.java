@@ -1,7 +1,9 @@
 package com.unicorn.coordinate.user.model;
 
 
-public class UserInfo {
+import java.io.Serializable;
+
+public class UserInfo implements Serializable{
 
     /**
      * userid : beed1725-063e-412c-9f0a-6602fb251b16
