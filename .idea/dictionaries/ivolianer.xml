@@ -12,10 +12,12 @@
       <w>getmessage</w>
       <w>getpic</w>
       <w>getpicdetail</w>
+      <w>getpoints</w>
       <w>getusermatch</w>
       <w>individualsprice</w>
       <w>ispic</w>
       <w>issuc</w>
+      <w>linesid</w>
       <w>logopic</w>
       <w>matchcert</w>
       <w>matchdetail</w>
