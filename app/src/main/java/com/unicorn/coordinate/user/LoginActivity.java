@@ -16,6 +16,7 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.user.forgetPwd.ForgetPwdActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
 import com.unicorn.coordinate.user.register.RegisterActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
@@ -122,6 +123,13 @@ public class LoginActivity extends BaseActivity {
     public void registerOnClick() {
         if (ClickHelper.isSafe()) {
             startActivity(RegisterActivity.class);
+        }
+    }
+
+    @OnClick(R.id.forgetPwd)
+    public void forgetPwdOnClick() {
+        if (ClickHelper.isSafe()) {
+            startActivity(ForgetPwdActivity.class);
         }
     }
 

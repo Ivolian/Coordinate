@@ -98,6 +98,14 @@
             android:name=".profile.UpdateProfileActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".user.forgetPwd.ForgetPwdActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".user.forgetPwd.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
