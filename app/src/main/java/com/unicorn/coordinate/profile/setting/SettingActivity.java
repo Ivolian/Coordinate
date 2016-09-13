@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
+import com.unicorn.coordinate.user.UpdatePasswordActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 
 import butterknife.OnClick;
@@ -26,7 +27,7 @@ public class SettingActivity extends BaseActivity {
     @OnClick(R.id.updatePwd)
     public void updatePwd() {
         if (ClickHelper.isSafe()) {
-            // todo
+            startActivity(UpdatePasswordActivity.class);
         }
     }
 

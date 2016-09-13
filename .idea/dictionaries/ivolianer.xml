@@ -18,6 +18,8 @@
       <w>matchcert</w>
       <w>matchdetail</w>
       <w>matchid</w>
+      <w>newpwd</w>
+      <w>oldpwd</w>
       <w>passwd</w>
       <w>regprotocol</w>
       <w>taian</w>

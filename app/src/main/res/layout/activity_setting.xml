@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:background="@color/md_white"
         android:orientation="vertical"
-        app:layout_marginTopPercent="10%sh">
+        app:layout_marginTopPercent="8%sh">
 
         <View
             android:layout_width="match_parent"
