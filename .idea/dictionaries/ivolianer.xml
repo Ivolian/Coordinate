@@ -19,11 +19,13 @@
       <w>matchdetail</w>
       <w>matchid</w>
       <w>passwd</w>
+      <w>regprotocol</w>
       <w>taian</w>
       <w>teamsprice</w>
       <w>upfiles</w>
       <w>userlogin</w>
       <w>vercode</w>
+      <w>xxxxx</w>
     </words>
   </dictionary>
 </component>

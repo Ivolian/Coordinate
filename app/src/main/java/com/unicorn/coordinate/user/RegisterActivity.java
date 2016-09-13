@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.klinker.android.link_builder.Link;
+import com.klinker.android.link_builder.LinkBuilder;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
@@ -37,7 +41,37 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void initViews() {
+        addRegProtocolLink();
+    }
 
+
+    // ======================== regProtocol =========================
+
+    @BindView(R.id.regProtocol)
+    AppCompatTextView regProtocol;
+
+    private void addRegProtocolLink() {
+        LinkBuilder.on(regProtocol)
+                .addLink(getRegProtocolLink())
+                .build();
+    }
+
+    private Link getRegProtocolLink() {
+        return new Link("XXXXX")
+                .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .setUnderlined(false)
+                .setOnClickListener(new Link.OnClickListener() {
+                    @Override
+                    public void onClick(String clickedText) {
+                        startRegProtocolActivity();
+                    }
+                });
+    }
+
+    private void startRegProtocolActivity() {
+        Intent intent = new Intent(this, RegProtocolActivity.class);
+        intent.putExtra(Constant.K_TITLE, "注册协议");
+        startActivity(intent);
     }
 
     // ======================== timing =========================
@@ -219,5 +253,6 @@ public class RegisterActivity extends BaseActivity {
             finish();
         }
     }
+
 
 }
