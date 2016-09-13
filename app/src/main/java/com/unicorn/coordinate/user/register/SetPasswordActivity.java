@@ -117,7 +117,7 @@ public class SetPasswordActivity extends BaseActivity {
     private String getSetPasswordUrl(String userId, String pwd) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/set_pwd?").buildUpon();
         builder.appendQueryParameter(Constant.K_ACCOUNT, userId);
-        builder.appendQueryParameter("oldPwd", pwd);
+        builder.appendQueryParameter("pwd", pwd);
         return builder.toString();
     }
 
