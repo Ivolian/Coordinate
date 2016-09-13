@@ -22,15 +22,15 @@ public class UserInfo implements Serializable{
      */
 
     private String userid;
-    private Object Name;
+    private String Name;
     private int Playerid;
     private String Mobile;
     private String Passwd;
-    private Object sexy;
-    private Object cardtype;
-    private Object cardno;
+    private String sexy;
+    private String cardtype;
+    private String cardno;
     private String mono;
-    private Object birthday;
+    private String birthday;
     private String Last_Time;
     private int Status;
     private String DeviceToken;
@@ -43,59 +43,59 @@ public class UserInfo implements Serializable{
         this.userid = userid;
     }
 
-    public Object getName() {
+    public String getName() {
         return Name;
     }
 
-    public void setName(Object Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        Name = name;
     }
 
     public int getPlayerid() {
         return Playerid;
     }
 
-    public void setPlayerid(int Playerid) {
-        this.Playerid = Playerid;
+    public void setPlayerid(int playerid) {
+        Playerid = playerid;
     }
 
     public String getMobile() {
         return Mobile;
     }
 
-    public void setMobile(String Mobile) {
-        this.Mobile = Mobile;
+    public void setMobile(String mobile) {
+        Mobile = mobile;
     }
 
     public String getPasswd() {
         return Passwd;
     }
 
-    public void setPasswd(String Passwd) {
-        this.Passwd = Passwd;
+    public void setPasswd(String passwd) {
+        Passwd = passwd;
     }
 
-    public Object getSexy() {
+    public String getSexy() {
         return sexy;
     }
 
-    public void setSexy(Object sexy) {
+    public void setSexy(String sexy) {
         this.sexy = sexy;
     }
 
-    public Object getCardtype() {
+    public String getCardtype() {
         return cardtype;
     }
 
-    public void setCardtype(Object cardtype) {
+    public void setCardtype(String cardtype) {
         this.cardtype = cardtype;
     }
 
-    public Object getCardno() {
+    public String getCardno() {
         return cardno;
     }
 
-    public void setCardno(Object cardno) {
+    public void setCardno(String cardno) {
         this.cardno = cardno;
     }
 
@@ -107,11 +107,11 @@ public class UserInfo implements Serializable{
         this.mono = mono;
     }
 
-    public Object getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Object birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -119,24 +119,23 @@ public class UserInfo implements Serializable{
         return Last_Time;
     }
 
-    public void setLast_Time(String Last_Time) {
-        this.Last_Time = Last_Time;
+    public void setLast_Time(String last_Time) {
+        Last_Time = last_Time;
     }
 
     public int getStatus() {
         return Status;
     }
 
-    public void setStatus(int Status) {
-        this.Status = Status;
+    public void setStatus(int status) {
+        Status = status;
     }
 
     public String getDeviceToken() {
         return DeviceToken;
     }
 
-    public void setDeviceToken(String DeviceToken) {
-        this.DeviceToken = DeviceToken;
+    public void setDeviceToken(String deviceToken) {
+        DeviceToken = deviceToken;
     }
-
 }

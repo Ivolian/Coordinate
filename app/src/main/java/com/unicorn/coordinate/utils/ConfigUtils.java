@@ -30,7 +30,7 @@ public class ConfigUtils {
         tinyDB.putObject(Constant.K_USER_INFO, userInfo);
     }
 
-    private static UserInfo getUserInfo() {
+    public static UserInfo getUserInfo() {
         TinyDB tinyDB = TinyDB.getNewInstance();
         return (UserInfo) tinyDB.getObject(Constant.K_USER_INFO, UserInfo.class);
     }

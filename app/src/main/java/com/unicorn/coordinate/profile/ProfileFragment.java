@@ -1,6 +1,7 @@
 package com.unicorn.coordinate.profile;
 
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseFragment;
@@ -9,8 +10,10 @@ import com.unicorn.coordinate.message.MessageActivity;
 import com.unicorn.coordinate.profile.matchCert.MatchCertActivity;
 import com.unicorn.coordinate.profile.setting.SettingActivity;
 import com.unicorn.coordinate.profile.userMatch.UserMatchActivity;
+import com.unicorn.coordinate.user.model.UserInfo;
 import com.unicorn.coordinate.utils.ConfigUtils;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 
@@ -52,5 +55,29 @@ public class ProfileFragment extends BaseFragment {
             startActivity(intent);
         }
     }
+
+
+    // ======================== profile =========================
+
+    @BindView(R.id.tvProfile)
+    TextView tvProfile;
+
+    private void refreshProfile() {
+
+        UserInfo userInfo = ConfigUtils.getUserInfo();
+        if (userInfo == null) {
+            tvProfile.setText("点击登录");
+            return;
+        }
+        String name = userInfo.getName();
+        tvProfile.setText(name);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshProfile();
+    }
+
 
 }
