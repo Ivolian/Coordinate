@@ -16,6 +16,7 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.task.TaskHelper;
 import com.unicorn.coordinate.user.forgetPwd.ForgetPwdActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
 import com.unicorn.coordinate.user.register.RegisterActivity;
@@ -97,6 +98,7 @@ public class LoginActivity extends BaseActivity {
         ConfigUtils.saveUserInfo(userInfo);
         ConfigUtils.saveAccount(getAccount());
         ToastUtils.show("登录成功");
+        TaskHelper.getTask();
         finish();
     }
 

@@ -35,7 +35,7 @@ public class ConfigUtils {
         return (UserInfo) tinyDB.getObject(Constant.K_USER_INFO, UserInfo.class);
     }
 
-    private static boolean notLogin() {
+    public static boolean notLogin() {
         return getUserInfo() == null;
     }
 

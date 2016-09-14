@@ -13,8 +13,10 @@
       <w>getpic</w>
       <w>getpicdetail</w>
       <w>getpoints</w>
+      <w>gettask</w>
       <w>getusermatch</w>
       <w>individualsprice</w>
+      <w>isdown</w>
       <w>ispic</w>
       <w>issuc</w>
       <w>linesid</w>
@@ -22,13 +24,20 @@
       <w>matchcert</w>
       <w>matchdetail</w>
       <w>matchid</w>
+      <w>matchuserid</w>
       <w>newpwd</w>
       <w>oldpwd</w>
       <w>passwd</w>
+      <w>pkcs</w>
+      <w>pointid</w>
+      <w>pointtime</w>
       <w>regprotocol</w>
+      <w>settask</w>
+      <w>skey</w>
       <w>taian</w>
       <w>teamsprice</w>
       <w>upfiles</w>
+      <w>upoadtask</w>
       <w>userlogin</w>
       <w>vercode</w>
       <w>xxxxx</w>

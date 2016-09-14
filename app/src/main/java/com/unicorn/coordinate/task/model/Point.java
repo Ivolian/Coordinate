@@ -38,8 +38,11 @@ public class Point implements Serializable{
     private int Status;
     private String Creater;
     private String Pointno;
-    @Generated(hash = 1979562948)
-    public Point(String Pointid, String Lineguid, String Id, String Eventid, String Lineid, String Pointname, String Content, int Sort, int Pointtype, int Status, String Creater, String Pointno) {
+
+    private String matchuserid;
+    private String Pointtime;
+    @Generated(hash = 368747484)
+    public Point(String Pointid, String Lineguid, String Id, String Eventid, String Lineid, String Pointname, String Content, int Sort, int Pointtype, int Status, String Creater, String Pointno, String matchuserid, String Pointtime) {
         this.Pointid = Pointid;
         this.Lineguid = Lineguid;
         this.Id = Id;
@@ -52,6 +55,8 @@ public class Point implements Serializable{
         this.Status = Status;
         this.Creater = Creater;
         this.Pointno = Pointno;
+        this.matchuserid = matchuserid;
+        this.Pointtime = Pointtime;
     }
     @Generated(hash = 1977038299)
     public Point() {
@@ -128,6 +133,19 @@ public class Point implements Serializable{
     public void setPointno(String Pointno) {
         this.Pointno = Pointno;
     }
+    public String getMatchuserid() {
+        return this.matchuserid;
+    }
+    public void setMatchuserid(String matchuserid) {
+        this.matchuserid = matchuserid;
+    }
+    public String getPointtime() {
+        return this.Pointtime;
+    }
+    public void setPointtime(String Pointtime) {
+        this.Pointtime = Pointtime;
+    }
+
 
 
 }

@@ -1,8 +1,6 @@
 package com.unicorn.coordinate.task.model;
 
-/**
- * Created by ivolianer on 2016/9/13.
- */
+
 public class Task  {
 
     /**

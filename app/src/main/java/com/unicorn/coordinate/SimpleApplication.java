@@ -40,10 +40,7 @@ public class SimpleApplication extends Application {
     }
 
     private void doSomeWork() {
-        String linesid = "1159c597-4e45-49f1-b23a-5a58354ac34d";
-        if (TaskHelper.notInit()) {
-            TaskHelper.getPoints(linesid);
-        }
+        TaskHelper.getTask();
     }
 
     //

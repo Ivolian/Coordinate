@@ -64,11 +64,12 @@ public class AESUtils
     {
         try
         {
-            Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             byte[] byteContent = str.getBytes(CHARSET_NAME);
 
             IvParameterSpec iv = new IvParameterSpec("1234567890123456".getBytes());
             cipher.init(Cipher.ENCRYPT_MODE, getKey(password),iv);// 初始化
+
             byte[] result = cipher.doFinal(byteContent);
 
             return result;
@@ -107,7 +108,7 @@ public class AESUtils
         try
         {
             // 创建密码器
-            Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             IvParameterSpec iv = new IvParameterSpec("1234567890123456".getBytes());
 
             cipher.init(Cipher.DECRYPT_MODE, getKey(password),iv);// 初始化
@@ -178,7 +179,7 @@ public class AESUtils
     public static void main(String[] args)
     {
         String password = "123";
-        String content = "20130809,17:30,会员,";
+        String content = "7号线肇嘉浜路";
 
         System.out.println("原文：" + content);
 
@@ -187,8 +188,9 @@ public class AESUtils
         System.out.println("密文：" +hexStr);
         System.out.println("解密：" + decode(hexStr, password));
 
-
-        System.out.println("解密：" + decode("Ki6CPPGcidOCwZD0UoAfU/PKp39qAw+9fCJYp3yV/l8=", password));
+    String t ="9H1w73S4GzeXEz7TPKXn2g==";
+        System.out.println("长度："+t.length());
+        System.out.println("解密：" + decode(t, password));
 
     }
 
