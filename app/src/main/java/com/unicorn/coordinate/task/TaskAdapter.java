@@ -27,7 +27,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     // ================================== data ==================================
 
-    private List<Point> pointList = TaskHelper.getPointList();
+    private List<Point> pointList = PointHelper.getPointList();
 
 
     // ================================== ViewHolder ==================================

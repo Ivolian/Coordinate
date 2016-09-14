@@ -9,6 +9,10 @@ import java.util.List;
 
 public class PointHelper {
 
+    public static PointDao getPointDao() {
+        return SimpleApplication.getInstance().getPointDao();
+    }
+
     public static void deleteAll() {
         PointDao pointDao = SimpleApplication.getInstance().getPointDao();
         pointDao.deleteAll();
@@ -22,7 +26,7 @@ public class PointHelper {
                 .unique();
     }
 
-    public static List<Point> getPointList(){
+    public static List<Point> getPointList() {
         PointDao pointDao = SimpleApplication.getInstance().getPointDao();
         return pointDao.queryBuilder().list();
     }

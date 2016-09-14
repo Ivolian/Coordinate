@@ -7,7 +7,6 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.task.model.Point;
@@ -38,7 +37,7 @@ public class TaskHelper {
                         try {
                             copeTaskResponse(response);
                         } catch (Exception e) {
-                            //
+                            e.printStackTrace();
                         }
                     }
                 },
@@ -55,14 +54,12 @@ public class TaskHelper {
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<Task> taskList = new Gson().fromJson(data.toString(), new TypeToken<List<Task>>() {
         }.getType());
-
         // 目前只有一个 task
         Task task = taskList.get(0);
-        copyTask(task);
+        copeTask(task);
     }
 
-
-    private static void copyTask(Task task) {
+    private static void copeTask(Task task) {
         String isdown = task.getIsdown();
         switch (isdown) {
             // 无需下载
@@ -71,17 +68,17 @@ public class TaskHelper {
                 break;
             // 未下载
             case "1":
-                updatePoints(task);
+                getPoints(task);
                 updateTaskStatus(task);
                 break;
             // 已下载
             case "2":
-                // todo 已下载优化
-                updatePoints(task);
+                getPoints(task);
                 break;
             // 上传数据
             case "3":
-                uploadLastPoint(task);
+                // 上传用户扫描过的最后一个点
+                uploadLastPoint();
                 break;
             // 删除数据
             case "4":
@@ -91,51 +88,9 @@ public class TaskHelper {
     }
 
 
-    public static void uploadLastPoint(final Task task) {
-        Point lastPoint = PointHelper.getLastPoint();
-        String url = getUploadPointUrl(task,lastPoint);
-        Request request = new StringRequest(
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            if (ResponseHelper.isRight(response)) {
-                                //
-                            }
-                        } catch (Exception e) {
-                            //
-                        }
-                    }
-                },
-                SimpleVolley.getDefaultErrorListener()
-        );
-        SimpleVolley.addRequest(request);
-    }
+    //
 
-
-    public static void updateTaskStatus(final Task task) {
-        String url = getSetTaskUrl(task);
-        Request request = new StringRequest(
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            if (ResponseHelper.isRight(response)) {
-                                //
-                            }
-                        } catch (Exception e) {
-                            //
-                        }
-                    }
-                },
-                SimpleVolley.getDefaultErrorListener()
-        );
-        SimpleVolley.addRequest(request);
-    }
-
-    public static void updatePoints(final Task task) {
+    public static void getPoints(final Task task) {
         String url = getPointUrl(task.getLines_id());
         Request request = new StringRequest(
                 url,
@@ -166,7 +121,7 @@ public class TaskHelper {
             point.setLineid(task.getLines_id());
             point.setMatchuserid(task.getMatchuserid());
         }
-        PointDao pointDao = SimpleApplication.getInstance().getPointDao();
+        PointDao pointDao = PointHelper.getPointDao();
         pointDao.deleteAll();
         pointDao.insertOrReplaceInTx(pointList);
     }
@@ -174,11 +129,56 @@ public class TaskHelper {
 
     //
 
-    public static List<Point> getPointList() {
-        PointDao pointDao = SimpleApplication.getInstance().getPointDao();
-        return pointDao.queryBuilder()
-                .list();
+    public static void updateTaskStatus(final Task task) {
+        String url = getSetTaskUrl(task);
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            ResponseHelper.isRight(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
     }
+
+
+    //
+
+    public static void uploadLastPoint() {
+        Point lastPoint = PointHelper.getLastPoint();
+        if (lastPoint != null) {
+            uploadPoint(lastPoint);
+        }
+    }
+
+    public static void uploadPoint(Point point) {
+        String url = getUploadPointUrl(point);
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            ResponseHelper.isRight(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+
+    // ======================== 底层方法 =========================
 
     private static String getTaskUrl() {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/gettask?").buildUpon();
@@ -198,12 +198,13 @@ public class TaskHelper {
         return builder.toString();
     }
 
-    private static String getUploadPointUrl(final Task task, final Point point) {
+    private static String getUploadPointUrl(final Point point) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/upoadtask?").buildUpon();
-        builder.appendQueryParameter("matchuserid", task.getMatchuserid());
+        builder.appendQueryParameter("matchuserid", point.getMatchuserid());
         builder.appendQueryParameter("pointid", point.getPointid());
         builder.appendQueryParameter("pointtime", point.getPointtime());
         return builder.toString();
     }
+
 
 }
