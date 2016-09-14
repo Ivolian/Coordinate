@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="请输入您的注册手机号"
+            android:inputType="number"
             android:paddingBottom="20dp"
             android:textColor="@color/md_black"
             android:textColorHint="@color/md_grey_400"

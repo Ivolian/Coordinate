@@ -61,6 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:inputType="number"
             android:hint="请输入您的手机号"
             android:paddingBottom="20dp"
             android:textColor="@color/md_black"

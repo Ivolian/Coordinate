@@ -7,7 +7,7 @@ public class ClickHelper {
 
     public synchronized static boolean isSafe() {
         long currentTime = System.currentTimeMillis();
-        if (currentTime - lastClickTime < 500) {
+        if (currentTime - lastClickTime < 300) {
             return false;
         }
         lastClickTime = currentTime;
