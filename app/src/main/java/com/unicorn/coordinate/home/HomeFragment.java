@@ -1,7 +1,6 @@
 package com.unicorn.coordinate.home;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -10,6 +9,8 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.LazyLoadFragment;
 import com.unicorn.coordinate.helper.ClickHelper;
@@ -17,10 +18,9 @@ import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.task.TaskActivity;
-import com.unicorn.coordinate.task.scan.ScanActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
@@ -101,42 +101,24 @@ public class HomeFragment extends LazyLoadFragment {
     }
 
 
-    // ====================== TODO 扫描二维码 ======================
-
-    private final int SCAN_REQUEST_CODE = 233;
+    // ====================== 扫描任务码 ======================
 
     @OnClick(R.id.scan)
     public void scanOnClick() {
-        if (ClickHelper.isSafe()) {
-            Intent intent = new Intent(getActivity(), ScanActivity.class);
-            startActivityForResult(intent, SCAN_REQUEST_CODE);
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {
+            IntentIntegrator.forSupportFragment(this)
+                    .setPrompt("请扫描任务二维码")
+                    .initiateScan();
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SCAN_REQUEST_CODE) {
-            if (null != data) {
-                Bundle bundle = data.getExtras();
-                if (bundle == null) {
-                    return;
-                }
-                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                    String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    copeScanResult(result);
-                }
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() != null) {
+                copeScanResult(result.getContents());
             }
-        }
-    }
-
-
-    // ====================== task ======================
-
-    @OnClick(R.id.task)
-    public void taskOnClick() {
-        if (ClickHelper.isSafe()) {
-            Intent intent = new Intent(getActivity(), TaskActivity.class);
-            startActivity(intent);
         }
     }
 
@@ -144,6 +126,17 @@ public class HomeFragment extends LazyLoadFragment {
         Intent intent = new Intent(getActivity(), TaskActivity.class);
         intent.putExtra(Constant.K_SCAN_RESULT, scanResult);
         startActivity(intent);
+    }
+
+
+    // ====================== 任务书 ======================
+
+    @OnClick(R.id.task)
+    public void taskOnClick() {
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {
+            Intent intent = new Intent(getActivity(), TaskActivity.class);
+            startActivity(intent);
+        }
     }
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.unicorn.coordinate">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -59,10 +60,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".task.scan.ScanActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name=".profile.userMatch.UserMatchActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -113,6 +110,11 @@
         <activity
             android:name=".task.TaskActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
 
     </application>
 

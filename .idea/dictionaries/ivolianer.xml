@@ -3,6 +3,7 @@
     <words>
       <w>abcdefghigklmnopqrstuvwxyz</w>
       <w>applink</w>
+      <w>barcodescanner</w>
       <w>cardno</w>
       <w>cardtype</w>
       <w>chengshidingxiang</w>
@@ -19,6 +20,7 @@
       <w>isdown</w>
       <w>ispic</w>
       <w>issuc</w>
+      <w>journeyapps</w>
       <w>lineid</w>
       <w>linesid</w>
       <w>logopic</w>

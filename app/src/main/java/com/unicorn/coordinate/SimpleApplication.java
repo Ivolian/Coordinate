@@ -8,11 +8,8 @@ import com.unicorn.coordinate.task.model.DaoMaster;
 import com.unicorn.coordinate.task.model.DaoSession;
 import com.unicorn.coordinate.task.model.PointDao;
 import com.unicorn.coordinate.volley.SimpleVolley;
-import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import net.danlew.android.joda.JodaTimeAndroid;
-
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 
 public class SimpleApplication extends Application {
@@ -26,7 +23,6 @@ public class SimpleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CustomActivityOnCrash.install(this);
         instance = this;
         doSomeInit();
         doSomeWork();
@@ -36,17 +32,12 @@ public class SimpleApplication extends Application {
         initGreenDao();
         SimpleVolley.init(instance);
         JodaTimeAndroid.init(instance);
-        ZXingLibrary.initDisplayOpinion(instance);
     }
 
     private void doSomeWork() {
         TaskHelper.getTask();
-        try {
-//            AESUtils.main();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
+
 
     //
 
@@ -57,10 +48,6 @@ public class SimpleApplication extends Application {
         SQLiteDatabase db = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
-    }
-
-    public DaoSession getDaoSession() {
-        return daoSession;
     }
 
     public PointDao getPointDao() {
