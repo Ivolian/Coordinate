@@ -15,6 +15,7 @@ import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -63,6 +64,7 @@ public class AtlasFragment extends LazyLoadFragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        stopAnim();
                         try {
                             copeResponse(response);
                         } catch (Exception e) {
@@ -70,9 +72,10 @@ public class AtlasFragment extends LazyLoadFragment {
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener()
+                SimpleVolley.getDefaultErrorListener(avi)
         );
         SimpleVolley.addRequest(request);
+        startAnim();
     }
 
 
@@ -86,9 +89,23 @@ public class AtlasFragment extends LazyLoadFragment {
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<Match> matchList = new Gson().fromJson(data.toString(), new TypeToken<List<Match>>() {
         }.getType());
-        // 图集的 model 用的还是 match
+        // model 用的是 match
         adapter.setMatchList(matchList);
         adapter.notifyDataSetChanged();
+    }
+
+
+    // ====================== avi ======================
+
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
+
+    void startAnim() {
+        avi.show();
+    }
+
+    void stopAnim() {
+        avi.hide();
     }
 
 

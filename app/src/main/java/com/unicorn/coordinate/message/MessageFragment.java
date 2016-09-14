@@ -16,6 +16,7 @@ import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.message.model.Message;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -64,6 +65,7 @@ public class MessageFragment extends LazyLoadFragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        stopAnim();
                         try {
                             copeResponse(response);
                         } catch (Exception e) {
@@ -71,9 +73,10 @@ public class MessageFragment extends LazyLoadFragment {
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener()
+                SimpleVolley.getDefaultErrorListener(avi)
         );
         SimpleVolley.addRequest(request);
+        startAnim();
     }
 
     private void copeResponse(String responseString) throws Exception {
@@ -90,8 +93,23 @@ public class MessageFragment extends LazyLoadFragment {
 
     private String getUrl(final String userId) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getmessage?").buildUpon();
-        builder.appendQueryParameter("userid", userId);
+        builder.appendQueryParameter(Constant.K_USER_ID, userId);
         return builder.toString();
     }
+
+
+    // ====================== avi ======================
+
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
+
+    void startAnim() {
+        avi.show();
+    }
+
+    void stopAnim() {
+        avi.hide();
+    }
+
 
 }

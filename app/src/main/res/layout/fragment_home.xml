@@ -81,14 +81,6 @@
             app:indicatorColor="@color/colorPrimary"
             app:indicatorName="SquareSpinIndicator" />
 
-
-        <!--<com.wang.avi.AVLoadingIndicatorView-->
-        <!--android:id="@+id/avi"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:indicatorName="BallPulseIndicator" />-->
-
-
     </FrameLayout>
 
 </com.zhy.android.percent.support.PercentLinearLayout>
