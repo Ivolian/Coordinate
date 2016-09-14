@@ -17,6 +17,7 @@ import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.task.event.StopRefreshingEvent;
 import com.unicorn.coordinate.task.event.RefreshTaskEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -110,7 +111,7 @@ public class TaskActivity extends BaseActivity {
         try {
             PointHelper.copeScanResult(scanResult);
         } catch (Exception e) {
-            e.printStackTrace();
+            ToastUtils.show("请扫描任务二维码");
         }
     }
 
