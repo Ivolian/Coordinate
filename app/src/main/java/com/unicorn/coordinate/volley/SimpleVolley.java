@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.unicorn.coordinate.utils.ToastUtils;
+import com.wang.avi.AVLoadingIndicatorView;
 
 
 public class SimpleVolley {
@@ -51,6 +52,16 @@ public class SimpleVolley {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 mask.dismiss();
+                ToastUtils.show(VolleyErrorHelper.getErrorMessage(volleyError));
+            }
+        };
+    }
+
+    public static Response.ErrorListener getDefaultErrorListener(final AVLoadingIndicatorView avi) {
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                avi.hide();
                 ToastUtils.show(VolleyErrorHelper.getErrorMessage(volleyError));
             }
         };

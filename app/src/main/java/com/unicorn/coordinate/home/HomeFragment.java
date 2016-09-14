@@ -21,6 +21,7 @@ import com.unicorn.coordinate.task.scan.ScanActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -70,6 +71,7 @@ public class HomeFragment extends LazyLoadFragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        stopAnim();
                         try {
                             copeResponse(response);
                         } catch (Exception e) {
@@ -77,9 +79,10 @@ public class HomeFragment extends LazyLoadFragment {
                         }
                     }
                 },
-                SimpleVolley.getDefaultErrorListener()
+                SimpleVolley.getDefaultErrorListener(avi)
         );
         SimpleVolley.addRequest(request);
+        startAnim();
     }
 
 
@@ -98,7 +101,7 @@ public class HomeFragment extends LazyLoadFragment {
     }
 
 
-    // ====================== 扫描二维码 ======================
+    // ====================== TODO 扫描二维码 ======================
 
     private final int SCAN_REQUEST_CODE = 233;
 
@@ -141,6 +144,20 @@ public class HomeFragment extends LazyLoadFragment {
         Intent intent = new Intent(getActivity(), TaskActivity.class);
         intent.putExtra(Constant.K_SCAN_RESULT, scanResult);
         startActivity(intent);
+    }
+
+
+    // ====================== avi ======================
+
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
+
+    void startAnim() {
+        avi.show();
+    }
+
+    void stopAnim() {
+        avi.hide();
     }
 
 

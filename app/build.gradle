@@ -64,4 +64,5 @@ dependencies {
     compile 'cat.ereza:customactivityoncrash:1.5.0'
     compile 'commons-codec:commons-codec:1.9'
     compile files('libs/bcprov-jdk15on-155.jar')
+    compile 'com.wang.avi:library:2.1.3'
 }
