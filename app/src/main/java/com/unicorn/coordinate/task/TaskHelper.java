@@ -64,6 +64,7 @@ public class TaskHelper {
         switch (isdown) {
             // 无需下载
             case "0":
+//                getPoints(task);
                 // do nothing
                 break;
             // 未下载
@@ -199,7 +200,7 @@ public class TaskHelper {
     }
 
     private static String getUploadPointUrl(final Point point) {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/upoadtask?").buildUpon();
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/uploadtask?").buildUpon();
         builder.appendQueryParameter("matchuserid", point.getMatchuserid());
         builder.appendQueryParameter("pointid", point.getPointid());
         builder.appendQueryParameter("pointtime", point.getPointtime());

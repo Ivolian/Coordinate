@@ -11,9 +11,8 @@ import android.widget.TextView;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
-import com.unicorn.coordinate.message.MessageDetailActivity;
-import com.unicorn.coordinate.message.model.Message;
 import com.unicorn.coordinate.task.model.Point;
+import com.unicorn.coordinate.utils.AESUtils;
 
 import java.util.List;
 
@@ -27,8 +26,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     // ================================== data ==================================
 
-    private List<Point> pointList = PointHelper.getPointList();
+    private List<Point> pointList = PointHelper.getDisplayPointList();
 
+    public void refreshTask() {
+        pointList = PointHelper.getDisplayPointList();
+        notifyDataSetChanged();
+    }
 
     // ================================== ViewHolder ==================================
 
@@ -48,16 +51,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         @OnClick(R.id.item)
         public void itemOnClick() {
             if (ClickHelper.isSafe()) {
-//                Context context = content.getContext();
-//                Message message = pointList.get(getAdapterPosition());
-//                startMessageDetailActivity(context, message);
+                Context context = name.getContext();
+                Point point = pointList.get(getAdapterPosition());
+                String content = AESUtils.decrypt(point.getContent());
+                startTaskDetailActivity(context, content);
             }
         }
     }
 
-    private void startMessageDetailActivity(Context context, Message message) {
-        Intent intent = new Intent(context, MessageDetailActivity.class);
-        intent.putExtra(Constant.K_MESSAGE, message);
+    private void startTaskDetailActivity(Context context, final String content) {
+        Intent intent = new Intent(context, TaskDetailActivity.class);
+        intent.putExtra(Constant.K_CONTENT, content);
         context.startActivity(intent);
     }
 
@@ -67,7 +71,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Point point = pointList.get(position);
-        holder.name.setText(point.getPointname());
+        String name = AESUtils.decrypt(point.getPointname());
+        holder.name.setText(name);
     }
 
 

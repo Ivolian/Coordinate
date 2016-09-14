@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.TinyDB;
+import com.unicorn.coordinate.task.PointHelper;
 import com.unicorn.coordinate.user.LoginActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
 
@@ -58,6 +59,8 @@ public class ConfigUtils {
     public static void logout() {
         TinyDB tinyDB = TinyDB.getNewInstance();
         tinyDB.remove(Constant.K_USER_INFO);
+
+        PointHelper.clearPointInfo();
     }
 
     public static String getAccount() {
@@ -65,7 +68,7 @@ public class ConfigUtils {
     }
 
     public static void saveAccount(String account) {
-         TinyDB.getNewInstance().putString(Constant.K_ACCOUNT,account);
+        TinyDB.getNewInstance().putString(Constant.K_ACCOUNT, account);
     }
 
 //    public static String getBaseDirPath() {

@@ -7,6 +7,7 @@
       <w>cardno</w>
       <w>cardtype</w>
       <w>chengshidingxiang</w>
+      <w>csdxsuccessdx</w>
       <w>editext</w>
       <w>fcfb</w>
       <w>getmatchlist</w>
@@ -15,6 +16,7 @@
       <w>getpicdetail</w>
       <w>getpoints</w>
       <w>gettask</w>
+      <w>getteamrecord</w>
       <w>getusermatch</w>
       <w>individualsprice</w>
       <w>isdown</w>
@@ -33,6 +35,7 @@
       <w>passwd</w>
       <w>pkcs</w>
       <w>pointid</w>
+      <w>pointiddx</w>
       <w>pointtime</w>
       <w>regprotocol</w>
       <w>settask</w>
@@ -40,6 +43,7 @@
       <w>taian</w>
       <w>teamsprice</w>
       <w>upfiles</w>
+      <w>uploadtask</w>
       <w>upoadtask</w>
       <w>userlogin</w>
       <w>vercode</w>

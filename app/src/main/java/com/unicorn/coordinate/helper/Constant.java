@@ -31,6 +31,9 @@ public class Constant {
 
     public static final String RESPONSE_SUCCESS_CODE = "0";
 
+    public static final String K_CONTENT = "content";
+
+
     //
 
     public static final String K_LAST_POINT = "last_point";
