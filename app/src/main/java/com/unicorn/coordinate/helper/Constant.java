@@ -9,8 +9,6 @@ public class Constant {
 
     public static final String K_DATA = "data";
 
-
-
     public static final String K_USER_INFO = "userInfo";
 
     public static final String K_USER_ID = "userid";
@@ -32,6 +30,14 @@ public class Constant {
     public static final String K_SCAN_RESULT = "scan_result";
 
     public static final String RESPONSE_SUCCESS_CODE = "0";
+
+    //
+
+    public static final String K_LAST_POINT = "last_point";
+
+    public static final String K_CURRENT_POINT = "current_point";
+
+    //
 
     public static int RC_REGISTER_SUCCESS = 10001;
 

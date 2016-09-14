@@ -22,6 +22,7 @@ public class TaskActivity extends BaseActivity {
 
     // ======================== InjectExtra =========================
 
+    // 通过任务书进来是 null，通过扫码进来是有值的
     @Nullable
     @InjectExtra(Constant.K_SCAN_RESULT)
     String scanResult;
@@ -56,7 +57,8 @@ public class TaskActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    // ======================== 退回 =========================
+
+    // ======================== 主体部分 =========================
 
     private void copeScanResult(String scanResult) {
         if (isLineid(scanResult)) {
@@ -64,17 +66,18 @@ public class TaskActivity extends BaseActivity {
         } else {
             copePoint(scanResult);
         }
+        ToastUtils.show(scanResult);
     }
 
     private boolean isLineid(String scanResult) {
         return scanResult.startsWith("{");
     }
 
-    private void copeLine(String jsonObjectString) {
+    private void copeLine(String scanResult) {
 
     }
 
-//    md5("csdxsuccessdx")
+    //    md5("csdxsuccessdx")
     private void copePoint(String scanResult) {
         for (Point point : PointHelper.getPointList()) {
             String pointIdDx = point.getPointid() + "dx";
