@@ -41,6 +41,11 @@ public class SimpleApplication extends Application {
 
     private void doSomeWork() {
         TaskHelper.getTask();
+        try {
+//            AESUtil.main();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //

@@ -4,6 +4,8 @@ import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.task.model.PointDao;
 
+import java.util.List;
+
 
 public class PointHelper {
 
@@ -20,5 +22,9 @@ public class PointHelper {
                 .unique();
     }
 
+    public static List<Point> getPointList(){
+        PointDao pointDao = SimpleApplication.getInstance().getPointDao();
+        return pointDao.queryBuilder().list();
+    }
 
 }

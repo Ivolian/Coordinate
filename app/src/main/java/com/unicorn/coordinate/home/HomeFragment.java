@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -17,8 +16,8 @@ import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Match;
-import com.unicorn.coordinate.task.scan.ScanActivity;
 import com.unicorn.coordinate.task.TaskActivity;
+import com.unicorn.coordinate.task.scan.ScanActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
@@ -121,12 +120,8 @@ public class HomeFragment extends LazyLoadFragment {
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    Toast.makeText(getActivity(), "解析结果:" + result, Toast.LENGTH_LONG).show();
+                    copeScanResult(result);
                 }
-
-//                else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
-//                    Toast.makeText(getActivity(), "解析二维码失败", Toast.LENGTH_LONG).show();
-//                }
             }
         }
     }
@@ -140,6 +135,12 @@ public class HomeFragment extends LazyLoadFragment {
             Intent intent = new Intent(getActivity(), TaskActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void copeScanResult(String scanResult) {
+        Intent intent = new Intent(getActivity(), TaskActivity.class);
+        intent.putExtra(Constant.K_SCAN_RESULT, scanResult);
+        startActivity(intent);
     }
 
 

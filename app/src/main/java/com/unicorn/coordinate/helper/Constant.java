@@ -29,6 +29,8 @@ public class Constant {
 
     public static final String K_TEL = "tel";
 
+    public static final String K_SCAN_RESULT = "scan_result";
+
     public static final String RESPONSE_SUCCESS_CODE = "0";
 
     public static int RC_REGISTER_SUCCESS = 10001;
