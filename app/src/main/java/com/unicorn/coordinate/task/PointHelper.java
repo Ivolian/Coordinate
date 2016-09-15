@@ -294,5 +294,12 @@ public class PointHelper {
 
     private static final String LAST_POINT_MD5 = MD5Util.getMD5String("csdxsuccessdx");
 
+    public static int getCurrentPosition() {
+        Point currentPoint = getCurrentPoint();
+        if (currentPoint == null) {
+            return 0;
+        }
+        return currentPoint.getSort() - 1;
+    }
 
 }

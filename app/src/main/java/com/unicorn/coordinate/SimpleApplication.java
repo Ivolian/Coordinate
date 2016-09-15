@@ -11,6 +11,8 @@ import com.unicorn.coordinate.volley.SimpleVolley;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+
 
 public class SimpleApplication extends Application {
 
@@ -35,6 +37,7 @@ public class SimpleApplication extends Application {
     }
 
     private void init() {
+        CustomActivityOnCrash.install(this);
         initGreenDao();
         SimpleVolley.init(instance);
         JodaTimeAndroid.init(instance);

@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="80dp"
@@ -11,8 +12,9 @@
         android:background="@color/md_grey_200" />
 
     <ImageView
+        android:id="@+id/bottom"
         android:layout_width="4dp"
-        android:layout_height="35dp"
+        android:layout_height="45dp"
         android:layout_gravity="bottom"
         android:layout_marginLeft="44dp"
         android:scaleType="fitXY"
@@ -26,16 +28,25 @@
         android:scaleType="fitXY"
         android:src="@drawable/blue2" />
 
-    <FrameLayout
+    <com.zhy.android.percent.support.PercentFrameLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_gravity="top">
 
         <ImageView
+            android:id="@+id/big"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="28dp"
+            android:src="@drawable/blue_p" />
+
+        <ImageView
+            android:id="@+id/small"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="34dp"
             android:src="@drawable/blue_p" />
 
         <TextView
@@ -48,6 +59,17 @@
             android:textColor="@color/md_black"
             android:textSize="16dp" />
 
-    </FrameLayout>
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/arrow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="24dp"
+            app:iiv_color="@color/md_grey_400"
+            app:iiv_icon="ion-ios-arrow-right"
+            app:layout_heightPercent="2.4%sh"
+            app:layout_widthPercent="2.4%sh" />
+
+    </com.zhy.android.percent.support.PercentFrameLayout>
 
 </FrameLayout>
