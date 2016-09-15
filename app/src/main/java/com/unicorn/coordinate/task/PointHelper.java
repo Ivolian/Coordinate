@@ -31,10 +31,7 @@ import java.util.List;
 public class PointHelper {
 
 
-    private static final String LAST_POINT_MD5 = MD5Util.getMD5String("csdxsuccessdx");
-
     public static void copeScanResult(String scanResult) {
-
         try {
             if (isLine(scanResult)) {
                 copeLine(scanResult);
@@ -44,11 +41,10 @@ public class PointHelper {
         } catch (Exception e) {
             ToastUtils.show("请扫描任务二维码");
         }
-
     }
 
 
-    // =================== line ===================
+    // =================== line 扫描第一个点 ===================
 
     private static boolean isLine(String scanResult) {
         return scanResult.startsWith("{");
@@ -60,14 +56,14 @@ public class PointHelper {
         copeLinesid(linesid);
     }
 
-    public static void copeLinesid(String linesid) {
+    private static void copeLinesid(String linesid) {
         Point startPoint = getStartPoint();
         if (startPoint == null) {
-            ToastUtils.show("找不到起点");
+            ToastUtils.show("尚未下载任务线路");
             return;
         }
         if (!linesid.equals(startPoint.getLineid())) {
-            ToastUtils.show("所扫描线路与本地线路不匹配");
+            ToastUtils.show("所扫描线路与任务线路不匹配");
             return;
         }
         setTimeAndUpload(startPoint);
@@ -120,19 +116,27 @@ public class PointHelper {
         if (currentPoint == null) {
             return new ArrayList<>();
         }
-        Point nextPoint = getNextPoint();
-        if (nextPoint == null) {
-            nextPoint = currentPoint;
-        }
         PointDao pointDao = getPointDao();
         return pointDao.queryBuilder()
-                .where(PointDao.Properties.Sort.le(nextPoint.getSort()))
+                .where(PointDao.Properties.Sort.le(getNextPoint().getSort()))
                 .list();
+    }
+
+    private static Point getNextPoint() {
+        Point currentPoint = getCurrentPoint();
+        if (currentPoint == null) {
+            // 一个点没扫
+            return null;
+        }
+        if (currentPoint.getPointtype() == PointType.LAST_POINT) {
+            // 已经扫描了终点
+            return currentPoint;
+        }
+        return findPointBySort(currentPoint.getSort() + 1);
     }
 
 
     //
-
 
     private static void setTimeAndUpload(Point point) {
         setPointTime(point);
@@ -143,17 +147,6 @@ public class PointHelper {
         DateTime dateTime = new DateTime(new Date());
         String pointtime = dateTime.toString("yyyy-MM-dd HH:mm:ss");
         point.setPointtime(pointtime);
-    }
-
-    public static Point getNextPoint() {
-        Point currentPoint = getCurrentPoint();
-        if (currentPoint == null) {
-            return null;
-        }
-        if (currentPoint.getPointtype() == PointType.LAST_POINT) {
-            return currentPoint;
-        }
-        return findPointBySort(currentPoint.getSort() + 1);
     }
 
 
@@ -273,6 +266,14 @@ public class PointHelper {
         return getPointDao().queryBuilder().list();
     }
 
+    public static void deleteAll() {
+        getPointDao().deleteAll();
+    }
+
+    public static PointDao getPointDao() {
+        return SimpleApplication.getInstance().getPointDao();
+    }
+
     private static Point findPointBySort(int sort) {
         return getPointDao().queryBuilder()
                 .where(PointDao.Properties.Sort.eq(sort))
@@ -285,19 +286,13 @@ public class PointHelper {
                 .unique();
     }
 
-    public static Point getStartPoint() {
+    private static Point getStartPoint() {
         return getPointDao().queryBuilder()
                 .where(PointDao.Properties.Pointtype.eq(PointType.START_POINT))
                 .unique();
     }
 
-    public static void deleteAll() {
-        getPointDao().deleteAll();
-    }
-
-    public static PointDao getPointDao() {
-        return SimpleApplication.getInstance().getPointDao();
-    }
+    private static final String LAST_POINT_MD5 = MD5Util.getMD5String("csdxsuccessdx");
 
 
 }
