@@ -2,12 +2,15 @@ package com.unicorn.coordinate.utils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Environment;
 
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.TinyDB;
 import com.unicorn.coordinate.task.PointHelper;
 import com.unicorn.coordinate.user.LoginActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
+
+import java.io.File;
 
 public class ConfigUtils {
 
@@ -71,15 +74,15 @@ public class ConfigUtils {
         TinyDB.getNewInstance().putString(Constant.K_ACCOUNT, account);
     }
 
-//    public static String getBaseDirPath() {
-//        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "hems");
-//        if (!dir.exists()) {
-//            boolean result = dir.mkdir();
-//            if (!result) {
-//                ToastUtils.show("创建基础目录失败!");
-//            }
-//        }
-//        return dir.getAbsolutePath();
-//    }
+    public static String getBaseDirPath() {
+        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Coordinate");
+        if (!dir.exists()) {
+            boolean result = dir.mkdir();
+            if (!result) {
+                ToastUtils.show("创建基础目录失败!");
+            }
+        }
+        return dir.getAbsolutePath();
+    }
 
 }

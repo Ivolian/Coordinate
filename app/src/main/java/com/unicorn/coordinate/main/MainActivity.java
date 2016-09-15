@@ -10,6 +10,7 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.UpdateUtils;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        UpdateUtils.checkUpdate(this);
     }
 
     public void initViews() {

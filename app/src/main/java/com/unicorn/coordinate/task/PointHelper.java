@@ -193,6 +193,12 @@ public class PointHelper {
     // =================== syncTeamRecord ===================
 
     public static void syncTeamRecord() {
+        Point startPoint = getStartPoint();
+        if (startPoint == null) {
+            ToastUtils.show("尚未下载任务线路");
+            EventBus.getDefault().post(new StopRefreshingEvent());
+            return;
+        }
         String url = getTeamPointUrl();
         Request request = new StringRequest(
                 url,
