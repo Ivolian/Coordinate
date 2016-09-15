@@ -1,7 +1,7 @@
 package com.unicorn.coordinate;
 
-import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.multidex.MultiDexApplication;
 
 import com.unicorn.coordinate.task.TaskHelper;
 import com.unicorn.coordinate.task.model.DaoMaster;
@@ -14,7 +14,7 @@ import net.danlew.android.joda.JodaTimeAndroid;
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 
-public class SimpleApplication extends Application {
+public class SimpleApplication extends MultiDexApplication {
 
 
     // ======================== instance =========================
