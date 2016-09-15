@@ -14,21 +14,27 @@ import net.danlew.android.joda.JodaTimeAndroid;
 
 public class SimpleApplication extends Application {
 
+
+    // ======================== instance =========================
+
     private static SimpleApplication instance;
 
     public static SimpleApplication getInstance() {
         return instance;
     }
 
+
+    // ======================== onCreate =========================
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        doSomeInit();
+        init();
         doSomeWork();
     }
 
-    private void doSomeInit() {
+    private void init() {
         initGreenDao();
         SimpleVolley.init(instance);
         JodaTimeAndroid.init(instance);
@@ -39,7 +45,7 @@ public class SimpleApplication extends Application {
     }
 
 
-    //
+    // ======================== GreenDao =========================
 
     private DaoSession daoSession;
 

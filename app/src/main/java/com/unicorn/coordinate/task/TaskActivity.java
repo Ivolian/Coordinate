@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.f2prateek.dart.InjectExtra;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -14,13 +15,15 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
-import com.unicorn.coordinate.task.event.StopRefreshingEvent;
 import com.unicorn.coordinate.task.event.RefreshTaskEvent;
+import com.unicorn.coordinate.task.event.StopRefreshingEvent;
+import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.utils.ConfigUtils;
-import com.unicorn.coordinate.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,12 +48,14 @@ public class TaskActivity extends BaseActivity {
 
     @Override
     public void initViews() {
+        initPrompt();
         initSwipeRefreshLayout();
         initRecyclerView();
         if (scanResult != null) {
-            copeScanResult(scanResult);
+            PointHelper.copeScanResult(scanResult);
         }
     }
+
 
     // ======================== swipeRefreshLayout =========================
 
@@ -62,13 +67,13 @@ public class TaskActivity extends BaseActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                PointHelper.syncTeam();
+                PointHelper.syncTeamRecord();
             }
         });
     }
 
     @Subscribe
-    public void stopRefresh(StopRefreshingEvent stopRefreshingEvent) {
+    public void stopRefreshing(StopRefreshingEvent stopRefreshingEvent) {
         swipeRefreshLayout.setRefreshing(false);
     }
 
@@ -83,6 +88,11 @@ public class TaskActivity extends BaseActivity {
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+    }
+
+    @Subscribe
+    public void refreshTask(RefreshTaskEvent refreshTaskEvent) {
+        adapter.refreshTask();
     }
 
 
@@ -102,26 +112,35 @@ public class TaskActivity extends BaseActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                copeScanResult(result.getContents());
+                String scanResult = result.getContents();
+                PointHelper.copeScanResult(scanResult);
             }
         }
     }
 
-    private void copeScanResult(String scanResult) {
-        try {
-            PointHelper.copeScanResult(scanResult);
-        } catch (Exception e) {
-            ToastUtils.show("请扫描任务二维码");
+
+    // ======================== initPrompt =========================
+
+    @BindView(R.id.prompt)
+    TextView prompt;
+
+    private void initPrompt() {
+        List<Point> pointList = PointHelper.getPointList();
+        prompt.setText(pointList.size() == 0 ? "暂无任务书" : "请扫码签到");
+    }
+
+
+    // ======================== 退回 =========================
+
+    @OnClick(R.id.back)
+    public void backOnClick() {
+        if (ClickHelper.isSafe()) {
+            finish();
         }
     }
 
 
-    // ======================== refreshTask =========================
-
-    @Subscribe
-    public void refreshTask(RefreshTaskEvent refreshTaskEvent) {
-        adapter.refreshTask();
-    }
+    // ======================== Eventbus =========================
 
     @Override
     public void onStart() {
@@ -133,16 +152,6 @@ public class TaskActivity extends BaseActivity {
     public void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
-    }
-
-
-    // ======================== 退回 =========================
-
-    @OnClick(R.id.back)
-    public void backOnClick() {
-        if (ClickHelper.isSafe()) {
-            finish();
-        }
     }
 
 

@@ -30,14 +30,21 @@ import java.util.List;
 
 public class PointHelper {
 
+
     private static final String LAST_POINT_MD5 = MD5Util.getMD5String("csdxsuccessdx");
 
-    public static void copeScanResult(String scanResult) throws Exception {
-        if (isLine(scanResult)) {
-            copeLine(scanResult);
-        } else {
-            copePoint(scanResult);
+    public static void copeScanResult(String scanResult) {
+
+        try {
+            if (isLine(scanResult)) {
+                copeLine(scanResult);
+            } else {
+                copePoint(scanResult);
+            }
+        } catch (Exception e) {
+            ToastUtils.show("请扫描任务二维码");
         }
+
     }
 
 
@@ -80,7 +87,7 @@ public class PointHelper {
     private static void copeGeneralPoint(String scanResult) {
         Point nextPoint = getNextPoint();
         if (nextPoint == null) {
-            ToastUtils.show("请扫码签到");
+            ToastUtils.show("请先扫码签到");
             return;
         }
         String pointiddx = nextPoint.getPointid() + "dx";
@@ -95,7 +102,7 @@ public class PointHelper {
     private static void copeLastPoint() {
         Point nextPoint = getNextPoint();
         if (nextPoint == null) {
-            ToastUtils.show("请扫码签到");
+            ToastUtils.show("请先扫码签到");
             return;
         }
         if (nextPoint.getPointtype() == PointType.LAST_POINT) {
@@ -181,7 +188,7 @@ public class PointHelper {
         EventBus.getDefault().post(new RefreshTaskEvent());
     }
 
-    private static String getUploadPointUrl(final Point point) {
+    public static String getUploadPointUrl(final Point point) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/uploadtask?").buildUpon();
         builder.appendQueryParameter("matchuserid", point.getMatchuserid());
         builder.appendQueryParameter("pointid", point.getPointid());
@@ -190,9 +197,9 @@ public class PointHelper {
     }
 
 
-    // =================== syncTeam ===================
+    // =================== syncTeamRecord ===================
 
-    public static void syncTeam() {
+    public static void syncTeamRecord() {
         String url = getTeamPointUrl();
         Request request = new StringRequest(
                 url,
@@ -261,6 +268,10 @@ public class PointHelper {
 
 
     // =================== 底层函数 ===================
+
+    public static List<Point> getPointList() {
+        return getPointDao().queryBuilder().list();
+    }
 
     private static Point findPointBySort(int sort) {
         return getPointDao().queryBuilder()

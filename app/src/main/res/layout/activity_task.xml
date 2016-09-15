@@ -81,6 +81,7 @@
             android:src="@drawable/blue1" />
 
         <TextView
+            android:id="@+id/prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

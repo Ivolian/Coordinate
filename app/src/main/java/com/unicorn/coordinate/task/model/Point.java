@@ -39,8 +39,10 @@ public class Point implements Serializable{
     private String Creater;
     private String Pointno;
 
+    // 手动添加的字段，返回数据中没有
     private String matchuserid;
     private String Pointtime;
+
     @Generated(hash = 368747484)
     public Point(String Pointid, String Lineguid, String Id, String Eventid, String Lineid, String Pointname, String Content, int Sort, int Pointtype, int Status, String Creater, String Pointno, String matchuserid, String Pointtime) {
         this.Pointid = Pointid;

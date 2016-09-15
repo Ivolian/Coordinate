@@ -33,6 +33,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+
+
     // ================================== ViewHolder ==================================
 
     public class ViewHolder extends RecyclerView.ViewHolder {
