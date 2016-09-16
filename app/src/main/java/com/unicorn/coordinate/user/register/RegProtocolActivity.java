@@ -1,14 +1,13 @@
 package com.unicorn.coordinate.user.register;
 
 import com.unicorn.coordinate.base.WebViewActivity;
-import com.unicorn.coordinate.utils.ConfigUtils;
 
 
 public class RegProtocolActivity extends WebViewActivity {
 
     @Override
     protected String getUrl() {
-        return ConfigUtils.getBaseUrl() + "/api/regprotocol";
+        return "http://www.chengshidingxiang.com" + "/api/regprotocol";
     }
 
 }

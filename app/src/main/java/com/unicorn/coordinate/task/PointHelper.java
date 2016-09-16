@@ -142,6 +142,7 @@ public class PointHelper {
 
     private static void setTimeAndUpload(Point point) {
         if (!NetworkUtils.isNetworkConnected()) {
+            setPointTime(point);
             PointHelper.saveLastPoint(point);
             PointHelper.saveCurrentPoint(point);
             ToastUtils.show(point.getPointtype() == PointType.LAST_POINT ? "完成所有进度" : "扫码成功");
@@ -239,17 +240,23 @@ public class PointHelper {
         }
         JSONObject response = new JSONObject(responseString);
         String teamPointId = response.getString(Constant.K_DATA);
+
         Point teamPoint = findPointByPointId(teamPointId);
         Point currentPoint = getCurrentPoint();
+
         if (currentPoint != null) {
-            // 若自身进度快于队伍进度
-            if (currentPoint.getSort() > teamPoint.getSort()) {
+            // 若队伍没进度或自身进度快于队伍进度
+            if (teamPoint == null || currentPoint.getSort() > teamPoint.getSort()) {
+                uploadPoint2(getCurrentPoint());
                 return;
             }
         }
-        PointHelper.saveCurrentPoint(teamPoint);
-        ToastUtils.show("已同步队伍进度");
-        EventBus.getDefault().post(new RefreshTaskEvent());
+
+        if (teamPoint != null) {
+            PointHelper.saveCurrentPoint(teamPoint);
+            ToastUtils.show("已同步队伍进度");
+            EventBus.getDefault().post(new RefreshTaskEvent());
+        }
     }
 
     private static String getTeamPointUrl() {
@@ -328,6 +335,36 @@ public class PointHelper {
             return 0;
         }
         return currentPoint.getSort() - 1;
+    }
+
+    //
+
+    public static void uploadPoint2(final Point point) {
+        String url = getUploadPointUrl(point);
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeUploadPointResponse2(response, point);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private static void copeUploadPointResponse2(String response, Point point) throws Exception {
+        if (ResponseHelper.isWrong(response)) {
+            return;
+        }
+        PointHelper.saveLastPoint(point);
+        PointHelper.saveCurrentPoint(point);
+        EventBus.getDefault().post(new RefreshTaskEvent());
     }
 
 }

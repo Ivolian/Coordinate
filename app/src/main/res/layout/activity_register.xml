@@ -127,7 +127,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="注册时请阅读XXXXX"
+        android:text="注册时请阅读注册协议"
         android:textColor="@color/md_black"
         app:layout_heightPercent="9%sh"
         app:layout_textSizePercent="2.4%sh" />

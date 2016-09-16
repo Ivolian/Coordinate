@@ -17,7 +17,7 @@ public class MatchCertDetailActivity extends WebViewActivity {
 
     @Override
     protected String getUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/matchcert?").buildUpon();
+        Uri.Builder builder = Uri.parse("http://www.chengshidingxiang.com" + "/api/matchcert?").buildUpon();
         builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
         builder.appendQueryParameter(Constant.K_MATCH_ID, matchId);
         return builder.toString();

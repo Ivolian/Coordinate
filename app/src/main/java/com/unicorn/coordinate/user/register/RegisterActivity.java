@@ -57,7 +57,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private Link getRegProtocolLink() {
-        return new Link("XXXXX")
+        return new Link("注册协议")
                 .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setUnderlined(false)
                 .setOnClickListener(new Link.OnClickListener() {
