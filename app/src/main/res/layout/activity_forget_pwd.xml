@@ -94,6 +94,8 @@
         android:gravity="center"
         android:hint="请输入动态密码"
         android:maxLines="1"
+        android:inputType="number"
+        android:singleLine="true"
         android:textColor="@color/md_black"
         android:textColorHint="@color/md_grey_300"
         app:layout_heightPercent="12%sh"
