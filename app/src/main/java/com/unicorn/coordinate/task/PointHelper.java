@@ -240,6 +240,13 @@ public class PointHelper {
         JSONObject response = new JSONObject(responseString);
         String teamPointId = response.getString(Constant.K_DATA);
         Point teamPoint = findPointByPointId(teamPointId);
+        Point currentPoint = getCurrentPoint();
+        if (currentPoint != null) {
+            // 若自身进度快于队伍进度
+            if (currentPoint.getSort() > teamPoint.getSort()) {
+                return;
+            }
+        }
         PointHelper.saveCurrentPoint(teamPoint);
         ToastUtils.show("已同步队伍进度");
         EventBus.getDefault().post(new RefreshTaskEvent());
