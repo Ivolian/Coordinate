@@ -88,6 +88,7 @@ public class TaskActivity extends BaseActivity {
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        PointHelper.taskAdapter = adapter;
     }
 
     @Subscribe

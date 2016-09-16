@@ -9,13 +9,14 @@ import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.helper.TinyDB;
-import com.unicorn.coordinate.task.event.StopRefreshingEvent;
 import com.unicorn.coordinate.task.event.RefreshTaskEvent;
+import com.unicorn.coordinate.task.event.StopRefreshingEvent;
 import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.task.model.PointDao;
 import com.unicorn.coordinate.utils.AESUtils;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.MD5Util;
+import com.unicorn.coordinate.utils.NetworkUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
@@ -30,6 +31,7 @@ import java.util.List;
 
 public class PointHelper {
 
+    public static TaskAdapter taskAdapter;
 
     public static void copeScanResult(String scanResult) {
         try {
@@ -139,6 +141,14 @@ public class PointHelper {
     //
 
     private static void setTimeAndUpload(Point point) {
+        if (!NetworkUtils.isNetworkConnected()) {
+            PointHelper.saveLastPoint(point);
+            PointHelper.saveCurrentPoint(point);
+            ToastUtils.show(point.getPointtype() == PointType.LAST_POINT ? "完成所有进度" : "扫码成功");
+            // TODO 暂时
+            taskAdapter.refreshTask();
+            return;
+        }
         setPointTime(point);
         uploadPoint(point);
     }
@@ -193,6 +203,11 @@ public class PointHelper {
     // =================== syncTeamRecord ===================
 
     public static void syncTeamRecord() {
+        if (!NetworkUtils.isNetworkConnected()) {
+            ToastUtils.show("无可用网络，无法同步队伍进度");
+            EventBus.getDefault().post(new StopRefreshingEvent());
+            return;
+        }
         Point startPoint = getStartPoint();
         if (startPoint == null) {
             ToastUtils.show("尚未下载任务线路");
