@@ -68,6 +68,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         @OnClick(R.id.item)
         public void itemOnClick() {
             if (ClickHelper.isSafe()) {
+                if (getAdapterPosition() <= PointHelper.getCurrentPosition()) {
+                    return;
+                }
                 Context context = name.getContext();
                 Point point = pointList.get(getAdapterPosition());
                 String content = AESUtils.decrypt(point.getContent());
@@ -95,7 +98,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         int colorRes = (position <= PointHelper.getCurrentPosition() ? R.color.md_black : R.color.md_grey_400);
         int color = ContextCompat.getColor(context, colorRes);
         holder.name.setTextColor(color);
-        holder.arrow.setColor(color);
+//        holder.arrow.setColor(color);
 
         if (point.getPointtype() == PointType.LAST_POINT) {
             holder.small.setVisibility(View.VISIBLE);
@@ -106,6 +109,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             holder.small.setVisibility(View.INVISIBLE);
             holder.big.setVisibility(View.VISIBLE);
             holder.bottom.setVisibility(View.VISIBLE);
+        }
+
+        if (position <= PointHelper.getCurrentPosition()) {
+            holder.arrow.setVisibility(View.INVISIBLE);
+        } else {
+            holder.arrow.setVisibility(View.VISIBLE);
         }
     }
 
