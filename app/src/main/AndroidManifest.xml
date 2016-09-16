@@ -4,6 +4,8 @@
     package="com.unicorn.coordinate">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
         android:name=".SimpleApplication"
@@ -28,18 +30,17 @@
             android:name=".main.MainActivity"
             android:screenOrientation="portrait" />
 
-        <!-- user -->
         <activity
             android:name=".user.LoginActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".user.register.RegisterActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".user.register.SetPasswordActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".home.MatchDetailActivity"
@@ -48,6 +49,7 @@
         <activity
             android:name=".atlas.photo.AtlasPhotoActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".atlas.photo.AtlasDisplayActivity"
             android:screenOrientation="portrait" />
@@ -55,6 +57,7 @@
         <activity
             android:name=".message.MessageDetailActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".message.MessageActivity"
             android:screenOrientation="portrait" />
@@ -62,6 +65,7 @@
         <activity
             android:name=".profile.userMatch.UserMatchActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".profile.userMatch.UserMatchDetailActivity"
             android:screenOrientation="portrait" />
@@ -81,7 +85,6 @@
         <activity
             android:name=".user.register.RegProtocolActivity"
             android:screenOrientation="portrait" />
-
 
         <activity
             android:name=".user.UpdatePasswordActivity"

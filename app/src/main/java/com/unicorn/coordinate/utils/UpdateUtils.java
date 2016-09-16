@@ -67,6 +67,7 @@ public class UpdateUtils {
             return;
         }
         String apkUrl = response.getString(Constant.K_MSG);
+        apkUrl = "http://" + apkUrl;
         showConfirmDialog(apkUrl);
     }
 
