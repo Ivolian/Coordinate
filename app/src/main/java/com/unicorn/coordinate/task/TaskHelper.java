@@ -14,6 +14,7 @@ import com.unicorn.coordinate.task.model.PointDao;
 import com.unicorn.coordinate.task.model.Task;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
+import com.unicorn.coordinate.volley.VolleyHelper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,42 +24,40 @@ import java.util.List;
 
 public class TaskHelper {
 
+    // 1. 让函数只干一件事。
+    // 2. 目前处理 JSON 异常就是往外扔，假设不犯低级错误。
 
-    // ======================== 获取 Task 启动和登录成功后调用 =========================
+    // 确保在用户登录后调用
+    public static void getTasks() {
+        //
+        assureUserHasLogin();
 
-    public static void getTask() {
-        if (ConfigUtils.notLogin()) {
-            return;
-        }
-        String url = getTaskUrl();
-        Request request = new StringRequest(
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            copeTaskResponse(response);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                SimpleVolley.getDefaultErrorListener()
-        );
-        SimpleVolley.addRequest(request);
+        String userId = ConfigUtils.getUserId();
+        String tasksUrl = getTasksUrl(userId);
+        VolleyHelper.sendRequest(tasksUrl, new VolleyHelper.SimpleCallback() {
+            @Override
+            public void copeResponse(String responseString) throws Exception {
+                if (ResponseHelper.isWrong(responseString)) {
+                    return;
+                }
+                JSONObject response = new JSONObject(responseString);
+                JSONArray data = response.getJSONArray(Constant.K_DATA);
+                List<Task> taskList = new Gson().fromJson(data.toString(), new TypeToken<List<Task>>() {
+                }.getType());
+
+                // 目前只有一个 task
+                Task task = taskList.get(0);
+                copeTask(task);
+            }
+        });
     }
 
-    private static void copeTaskResponse(String responseString) throws Exception {
-        if (ResponseHelper.isWrong(responseString)) {
-            return;
+    private static void assureUserHasLogin() {
+        String userId = ConfigUtils.getUserId();
+        // todo "" is ok ?
+        if (userId.equals("")) {
+            throw new RuntimeException("请在用户登录后调用 getTasks 方法");
         }
-        JSONObject response = new JSONObject(responseString);
-        JSONArray data = response.getJSONArray(Constant.K_DATA);
-        List<Task> taskList = new Gson().fromJson(data.toString(), new TypeToken<List<Task>>() {
-        }.getType());
-        // 目前只有一个 task
-        Task task = taskList.get(0);
-        copeTask(task);
     }
 
     private static void copeTask(Task task) {
@@ -184,9 +183,9 @@ public class TaskHelper {
 
     // ======================== 底层方法 =========================
 
-    private static String getTaskUrl() {
+    private static String getTasksUrl(final String userId) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/gettask?").buildUpon();
-        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        builder.appendQueryParameter(Constant.K_USER_ID, userId);
         return builder.toString();
     }
 

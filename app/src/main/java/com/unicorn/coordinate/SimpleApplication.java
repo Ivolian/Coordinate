@@ -7,6 +7,7 @@ import com.unicorn.coordinate.task.TaskHelper;
 import com.unicorn.coordinate.task.model.DaoMaster;
 import com.unicorn.coordinate.task.model.DaoSession;
 import com.unicorn.coordinate.task.model.PointDao;
+import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
 import net.danlew.android.joda.JodaTimeAndroid;
@@ -41,7 +42,9 @@ public class SimpleApplication extends MultiDexApplication {
     }
 
     private void doSomeWork() {
-        TaskHelper.getTask();
+        if (!ConfigUtils.notLogin()) {
+            TaskHelper.getTasks();
+        }
     }
 
 

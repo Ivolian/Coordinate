@@ -98,7 +98,7 @@ public class LoginActivity extends BaseActivity {
         ConfigUtils.saveUserInfo(userInfo);
         ConfigUtils.saveAccount(getAccount());
         ToastUtils.show("登录成功");
-        TaskHelper.getTask();
+        TaskHelper.getTasks();
         finish();
     }
 
