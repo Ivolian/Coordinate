@@ -14,12 +14,16 @@ import java.io.File;
 
 public class ConfigUtils {
 
-    final static private String IP = "applink.chengshidingxiang.com";
+//    final static private String IP = "applink.chengshidingxiang.com";
 
-    final static private String PORT = "80";
+//    final static private String PORT = "80";
+
+    final static private String TEST_IP = "139.224.69.49";
+
+    final static private String TEST_PORT = "9002";
 
     public static String getBaseUrl() {
-        return "http://" + IP + ":" + PORT;
+        return "http://" + TEST_IP + ":" + TEST_PORT;
     }
 
     public static String getImageBaseUrl() {

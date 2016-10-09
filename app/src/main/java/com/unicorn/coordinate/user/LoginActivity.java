@@ -20,6 +20,7 @@ import com.unicorn.coordinate.task.TaskHelper;
 import com.unicorn.coordinate.user.forgetPwd.ForgetPwdActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
 import com.unicorn.coordinate.user.register.RegisterActivity;
+import com.unicorn.coordinate.utils.AESUtils;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
@@ -78,7 +79,7 @@ public class LoginActivity extends BaseActivity {
                             mask.dismiss();
                             copeResponse(response);
                         } catch (Exception e) {
-                            //
+                           e.printStackTrace();
                         }
                     }
                 },
@@ -95,6 +96,8 @@ public class LoginActivity extends BaseActivity {
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         UserInfo userInfo = new Gson().fromJson(data.toString(), UserInfo.class);
+        String name = AESUtils.aesDecrypt(userInfo.getName(),"124", "1234567890123456");
+        userInfo.setName(name);
         ConfigUtils.saveUserInfo(userInfo);
         ConfigUtils.saveAccount(getAccount());
         ToastUtils.show("登录成功");

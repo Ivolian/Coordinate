@@ -12,7 +12,6 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.profile.model.UserMatch;
-import com.unicorn.coordinate.profile.userMatch.UserMatchDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +56,7 @@ public class MatchCertAdapter extends RecyclerView.Adapter<MatchCertAdapter.View
     }
 
     private void startMatchCertDetailActivity(Context context, UserMatch userMatch) {
-        Intent intent = new Intent(context, UserMatchDetailActivity.class);
+        Intent intent = new Intent(context, MatchCertDetailActivity.class);
         intent.putExtra(Constant.K_TITLE, "赛事证书");
         intent.putExtra(Constant.K_MATCH_ID, userMatch.getMatch_id());
         context.startActivity(intent);
