@@ -33,6 +33,7 @@ public class Constant {
 
     public static final String K_CONTENT = "content";
 
+    public static final String K_MATCH_USER_ID = "matchuserid";
 
     //
 

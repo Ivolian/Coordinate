@@ -14,6 +14,7 @@ import com.mikepenz.iconics.view.IconicsImageView;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.profile.matchCert.MatchCertDetailActivity2;
 import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.utils.AESUtils;
 
@@ -69,6 +70,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         public void itemOnClick() {
             if (ClickHelper.isSafe()) {
                 if (getAdapterPosition() <= PointHelper.getCurrentPosition()) {
+                    Point currentPoint = PointHelper.getCurrentPoint();
+                    if (currentPoint != null) {
+                        if (getAdapterPosition() == PointHelper.getCurrentPosition() &&
+                                currentPoint.getPointtype() == PointType.LAST_POINT) {
+                            Context context = name.getContext();
+                            startMatchCertDetailActivity2(context, currentPoint.getMatchuserid());
+                        }
+                    }
                     return;
                 }
                 Context context = name.getContext();
@@ -77,6 +86,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 startTaskDetailActivity(context, content);
             }
         }
+    }
+
+    private void startMatchCertDetailActivity2(Context context, final String matctUserId) {
+        Intent intent = new Intent(context, MatchCertDetailActivity2.class);
+        intent.putExtra(Constant.K_TITLE, "赛事证书");
+        intent.putExtra(Constant.K_MATCH_USER_ID, matctUserId);
+        context.startActivity(intent);
     }
 
     private void startTaskDetailActivity(Context context, final String content) {

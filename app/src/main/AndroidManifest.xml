@@ -83,6 +83,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".profile.matchCert.MatchCertDetailActivity2"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".user.register.RegProtocolActivity"
             android:screenOrientation="portrait" />
 
