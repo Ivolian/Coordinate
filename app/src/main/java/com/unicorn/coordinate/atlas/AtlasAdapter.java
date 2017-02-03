@@ -68,6 +68,7 @@ public class AtlasAdapter extends RecyclerView.Adapter<AtlasAdapter.ViewHolder> 
     }
 
 
+
     // ================================== onBindViewHolder ==================================
 
     @Override

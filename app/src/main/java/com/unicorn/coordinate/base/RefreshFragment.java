@@ -21,6 +21,8 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 ;
 
 
@@ -42,7 +44,7 @@ public abstract class RefreshFragment extends LazyLoadFragment {
 
     // ================================== views ==================================
 
-//    @BindView(R.id.swipeRefreshLayout)
+    @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
 
 //    @BindView(R.id.recycleView)
