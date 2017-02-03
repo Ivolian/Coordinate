@@ -11,8 +11,6 @@ import com.unicorn.coordinate.volley.SimpleVolley;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
-
 
 public class SimpleApplication extends MultiDexApplication {
 
@@ -31,7 +29,7 @@ public class SimpleApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        CustomActivityOnCrash.install(this);
+//        CustomActivityOnCrash.install(this);
         instance = this;
         init();
         doSomeWork();

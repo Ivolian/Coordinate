@@ -108,17 +108,19 @@ public class MatchDetailActivity extends BaseActivity {
 
     private String getStatusText() {
         switch (matchInfo.getStatus()) {
-            case "1":
+            case "0":
                 return "报名未开始";
-            case "2":
+            case "1":
                 return "立即预报名";
-            case "3":
+            case "2":
                 return "预报名结束";
-            case "4":
+            case "3":
                 return "报名付费";
-            case "5":
+            case "4":
+            case "8":
+            case "9":
                 return "报名结束";
-            case "6":
+            case "5":
                 return "比赛结束";
             default:
                 return "";
@@ -179,7 +181,7 @@ public class MatchDetailActivity extends BaseActivity {
 
     @OnClick(R.id.signUpMatch)
     public void signUpMatchOnClick() {
-        if (ClickHelper.isSafe()) {
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)){
             getMatchStatusInfoIfNeed();
         }
     }
@@ -191,9 +193,10 @@ public class MatchDetailActivity extends BaseActivity {
                 break;
         }
     }
+
     private void setTeamName() {
         Intent intent = new Intent(this, SetTeamNameActivity.class);
-        intent.putExtra(Constant.K_MATCH, match);
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
         startActivity(intent);
     }
 

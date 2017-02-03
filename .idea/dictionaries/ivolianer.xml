@@ -3,6 +3,9 @@
     <words>
       <w>getmatchinfo</w>
       <w>getmymatchstatus</w>
+      <w>tcom</w>
+      <w>tname</w>
+      <w>tnname</w>
     </words>
   </dictionary>
 </component>

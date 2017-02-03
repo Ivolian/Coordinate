@@ -1,7 +1,9 @@
 package com.unicorn.coordinate.home.model;
 
+import java.io.Serializable;
+
 // 和 Match 区别不大，开发过程中的多余产物
-public class MatchInfo {
+public class MatchInfo implements Serializable{
 
     /**
      * Match_id : 6a61b95b-2d5d-4373-abaf-776aa0e67fcf
