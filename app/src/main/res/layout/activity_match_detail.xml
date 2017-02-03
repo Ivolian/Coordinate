@@ -47,254 +47,271 @@
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <com.zhy.android.percent.support.PercentLinearLayout
+        <ScrollView
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:visibility="invisible">
 
-            <!-- 名称，时间，状态 -->
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_heightPercent="14%sh"
-                app:layout_paddingBottomPercent="3%sh"
-                app:layout_paddingLeftPercent="8%sw"
-                app:layout_paddingRightPercent="8%sw"
-                app:layout_paddingTopPercent="3%sh">
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="名称"
-                    android:textColor="@color/md_black"
-                    app:layout_textSizePercent="2.4%sh" />
-
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_marginTopPercent="2%sh">
-
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="日期"
-                        android:textColor="@color/md_grey_400"
-                        app:layout_textSizePercent="2%sh" />
-
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="状态"
-                        android:textColor="@color/md_grey_400"
-                        app:layout_textSizePercent="2%sh" />
-
-                </com.zhy.android.percent.support.PercentLinearLayout>
-
-
-            </com.zhy.android.percent.support.PercentLinearLayout>
-
-            <!-- 参赛须知 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/md_grey_300"
-                android:gravity="center_vertical"
-                android:text="参赛须知"
-                android:textColor="@color/md_black"
-                app:layout_heightPercent="6%sh"
-                app:layout_paddingLeftPercent="8%sw"
-                app:layout_textSizePercent="2%sh" />
-
-            <!-- 剩余部分 64 -->
             <com.zhy.android.percent.support.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- 时间 -->
+                <!-- 名称，时间，状态 -->
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_heightPercent="14%sh">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:src="@drawable/circle" />
+                    android:orientation="vertical"
+                    app:layout_heightPercent="14%sh"
+                    app:layout_paddingBottomPercent="3%sh"
+                    app:layout_paddingLeftPercent="8%sw"
+                    app:layout_paddingRightPercent="8%sw"
+                    app:layout_paddingTopPercent="3%sh">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="时间"
+                        android:text="名称"
                         android:textColor="@color/md_black"
                         app:layout_textSizePercent="2.4%sh" />
 
-                </com.zhy.android.percent.support.PercentLinearLayout>
-
-                <!-- date1 -->
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="预报名时间:"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh"
-                        app:layout_widthPercent="40%sw" />
+                        android:orientation="horizontal"
+                        app:layout_marginTopPercent="2%sh">
 
-                    <TextView
-                        android:id="@+id/date1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="2016-09-01 00:00:00"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh" />
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="日期"
+                            android:textColor="@color/md_grey_400"
+                            app:layout_textSizePercent="2%sh" />
 
-                </com.zhy.android.percent.support.PercentLinearLayout>
+                        <TextView
+                            android:id="@+id/status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="状态"
+                            android:textColor="@color/md_grey_400"
+                            app:layout_textSizePercent="2%sh" />
 
-                <!-- date2 -->
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_marginTopPercent="2%sh">
+                    </com.zhy.android.percent.support.PercentLinearLayout>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="预报名截止时间:"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh"
-                        app:layout_widthPercent="40%sw" />
-
-                    <TextView
-                        android:id="@+id/date2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="2016-09-01 00:00:00"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh" />
 
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
-                <!-- date3 -->
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_marginTopPercent="2%sh">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="正式报名时间:"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh"
-                        app:layout_widthPercent="40%sw" />
-
-                    <TextView
-                        android:id="@+id/date3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="2016-09-01 00:00:00"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh" />
-
-                </com.zhy.android.percent.support.PercentLinearLayout>
-
-                <!-- date4 -->
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_marginTopPercent="2%sh">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="开赛时间:"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh"
-                        app:layout_widthPercent="40%sw" />
-
-                    <TextView
-                        android:id="@+id/date4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="2016-09-01 00:00:00"
-                        android:textColor="@color/md_grey_600"
-                        app:layout_textSizePercent="2.4%sh" />
-
-                </com.zhy.android.percent.support.PercentLinearLayout>
-
-                <!-- 详情 -->
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_heightPercent="14%sh">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:src="@drawable/triangle" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="详情"
-                        android:textColor="@color/md_black"
-                        app:layout_textSizePercent="2.4%sh" />
-
-                </com.zhy.android.percent.support.PercentLinearLayout>
-
+                <!-- 参赛须知 -->
                 <TextView
-                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/md_grey_300"
+                    android:gravity="center_vertical"
+                    android:text="参赛须知"
+                    android:textColor="@color/md_black"
+                    app:layout_heightPercent="6%sh"
+                    app:layout_paddingLeftPercent="8%sw"
+                    app:layout_textSizePercent="2%sh" />
+
+                <!-- 剩余部分 64 -->
+                <com.zhy.android.percent.support.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:textColor="@color/md_grey_600"
-                    app:layout_marginBottomPercent="3%sh"
+                    android:orientation="vertical">
 
-                    app:layout_textSizePercent="2.4%sh" />
+                    <!-- 时间 -->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="14%sh">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:src="@drawable/circle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="时间"
+                            android:textColor="@color/md_black"
+                            app:layout_textSizePercent="2.4%sh" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!-- date1 -->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:text="预报名时间:"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh"
+                            app:layout_widthPercent="40%sw" />
+
+                        <TextView
+                            android:id="@+id/date1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="2016-09-01 00:00:00"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!-- date2 -->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginTopPercent="2%sh">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:text="预报名截止时间:"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh"
+                            app:layout_widthPercent="40%sw" />
+
+                        <TextView
+                            android:id="@+id/date2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="2016-09-01 00:00:00"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!-- date3 -->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginTopPercent="2%sh">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:text="正式报名时间:"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh"
+                            app:layout_widthPercent="40%sw" />
+
+                        <TextView
+                            android:id="@+id/date3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="2016-09-01 00:00:00"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!-- date4 -->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginTopPercent="2%sh">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:text="开赛时间:"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh"
+                            app:layout_widthPercent="40%sw" />
+
+                        <TextView
+                            android:id="@+id/date4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="2016-09-01 00:00:00"
+                            android:textColor="@color/md_grey_600"
+                            app:layout_textSizePercent="2.4%sh" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!-- 详情 -->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="14%sh">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:src="@drawable/triangle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="详情"
+                            android:textColor="@color/md_black"
+                            app:layout_textSizePercent="2.4%sh" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <TextView
+                        android:id="@+id/content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:textColor="@color/md_grey_600"
+                        app:layout_marginBottomPercent="3%sh"
+
+                        app:layout_textSizePercent="2.4%sh" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
 
-        </com.zhy.android.percent.support.PercentLinearLayout>
+        </ScrollView>
 
-    </ScrollView>
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="SquareSpinIndicator" />
+
+    </FrameLayout>
 
 </com.zhy.android.percent.support.PercentLinearLayout>
