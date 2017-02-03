@@ -1,5 +1,6 @@
 package com.unicorn.coordinate.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
@@ -17,11 +18,15 @@ import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.home.model.MatchInfo;
+import com.unicorn.coordinate.home.model.MatchStatusInfo;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,8 +57,10 @@ public class MatchDetailActivity extends BaseActivity {
         fetchMatchDetail();
     }
 
+    private MatchInfo matchInfo;
+
     private void fetchMatchDetail() {
-        String url = getMatchDetailUrl(match.getMatch_id());
+        String url = getMatchDetailUrl();
         Request request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -73,8 +80,8 @@ public class MatchDetailActivity extends BaseActivity {
         startAnim();
     }
 
-    private String getMatchDetailUrl(final String matchId) {
-        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + matchId;
+    private String getMatchDetailUrl() {
+        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + match.getMatch_id();
     }
 
     private void copeResponse(String responseString) throws Exception {
@@ -83,14 +90,14 @@ public class MatchDetailActivity extends BaseActivity {
         }
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
-        MatchInfo matchInfo = new Gson().fromJson(data.toString(), MatchInfo.class);
-        fillViews(matchInfo);
+        matchInfo = new Gson().fromJson(data.toString(), MatchInfo.class);
+        fillViews();
     }
 
-    private void fillViews(MatchInfo matchInfo) {
+    private void fillViews() {
         name.setText(matchInfo.getMatch_name());
         date.setText(matchInfo.getDate());
-        status.setText(getStatusText(matchInfo));
+        status.setText(getStatusText());
         date1.setText(matchInfo.getDate1());
         date2.setText(matchInfo.getDate2());
         date3.setText(matchInfo.getDate3());
@@ -99,7 +106,7 @@ public class MatchDetailActivity extends BaseActivity {
         container.setVisibility(View.VISIBLE);
     }
 
-    private String getStatusText(MatchInfo matchInfo) {
+    private String getStatusText() {
         switch (matchInfo.getStatus()) {
             case "1":
                 return "报名未开始";
@@ -116,6 +123,78 @@ public class MatchDetailActivity extends BaseActivity {
             default:
                 return "";
         }
+    }
+
+
+    // ====================== getmymatchstatus ======================
+
+    private MatchStatusInfo matchStatusInfo;
+
+    private void getMatchStatusInfoIfNeed() {
+        if (needGetMatchStatusInfo()) {
+            getMatchStatusInfo();
+        } else {
+            ToastUtils.show(getStatusText());
+        }
+    }
+
+    private boolean needGetMatchStatusInfo() {
+        String matchStatus = matchInfo.getStatus();
+        return Arrays.asList("2", "4", "5").contains(matchStatus);
+    }
+
+    private void getMatchStatusInfo() {
+        String url = getMatchStatusUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse2(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private String getMatchStatusUrl() {
+        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + match.getMatch_id()
+                + "&userid=" + ConfigUtils.getUserId();
+    }
+
+    private void copeResponse2(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONObject data = response.getJSONObject(Constant.K_DATA);
+        matchStatusInfo = new Gson().fromJson(data.toString(), MatchStatusInfo.class);
+        signUpMatch();
+    }
+
+    @OnClick(R.id.signUpMatch)
+    public void signUpMatchOnClick() {
+        if (ClickHelper.isSafe()) {
+            getMatchStatusInfoIfNeed();
+        }
+    }
+
+    private void signUpMatch() {
+        switch (matchStatusInfo.getStatus()) {
+            case "2":
+                setTeamName();
+                break;
+        }
+    }
+    private void setTeamName() {
+        Intent intent = new Intent(this, SetTeamNameActivity.class);
+        intent.putExtra(Constant.K_MATCH, match);
+        startActivity(intent);
     }
 
 

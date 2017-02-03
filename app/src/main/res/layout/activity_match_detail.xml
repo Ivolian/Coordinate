@@ -314,4 +314,16 @@
 
     </FrameLayout>
 
+    <!-- 我要报名 -->
+    <TextView
+        android:id="@+id/signUpMatch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#04328C"
+        android:gravity="center"
+        android:text="我要报名"
+        android:textColor="@color/md_white"
+        app:layout_heightPercent="9%sh"
+        app:layout_textSizePercent="3%sh" />
+
 </com.zhy.android.percent.support.PercentLinearLayout>

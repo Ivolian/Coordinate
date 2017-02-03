@@ -2,6 +2,7 @@
   <dictionary name="ivolianer">
     <words>
       <w>getmatchinfo</w>
+      <w>getmymatchstatus</w>
     </words>
   </dictionary>
 </component>

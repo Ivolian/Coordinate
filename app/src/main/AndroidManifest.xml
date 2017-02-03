@@ -123,6 +123,12 @@
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
 
+        <!---->
+
+        <activity
+            android:name=".home.SetTeamNameActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
