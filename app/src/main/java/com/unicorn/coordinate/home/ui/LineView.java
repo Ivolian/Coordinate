@@ -47,8 +47,8 @@ public class LineView extends TextView {
 
         //
         setTextSize(COMPLEX_UNIT_DIP, 16);
-        setPadding(DensityUtils.dip2px(getContext(), 16), DensityUtils.dip2px(getContext(), 6),
-                DensityUtils.dip2px(getContext(), 16), DensityUtils.dip2px(getContext(), 6));
+        setPadding(DensityUtils.dip2px(getContext(), 16), DensityUtils.dip2px(getContext(), 8),
+                DensityUtils.dip2px(getContext(), 16), DensityUtils.dip2px(getContext(), 8));
 
         unselect();
     }

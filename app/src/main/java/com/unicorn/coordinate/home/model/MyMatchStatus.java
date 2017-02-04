@@ -1,6 +1,8 @@
 package com.unicorn.coordinate.home.model;
 
-public class MatchStatusInfo {
+import java.io.Serializable;
+
+public class MyMatchStatus implements Serializable{
 
     /**
      * Teamid :

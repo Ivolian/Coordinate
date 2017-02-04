@@ -18,9 +18,11 @@ import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Line;
 import com.unicorn.coordinate.home.model.MatchInfo;
+import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.home.ui.LineView;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
+import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -50,17 +52,24 @@ public class LineChooseActivity extends BaseActivity {
     @InjectExtra(Constant.K_MATCH_INFO)
     MatchInfo matchInfo;
 
+    @InjectExtra(Constant.K_MY_MATCH_STATUS)
+    MyMatchStatus myMatchStatus;
+
 
     // ====================== initViews ======================
 
     @Override
     public void initViews() {
         matchName.setText(matchInfo.getMatch_name());
+        date.setText(matchInfo.getDate4());
+        area.setText(matchInfo.getArea2());
         fetchLine();
     }
 
 
     // ====================== fetchLine ======================
+
+    Line lineChosen;
 
     List<Line> lineList;
 
@@ -111,8 +120,8 @@ public class LineChooseActivity extends BaseActivity {
             });
             lineViewList.add(lineView);
         }
+        lineOnChoose(lineList.get(0));
     }
-
 
     private void lineOnChoose(Line line) {
         for (LineView lineView : lineViewList) {
@@ -122,8 +131,47 @@ public class LineChooseActivity extends BaseActivity {
                 lineView.unselect();
             }
         }
+        lineName.setText(line.getName());
         content.setText(line.getContent());
-        teamPrice.setText(line.getTeamPrice() + "");
+        teamPrice.setText("￥" + line.getTeamPrice());
+        lineChosen = line;
+    }
+
+
+    // ====================== fetchLine ======================
+
+    @OnClick(R.id.nextStep)
+    public void nextStepOnClick(){
+        if (ClickHelper.isSafe()){
+            setLine();
+        }
+    }
+
+    private void setLine(){
+        String url = setLineUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse2(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse2(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        ToastUtils.show("路线选择成功");
+        finish();
     }
 
 
@@ -141,6 +189,9 @@ public class LineChooseActivity extends BaseActivity {
     @BindView(R.id.lineContainer)
     PercentLinearLayout lineContainer;
 
+    @BindView(R.id.lineName)
+    TextView lineName;
+
     @BindView(R.id.content)
     TextView content;
 
@@ -153,6 +204,13 @@ public class LineChooseActivity extends BaseActivity {
     private String fetchLineUrl() {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getline?").buildUpon();
         builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
+        return builder.toString();
+    }
+
+    private String setLineUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/SelLine?").buildUpon();
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        builder.appendQueryParameter("lineid", lineChosen.getLineid());
         return builder.toString();
     }
 

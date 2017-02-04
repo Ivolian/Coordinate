@@ -19,6 +19,7 @@ import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.DensityUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
@@ -51,10 +52,13 @@ public class SetTeamNameActivity extends BaseActivity {
         initCheckTeamName();
     }
 
+
+    // ====================== checkTeamName ======================
+
     private void initCheckTeamName() {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setColor(Color.parseColor("#65C0F2"));
-        gradientDrawable.setCornerRadius(10);
+        gradientDrawable.setCornerRadius(DensityUtils.dip2px(this, 5));
         checkTeamName.setBackgroundDrawable(gradientDrawable);
     }
 
@@ -63,17 +67,6 @@ public class SetTeamNameActivity extends BaseActivity {
         if (ClickHelper.isSafe()) {
             if (!TextUtils.isEmpty(teamName.getText())) {
                 checkTeamName();
-            } else {
-                ToastUtils.show("队名不能为空");
-            }
-        }
-    }
-
-    @OnClick(R.id.signUp)
-    public void signUpOnClick() {
-        if (ClickHelper.isSafe()) {
-            if (!TextUtils.isEmpty(teamName.getText())) {
-                signUp();
             } else {
                 ToastUtils.show("队名不能为空");
             }
@@ -119,6 +112,17 @@ public class SetTeamNameActivity extends BaseActivity {
 
     // ====================== 报名 ======================
 
+    @OnClick(R.id.signUp)
+    public void signUpOnClick() {
+        if (ClickHelper.isSafe()) {
+            if (!TextUtils.isEmpty(teamName.getText())) {
+                signUp();
+            } else {
+                ToastUtils.show("队名不能为空");
+            }
+        }
+    }
+
     private void signUp() {
         String url = signUpUrl();
         Request request = new StringRequest(
@@ -141,7 +145,7 @@ public class SetTeamNameActivity extends BaseActivity {
     private String signUpUrl() {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/RegTeamName?").buildUpon();
         builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
-        // 参数名一直在变...
+        // 参数名不一致
         builder.appendQueryParameter("tname", teamName.getText().toString().trim());
         builder.appendQueryParameter("tcom", companyName.getText().toString().trim());
         builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());

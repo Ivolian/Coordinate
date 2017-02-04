@@ -74,7 +74,6 @@
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="2017-02-01 13:16:50"
                 android:textColor="@color/md_black"
                 app:layout_heightPercent="10%sh"
                 app:layout_textSizePercent="2.7%sh" />
@@ -92,14 +91,13 @@
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="徐汇"
                 android:textColor="@color/md_black"
                 app:layout_heightPercent="10%sh"
                 app:layout_textSizePercent="2.7%sh" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="8dp"
                 android:background="@color/md_grey_100" />
 
             <TextView
@@ -109,7 +107,7 @@
                 android:paddingLeft="16dp"
                 android:text="线路选择"
                 android:textColor="@color/md_black"
-                app:layout_heightPercent="10%sh"
+                app:layout_heightPercent="8%sh"
                 app:layout_textSizePercent="2.7%sh" />
 
             <HorizontalScrollView
@@ -131,13 +129,14 @@
             </HorizontalScrollView>
 
             <TextView
+                android:id="@+id/lineName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:text="亲子线路"
                 android:textColor="@color/md_black"
-                app:layout_heightPercent="10%sh"
+                app:layout_heightPercent="8%sh"
                 app:layout_textSizePercent="2.7%sh" />
 
             <TextView
@@ -148,7 +147,7 @@
                 android:paddingLeft="16dp"
                 android:text="两个大人 一个小孩"
                 android:textColor="@color/md_grey_400"
-                app:layout_heightPercent="10%sh"
+                app:layout_heightPercent="8%sh"
                 app:layout_textSizePercent="2.7%sh" />
 
             <TextView
@@ -158,7 +157,7 @@
                 android:paddingLeft="16dp"
                 android:text="参赛费用"
                 android:textColor="@color/md_black"
-                app:layout_heightPercent="10%sh"
+                app:layout_heightPercent="8%sh"
                 app:layout_textSizePercent="2.7%sh" />
 
             <TextView
@@ -167,9 +166,8 @@
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="￥ 180"
                 android:textColor="@color/md_red_400"
-                app:layout_heightPercent="10%sh"
+                app:layout_heightPercent="8%sh"
                 app:layout_textSizePercent="2.7%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
@@ -177,7 +175,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/signUp"
+        android:id="@+id/nextStep"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#04328C"

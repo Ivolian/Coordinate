@@ -18,7 +18,7 @@ import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.home.model.MatchInfo;
-import com.unicorn.coordinate.home.model.MatchStatusInfo;
+import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
@@ -54,13 +54,16 @@ public class MatchDetailActivity extends BaseActivity {
 
     @Override
     public void initViews() {
-        fetchMatchDetail();
+        fetchMatchInfo();
     }
+
+
+    // ====================== fetchMatchInfo ======================
 
     private MatchInfo matchInfo;
 
-    private void fetchMatchDetail() {
-        String url = getMatchDetailUrl();
+    private void fetchMatchInfo() {
+        String url = matchInfoUrl();
         Request request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -80,10 +83,6 @@ public class MatchDetailActivity extends BaseActivity {
         startAnim();
     }
 
-    private String getMatchDetailUrl() {
-        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + match.getMatch_id();
-    }
-
     private void copeResponse(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
@@ -97,16 +96,17 @@ public class MatchDetailActivity extends BaseActivity {
     private void fillViews() {
         name.setText(matchInfo.getMatch_name());
         date.setText(matchInfo.getDate());
-        status.setText(getStatusText());
+        status.setText(matchStatusText());
         date1.setText(matchInfo.getDate1());
         date2.setText(matchInfo.getDate2());
         date3.setText(matchInfo.getDate3());
         date4.setText(matchInfo.getDate4());
         content.setText(matchInfo.getContent());
+        // 加载结束，显示内容
         container.setVisibility(View.VISIBLE);
     }
 
-    private String getStatusText() {
+    private String matchStatusText() {
         switch (matchInfo.getStatus()) {
             case "0":
                 return "报名未开始";
@@ -128,25 +128,25 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
 
-    // ====================== getmymatchstatus ======================
+    // ====================== getMyMatchStatus ======================
 
-    private MatchStatusInfo matchStatusInfo;
+    private MyMatchStatus myMatchStatus;
 
-    private void getMatchStatusInfoIfNeed() {
-        if (needGetMatchStatusInfo()) {
-            getMatchStatusInfo();
+    private void getMyMatchStatusIfNeed() {
+        if (isNeedGetMyMatchStatus()) {
+            getMyMatchStatus();
         } else {
-            ToastUtils.show(getStatusText());
+            ToastUtils.show(matchStatusText());
         }
     }
 
-    private boolean needGetMatchStatusInfo() {
+    private boolean isNeedGetMyMatchStatus() {
         String matchStatus = matchInfo.getStatus();
         return Arrays.asList("1", "3", "4").contains(matchStatus);
     }
 
-    private void getMatchStatusInfo() {
-        String url = getMatchStatusUrl();
+    private void getMyMatchStatus() {
+        String url = myMatchStatusUrl();
         Request request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -164,37 +164,33 @@ public class MatchDetailActivity extends BaseActivity {
         SimpleVolley.addRequest(request);
     }
 
-    private String getMatchStatusUrl() {
-        return ConfigUtils.getBaseUrl() + "/api/getmymatchstatus?matchid=" + match.getMatch_id()
-                + "&userid=" + ConfigUtils.getUserId();
-    }
-
     private void copeResponse2(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
-        matchStatusInfo = new Gson().fromJson(data.toString(), MatchStatusInfo.class);
-        signUpMatch();
+        myMatchStatus = new Gson().fromJson(data.toString(), MyMatchStatus.class);
+        signUp();
     }
 
     @OnClick(R.id.signUpMatch)
     public void signUpMatchOnClick() {
         if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)){
-            getMatchStatusInfoIfNeed();
+            getMyMatchStatusIfNeed();
         }
     }
 
 
-    // ====================== signUpMatch ======================
+    // ====================== signUp ======================
 
-    private void signUpMatch() {
-        switch (matchStatusInfo.getStatus()) {
+    private void signUp() {
+        switch (myMatchStatus.getStatus()) {
             case "1":
                 setTeamName();
                 break;
             case "2":
+            case "3":
                 chooseLine();
                 break;
         }
@@ -209,6 +205,7 @@ public class MatchDetailActivity extends BaseActivity {
     private void chooseLine(){
         Intent intent = new Intent(this, LineChooseActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
         startActivity(intent);
     }
 
@@ -264,6 +261,18 @@ public class MatchDetailActivity extends BaseActivity {
         if (ClickHelper.isSafe()) {
             finish();
         }
+    }
+
+
+    // ======================== low level method ========================
+
+    private String matchInfoUrl() {
+        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + match.getMatch_id();
+    }
+
+    private String myMatchStatusUrl() {
+        return ConfigUtils.getBaseUrl() + "/api/getmymatchstatus?matchid=" + match.getMatch_id()
+                + "&userid=" + ConfigUtils.getUserId();
     }
 
 
