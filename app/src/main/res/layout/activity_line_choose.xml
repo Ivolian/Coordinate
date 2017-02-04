@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <!-- 标题栏 -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <!-- 退回 -->
+        <com.zhy.android.percent.support.PercentFrameLayout
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%sh"
+            app:layout_widthPercent="8%sh">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_white"
+                app:iiv_icon="ion-ios-arrow-left"
+                app:layout_heightPercent="2.8%sh"
+                app:layout_widthPercent="2.8%sh" />
+
+        </com.zhy.android.percent.support.PercentFrameLayout>
+
+        <!-- 标题 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="路线选择"
+            android:textColor="@color/md_white"
+            app:layout_marginRightPercent="8%sh"
+            app:layout_textSizePercent="3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/matchName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="赛事名称"
+                android:textColor="@color/md_black"
+                app:layout_heightPercent="12%sh"
+                app:layout_textSizePercent="2.8%sh" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="2017-02-01 13:16:50"
+                android:textColor="@color/md_black"
+                app:layout_heightPercent="10%sh"
+                app:layout_textSizePercent="2.7%sh" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/md_grey_200" />
+
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="徐汇"
+                android:textColor="@color/md_black"
+                app:layout_heightPercent="10%sh"
+                app:layout_textSizePercent="2.7%sh" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@color/md_grey_100" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="线路选择"
+                android:textColor="@color/md_black"
+                app:layout_heightPercent="10%sh"
+                app:layout_textSizePercent="2.7%sh" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scrollbars="none"
+                app:layout_heightPercent="10%sh">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/lineContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="16dp">
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="亲子线路"
+                android:textColor="@color/md_black"
+                app:layout_heightPercent="10%sh"
+                app:layout_textSizePercent="2.7%sh" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="两个大人 一个小孩"
+                android:textColor="@color/md_grey_400"
+                app:layout_heightPercent="10%sh"
+                app:layout_textSizePercent="2.7%sh" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="参赛费用"
+                android:textColor="@color/md_black"
+                app:layout_heightPercent="10%sh"
+                app:layout_textSizePercent="2.7%sh" />
+
+            <TextView
+                android:id="@+id/teamPrice"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="￥ 180"
+                android:textColor="@color/md_red_400"
+                app:layout_heightPercent="10%sh"
+                app:layout_textSizePercent="2.7%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/signUp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#04328C"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/md_white"
+        app:layout_heightPercent="9%sh"
+        app:layout_textSizePercent="3%sh" />
+
+</com.zhy.android.percent.support.PercentLinearLayout>

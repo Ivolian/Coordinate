@@ -128,6 +128,9 @@
         <activity
             android:name=".home.SetTeamNameActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.LineChooseActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

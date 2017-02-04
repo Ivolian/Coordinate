@@ -153,6 +153,7 @@ public class SetTeamNameActivity extends BaseActivity {
             return;
         }
         ToastUtils.show("报名成功");
+        finish();
     }
 
 

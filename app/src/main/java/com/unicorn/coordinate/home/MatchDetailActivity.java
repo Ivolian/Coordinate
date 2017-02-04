@@ -142,7 +142,7 @@ public class MatchDetailActivity extends BaseActivity {
 
     private boolean needGetMatchStatusInfo() {
         String matchStatus = matchInfo.getStatus();
-        return Arrays.asList("2", "4", "5").contains(matchStatus);
+        return Arrays.asList("1", "3", "4").contains(matchStatus);
     }
 
     private void getMatchStatusInfo() {
@@ -165,7 +165,7 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
     private String getMatchStatusUrl() {
-        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + match.getMatch_id()
+        return ConfigUtils.getBaseUrl() + "/api/getmymatchstatus?matchid=" + match.getMatch_id()
                 + "&userid=" + ConfigUtils.getUserId();
     }
 
@@ -186,16 +186,28 @@ public class MatchDetailActivity extends BaseActivity {
         }
     }
 
+
+    // ====================== signUpMatch ======================
+
     private void signUpMatch() {
         switch (matchStatusInfo.getStatus()) {
-            case "2":
+            case "1":
                 setTeamName();
+                break;
+            case "2":
+                chooseLine();
                 break;
         }
     }
 
     private void setTeamName() {
         Intent intent = new Intent(this, SetTeamNameActivity.class);
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        startActivity(intent);
+    }
+
+    private void chooseLine(){
+        Intent intent = new Intent(this, LineChooseActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
         startActivity(intent);
     }

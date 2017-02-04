@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "code": "0",
+  "msg": null,
+  "data": [
+    {
+      "Lineid": "06ad7679-00a1-46db-aafd-2c526ee24f6a",
+      "Match_id": "d3335b57-3835-46f9-85f4-4b2bcfb25e24",
+      "Name": "亲子线路",
+      "Players": 5,
+      "Count": 100,
+      "Content": "两个大人一个小孩",
+      "Conditions": "{players:\"5\",count:\"100\"}",
+      "Createtime": "2017-01-30 21:02:32",
+      "Status": 2,
+      "PersonPrice": 60.00,
+      "TeamPrice": 180.00
+    },
+    {
+      "Lineid": "40d251b8-8324-4eb4-a5d1-8ecc91f21fd2",
+      "Match_id": "d3335b57-3835-46f9-85f4-4b2bcfb25e24",
+      "Name": "新能源车",
+      "Players": 4,
+      "Count": 100,
+      "Content": "新能源车",
+      "Conditions": "{players:\"4\",count:\"100\"}",
+      "Createtime": "2017-01-30 21:06:15",
+      "Status": 1,
+      "PersonPrice": 60.00,
+      "TeamPrice": 240.00
+    },
+    {
+      "Lineid": "b79b2284-effd-4a59-b744-4e469262e8d0",
+      "Match_id": "d3335b57-3835-46f9-85f4-4b2bcfb25e24",
+      "Name": "标准线路",
+      "Players": 5,
+      "Count": 200,
+      "Content": "标准5人线路",
+      "Conditions": "{players:\"5\",count:\"200\"}",
+      "Createtime": "2017-01-30 20:56:05",
+      "Status": 0,
+      "PersonPrice": 60.00,
+      "TeamPrice": 300.00
+    }
+  ]
+}
