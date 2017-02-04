@@ -1,18 +1,21 @@
 package com.unicorn.coordinate.base;
 
+import android.os.Bundle;
+
 import org.greenrobot.eventbus.EventBus;
 
 public abstract class EventActivity extends BaseActivity {
 
     @Override
-    public void onStart() {
-        super.onStart();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
     }
+
     @Override
-    public void onStop() {
+    protected void onDestroy() {
         EventBus.getDefault().unregister(this);
-        super.onStop();
+        super.onDestroy();
     }
 
 }

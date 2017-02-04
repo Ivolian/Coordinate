@@ -7,11 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.unicorn.coordinate.R;
-import com.unicorn.coordinate.base.BaseActivity;
+import com.unicorn.coordinate.base.EventActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
+import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.UpdateUtils;
 import com.zhy.android.percent.support.PercentLinearLayout;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends EventActivity {
 
 
     // ======================== onCreate =========================
@@ -102,6 +105,14 @@ public class MainActivity extends BaseActivity {
             textView.setTextColor(ContextCompat.getColor(this, selected ? R.color.colorPrimary : R.color.md_grey_400));
         }
         viewPager.setCurrentItem(position, false);
+    }
+
+
+    // ======================== readMessageEvent =========================
+
+    @Subscribe
+    public void onEvent(ReadMessageEvent readMessageEvent) {
+        viewPager.setCurrentItem(1);
     }
 
 

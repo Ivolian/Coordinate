@@ -2,10 +2,13 @@ package com.unicorn.coordinate.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -16,14 +19,17 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -176,7 +182,7 @@ public class MatchDetailActivity extends BaseActivity {
 
     @OnClick(R.id.signUpMatch)
     public void signUpMatchOnClick() {
-        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)){
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)) {
             getMyMatchStatusIfNeed();
         }
     }
@@ -190,9 +196,19 @@ public class MatchDetailActivity extends BaseActivity {
                 setTeamName();
                 break;
             case "2":
+                chooseLine();
+                break;
             case "3":
                 chooseLine();
                 break;
+            case "4":
+                DialogUtils.showConfirm(this, "你有被邀请信息，请马上处理", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        EventBus.getDefault().post(new ReadMessageEvent());
+                        finish();
+                    }
+                });
         }
     }
 
@@ -202,7 +218,7 @@ public class MatchDetailActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void chooseLine(){
+    private void chooseLine() {
         Intent intent = new Intent(this, LineChooseActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
         intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);

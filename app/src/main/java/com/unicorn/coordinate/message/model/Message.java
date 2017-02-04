@@ -6,26 +6,30 @@ import java.io.Serializable;
 public class Message implements Serializable {
 
     /**
-     * Infoid : 4ba7dfc2-db70-485f-a5ca-adb4e07cea11
+     * Infoid : e509ea3b-0e5d-4939-ae90-5bd2e2d16d48
      * Type : 3
-     * Createtime : 2016-08-25 11:02:07
-     * Userid : b5b80979-a9c9-44b3-b326-d83b4db604c7
-     * Mobile : 18601720508
-     * Context : 用户[13636671497]邀请你加入[芈月&半月]队伍,参加[中国坐标·上海徐汇城市定向户外挑战赛],赶快去看看并接受邀请吧.
+     * createtime : 2017-02-04 22:08:36
+     * Userid : 3f971696-5ba5-11e6-a2c5-6c92bf314f0b
+     * Mobile : 18000000025
+     * Context : 用户[18000000021]邀请你加入[对得起]队伍,参加[测试比赛2],赶快去看看并接受邀请吧.
      * Status : 0
-     * Url : null
-     * Note : null
+     * Url :
+     * Note :
+     * Field1 : aeb4f195-c1bd-4935-8d2b-4699178b47c0
+     * Field2 : 0
      */
 
     private String Infoid;
     private String Type;
-    private String Createtime;
+    private String createtime;
     private String Userid;
     private String Mobile;
     private String Context;
     private String Status;
     private String Url;
     private String Note;
+    private String Field1;
+    private String Field2;
 
     public String getInfoid() {
         return Infoid;
@@ -44,11 +48,11 @@ public class Message implements Serializable {
     }
 
     public String getCreatetime() {
-        return Createtime;
+        return createtime;
     }
 
-    public void setCreatetime(String Createtime) {
-        this.Createtime = Createtime;
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
     }
 
     public String getUserid() {
@@ -87,15 +91,31 @@ public class Message implements Serializable {
         return Url;
     }
 
-    public void setUrl(String url) {
-        Url = url;
+    public void setUrl(String Url) {
+        this.Url = Url;
     }
 
     public String getNote() {
         return Note;
     }
 
-    public void setNote(String note) {
-        Note = note;
+    public void setNote(String Note) {
+        this.Note = Note;
+    }
+
+    public String getField1() {
+        return Field1;
+    }
+
+    public void setField1(String Field1) {
+        this.Field1 = Field1;
+    }
+
+    public String getField2() {
+        return Field2;
+    }
+
+    public void setField2(String Field2) {
+        this.Field2 = Field2;
     }
 }
