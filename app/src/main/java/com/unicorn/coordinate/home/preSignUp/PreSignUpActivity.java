@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
@@ -55,9 +56,10 @@ public class PreSignUpActivity extends BaseActivity {
 
     @Override
     public void initViews() {
+        initRecyclerView();
+        initFillInfoAndInvite();
         matchName.setText(matchInfo.getMatch_name());
         teamStatus.setText(statusText());
-        initFillInfoAndInvite();
         getPlayer();
     }
 
@@ -91,13 +93,24 @@ public class PreSignUpActivity extends BaseActivity {
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<Player> playerList = new Gson().fromJson(data.toString(), new TypeToken<List<Player>>() {
         }.getType());
-        // TODO initRecycleView
-
         Player leader = playerList.get(0);
         teamName.setText(leader.getTeamname());
+        playerAdapter.setPlayerList(playerList);
+        playerAdapter.notifyDataSetChanged();
     }
 
-    // ======================== view ========================
+
+    // ======================== playerAdapter ========================
+
+    final private PlayerAdapter playerAdapter = new PlayerAdapter();
+
+    private void initRecyclerView() {
+        rvTeamInfo.setLayoutManager(new LinearLayoutManager(this));
+        rvTeamInfo.setAdapter(playerAdapter);
+    }
+
+
+    // ======================== views ========================
 
     @BindView(R.id.matchName)
     TextView matchName;
@@ -148,7 +161,7 @@ public class PreSignUpActivity extends BaseActivity {
         }
     }
 
-    private void initFillInfoAndInvite(){
+    private void initFillInfoAndInvite() {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setColor(Color.parseColor("#65C0F2"));
         gradientDrawable.setCornerRadius(DensityUtils.dip2px(this, 3));

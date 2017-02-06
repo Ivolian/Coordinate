@@ -37,18 +37,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
         @BindView(R.id.name)
         TextView name;
-//
-//        @BindView(R.id.date)
-//        TextView date;
-//
-//        @BindView(R.id.status)
-//        TextView status;
+
+        @BindView(R.id.status)
+        TextView status;
 
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
-
 
     }
 
@@ -57,19 +53,31 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-//        Match match = playerList.get(position);
-//        String imgUrl = ConfigUtils.getImageBaseUrl() + match.getPic1();
-//        loadPicture(imgUrl, holder.picture);
-//        holder.name.setText(match.getMatch_name());
-//        holder.date.setText(match.getDate());
-//        holder.status.setText(match.getStatus());
+        Player player = playerList.get(position);
+        holder.name.setText(player.getNickname());
+        holder.isLeader.setText(player.getLeader() == 1 ? "领队" : "队员");
+        holder.status.setText(playerStatusText(player));
+    }
+
+
+    private String playerStatusText(Player player) {
+        switch (player.getStatus()) {
+            case "0":
+                return "已邀请";
+            case "1":
+                return "已确认";
+            case "2":
+                return "已拒绝";
+            default:
+                return "";
+        }
     }
 
 
     // ================================== 基本无视 ==================================
 
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_match, viewGroup, false));
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_player, viewGroup, false));
     }
 
     @Override

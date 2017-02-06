@@ -2,37 +2,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="vertical"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:padding="16dp">
 
     <TextView
+        android:layout_marginLeft="60dp"
         android:id="@+id/isLeader"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
         android:textColor="@color/md_black"
-        app:layout_textSizePercent="2.4%sh" />
+        app:layout_textSizePercent="2.5%sh" />
 
     <TextView
+        android:layout_marginLeft="16dp"
         android:id="@+id/name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
         android:textColor="@color/md_black"
-        app:layout_textSizePercent="2.4%sh" />
+        app:layout_textSizePercent="2.5%sh" />
 
     <TextView
+        android:layout_marginLeft="16dp"
         android:id="@+id/status"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
         android:textColor="@color/md_black"
-        app:layout_textSizePercent="2.4%sh" />
+        app:layout_textSizePercent="2.5%sh" />
 
 </com.zhy.android.percent.support.PercentLinearLayout>
 
