@@ -142,12 +142,12 @@
             <TextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:text="两个大人 一个小孩"
                 android:textColor="@color/md_grey_400"
-                app:layout_heightPercent="8%sh"
+                app:layout_minHeightPercent="8%sh"
                 app:layout_textSizePercent="2.7%sh" />
 
             <TextView

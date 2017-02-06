@@ -131,6 +131,9 @@
         <activity
             android:name=".home.LineChooseActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.preSignUp.PreSignUpActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

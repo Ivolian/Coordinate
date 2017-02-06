@@ -4,15 +4,18 @@ import java.io.Serializable;
 
 public class MyMatchStatus implements Serializable{
 
+
     /**
-     * Teamid :
-     * Status : 1
-     * IsLeader :
+     * Teamid : 945153b6-23bd-4dd5-8810-4ed3714732a6
+     * Status : 3
+     * IsLeader : 1
+     * MacthStatus : 3
      */
 
     private String Teamid;
     private String Status;
     private String IsLeader;
+    private String MacthStatus;
 
     public String getTeamid() {
         return Teamid;
@@ -38,4 +41,11 @@ public class MyMatchStatus implements Serializable{
         this.IsLeader = IsLeader;
     }
 
+    public String getMacthStatus() {
+        return MacthStatus;
+    }
+
+    public void setMacthStatus(String MacthStatus) {
+        this.MacthStatus = MacthStatus;
+    }
 }
