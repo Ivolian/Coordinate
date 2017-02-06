@@ -38,15 +38,6 @@ import butterknife.OnClick;
 public class LineChooseActivity extends BaseActivity {
 
 
-    // ====================== onCreate ======================
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_line_choose);
-    }
-
-
     // ====================== injectExtra ======================
 
     @InjectExtra(Constant.K_MATCH_INFO)
@@ -56,18 +47,24 @@ public class LineChooseActivity extends BaseActivity {
     MyMatchStatus myMatchStatus;
 
 
-    // ====================== initViews ======================
+    // ====================== onCreate ======================
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_line_choose);
+    }
 
     @Override
     public void initViews() {
         matchName.setText(matchInfo.getMatch_name());
         date.setText(matchInfo.getDate4());
         area.setText(matchInfo.getArea2());
-        fetchLine();
+        getLine();
     }
 
 
-    // ====================== fetchLine ======================
+    // ====================== getLine ======================
 
     Line lineChosen;
 
@@ -75,8 +72,8 @@ public class LineChooseActivity extends BaseActivity {
 
     List<LineView> lineViewList = new ArrayList<>();
 
-    private void fetchLine() {
-        String url = fetchLineUrl();
+    private void getLine() {
+        String url = getLineUrl();
         Request request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -138,7 +135,7 @@ public class LineChooseActivity extends BaseActivity {
     }
 
 
-    // ====================== fetchLine ======================
+    // ====================== setLine ======================
 
     @OnClick(R.id.nextStep)
     public void nextStepOnClick(){
@@ -170,7 +167,7 @@ public class LineChooseActivity extends BaseActivity {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
-        ToastUtils.show("路线选择成功");
+        ToastUtils.show("线路选择成功");
         finish();
     }
 
@@ -201,7 +198,7 @@ public class LineChooseActivity extends BaseActivity {
 
     // ======================== 底层方法 ========================
 
-    private String fetchLineUrl() {
+    private String getLineUrl() {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getline?").buildUpon();
         builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
         return builder.toString();

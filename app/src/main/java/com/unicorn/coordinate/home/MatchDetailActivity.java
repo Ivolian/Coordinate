@@ -42,6 +42,12 @@ import butterknife.OnClick;
 public class MatchDetailActivity extends BaseActivity {
 
 
+    // ====================== injectExtra ======================
+
+    @InjectExtra(Constant.K_MATCH)
+    Match match;
+
+
     // ====================== onCreate ======================
 
     @Override
@@ -49,15 +55,6 @@ public class MatchDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_detail);
     }
-
-
-    // ====================== injectExtra ======================
-
-    @InjectExtra(Constant.K_MATCH)
-    Match match;
-
-
-    // ====================== initViews ======================
 
     @Override
     public void initViews() {
@@ -113,29 +110,16 @@ public class MatchDetailActivity extends BaseActivity {
         container.setVisibility(View.VISIBLE);
     }
 
-    private String matchStatusText() {
-        switch (matchInfo.getStatus()) {
-            case "0":
-                return "报名未开始";
-            case "1":
-                return "立即预报名";
-            case "2":
-                return "预报名结束";
-            case "3":
-                return "报名付费";
-            case "4":
-            case "8":
-            case "9":
-                return "报名结束";
-            case "5":
-                return "比赛结束";
-            default:
-                return "";
-        }
-    }
 
 
     // ====================== getMyMatchStatus ======================
+
+    @OnClick(R.id.signUpMatch)
+    public void signUpMatchOnClick() {
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)) {
+            getMyMatchStatusIfNeed();
+        }
+    }
 
     private MyMatchStatus myMatchStatus;
 
@@ -149,7 +133,7 @@ public class MatchDetailActivity extends BaseActivity {
 
     private boolean isNeedGetMyMatchStatus() {
         String matchStatus = matchInfo.getStatus();
-        return Arrays.asList("1", "3", "4").contains(matchStatus);
+        return Arrays.asList("1").contains(matchStatus);
     }
 
     private void getMyMatchStatus() {
@@ -181,15 +165,17 @@ public class MatchDetailActivity extends BaseActivity {
         signUp();
     }
 
-    @OnClick(R.id.signUpMatch)
-    public void signUpMatchOnClick() {
-        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)) {
-            getMyMatchStatusIfNeed();
-        }
-    }
-
 
     // ====================== signUp ======================
+
+    /*
+        1、未报名参赛    => 进入队名设定
+        2、已设定队名    => 进入线路选择
+        3、已选择线路    => 进入预报名界面
+        4、被邀请，未操作 => 弹出对话框，你有被邀请信息，请马上处理，进入读取信息页面
+        5、预报名完成
+        6、正式报名完成
+     */
 
     private void signUp() {
         switch (myMatchStatus.getStatus()) {
@@ -298,6 +284,35 @@ public class MatchDetailActivity extends BaseActivity {
         return ConfigUtils.getBaseUrl() + "/api/getmymatchstatus?matchid=" + match.getMatch_id()
                 + "&userid=" + ConfigUtils.getUserId();
     }
+
+//    0 报名未开始  不能点击
+//    1 立即预报名  可以点击(链接到开始报名页面)
+//    2 预报名结束  可以点击(链接后续再改)
+//    3 报名付费    可以点击(链接后续再改)
+//    4 8 9  报名结束 不能点击
+//    5 比赛结束 不能点击
+
+    private String matchStatusText() {
+        switch (matchInfo.getStatus()) {
+            case "0":
+                return "报名未开始";
+            case "1":
+                return "立即预报名";
+            case "2":
+                return "预报名结束";
+            case "3":
+                return "报名付费";
+            case "4":
+            case "8":
+            case "9":
+                return "报名结束";
+            case "5":
+                return "比赛结束";
+            default:
+                return "";
+        }
+    }
+
 
 
 }

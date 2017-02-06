@@ -29,6 +29,12 @@ import butterknife.OnClick;
 public class SetTeamNameActivity extends BaseActivity {
 
 
+    // ====================== injectExtra ======================
+
+    @InjectExtra(Constant.K_MATCH_INFO)
+    MatchInfo matchInfo;
+
+
     // ====================== onCreate ======================
 
     @Override
@@ -37,15 +43,6 @@ public class SetTeamNameActivity extends BaseActivity {
         setContentView(R.layout.activity_set_team_name);
     }
 
-
-    // ====================== injectExtra ======================
-
-    @InjectExtra(Constant.K_MATCH_INFO)
-    MatchInfo matchInfo;
-
-
-    // ====================== initViews ======================
-
     @Override
     public void initViews() {
         matchName.setText(matchInfo.getMatch_name());
@@ -53,14 +50,7 @@ public class SetTeamNameActivity extends BaseActivity {
     }
 
 
-    // ====================== checkTeamName ======================
-
-    private void initCheckTeamName() {
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setColor(Color.parseColor("#65C0F2"));
-        gradientDrawable.setCornerRadius(DensityUtils.dip2px(this, 5));
-        checkTeamName.setBackgroundDrawable(gradientDrawable);
-    }
+    // ====================== 检查队名 ======================
 
     @OnClick(R.id.checkTeamName)
     public void checkTeamNameOnClick() {
@@ -72,9 +62,6 @@ public class SetTeamNameActivity extends BaseActivity {
             }
         }
     }
-
-
-    // ====================== 检查队名 ======================
 
     private void checkTeamName() {
         String url = checkTeamNameUrl();
@@ -95,13 +82,6 @@ public class SetTeamNameActivity extends BaseActivity {
         SimpleVolley.addRequest(request);
     }
 
-    private String checkTeamNameUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/CheckTname?").buildUpon();
-        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
-        builder.appendQueryParameter(Constant.K_TEAM_NAME, teamName.getText().toString().trim());
-        return builder.toString();
-    }
-
     private void copeResponse(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
@@ -116,15 +96,15 @@ public class SetTeamNameActivity extends BaseActivity {
     public void signUpOnClick() {
         if (ClickHelper.isSafe()) {
             if (!TextUtils.isEmpty(teamName.getText())) {
-                signUp();
+                regTeamName();
             } else {
                 ToastUtils.show("队名不能为空");
             }
         }
     }
 
-    private void signUp() {
-        String url = signUpUrl();
+    private void regTeamName() {
+        String url = regTeamNameUrl();
         Request request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -140,16 +120,6 @@ public class SetTeamNameActivity extends BaseActivity {
                 SimpleVolley.getDefaultErrorListener()
         );
         SimpleVolley.addRequest(request);
-    }
-
-    private String signUpUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/RegTeamName?").buildUpon();
-        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
-        // 参数名不一致
-        builder.appendQueryParameter("tname", teamName.getText().toString().trim());
-        builder.appendQueryParameter("tcom", companyName.getText().toString().trim());
-        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
-        return builder.toString();
     }
 
     private void copeResponse2(String responseString) throws Exception {
@@ -174,6 +144,32 @@ public class SetTeamNameActivity extends BaseActivity {
 
     @BindView(R.id.companyName)
     TextView companyName;
+
+
+    // ======================== low level methods ========================
+
+    private void initCheckTeamName() {
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setColor(Color.parseColor("#65C0F2"));
+        gradientDrawable.setCornerRadius(DensityUtils.dip2px(this, 5));
+        checkTeamName.setBackgroundDrawable(gradientDrawable);
+    }
+
+    private String checkTeamNameUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/CheckTname?").buildUpon();
+        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
+        builder.appendQueryParameter(Constant.K_TEAM_NAME, teamName.getText().toString().trim());
+        return builder.toString();
+    }
+
+    private String regTeamNameUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/RegTeamName?").buildUpon();
+        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
+        builder.appendQueryParameter("tname", teamName.getText().toString().trim());
+        builder.appendQueryParameter("tcom", companyName.getText().toString().trim());
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        return builder.toString();
+    }
 
 
     // ======================== back ========================
