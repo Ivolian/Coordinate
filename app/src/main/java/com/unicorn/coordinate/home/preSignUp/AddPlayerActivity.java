@@ -14,11 +14,14 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.home.event.RefreshPlayerEvent;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -112,6 +115,7 @@ public class AddPlayerActivity extends BaseActivity {
     @OnClick(R.id.back)
     public void backOnClick() {
         if (ClickHelper.isSafe()) {
+            EventBus.getDefault().post(new RefreshPlayerEvent());
             finish();
         }
     }
@@ -119,6 +123,7 @@ public class AddPlayerActivity extends BaseActivity {
     @OnClick(R.id.finish)
     public void finishOnClick() {
         if (ClickHelper.isSafe()) {
+            EventBus.getDefault().post(new RefreshPlayerEvent());
             finish();
         }
     }

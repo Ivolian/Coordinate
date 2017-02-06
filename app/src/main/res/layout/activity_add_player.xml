@@ -88,6 +88,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@color/md_grey_100"
                 android:hint="输入手机号码"
+                android:inputType="numberSigned"
                 android:padding="12dp"
                 android:textColorHint="@color/md_grey_300"
                 app:layout_textSizePercent="2.5%sh" />

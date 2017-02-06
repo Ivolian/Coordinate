@@ -206,6 +206,7 @@
                 android:visibility="invisible" />
 
             <TextView
+                android:visibility="invisible"
                 android:id="@+id/fillInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -236,6 +237,7 @@
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <TextView
+        android:id="@+id/signUp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#04328C"

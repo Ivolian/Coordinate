@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.unicorn.coordinate.R;
-import com.unicorn.coordinate.base.EventActivity;
+import com.unicorn.coordinate.base.EventBusActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.OnClick;
 
-public class MainActivity extends EventActivity {
+public class MainBusActivity extends EventBusActivity {
 
 
     // ======================== onCreate =========================

@@ -23,7 +23,7 @@ import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
-import com.unicorn.coordinate.home.preSignUp.PreSignUpActivity;
+import com.unicorn.coordinate.home.preSignUp.PreSignUpBusActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
@@ -213,7 +213,7 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
     private void preSignUp() {
-        Intent intent = new Intent(this, PreSignUpActivity.class);
+        Intent intent = new Intent(this, PreSignUpBusActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
         intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
         startActivity(intent);

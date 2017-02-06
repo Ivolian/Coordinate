@@ -3,6 +3,7 @@
     <words>
       <w>getline</w>
       <w>getmatchinfo</w>
+      <w>getmyline</w>
       <w>getmymatchstatus</w>
       <w>getplayer</w>
       <w>tcom</w>

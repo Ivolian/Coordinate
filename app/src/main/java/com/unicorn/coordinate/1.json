@@ -4,27 +4,17 @@
   "msg": null,
   "data": [
     {
-      "Matchuserid": "d66dde9e-7ec4-4f2c-83a0-e9e1ed75db40",
-      "Match_Id": "e7fd2dbb-bdb8-480b-b175-f561e5b0747d",
-      "Teamid": "945153b6-23bd-4dd5-8810-4ed3714732a6",
-      "Teamname": "极限",
-      "Nickname": "张三",
-      "Mobile": "18000000021",
-      "Password": null,
-      "Mono": null,
-      "Sexy": 1,
-      "Cardno": "310106198707081234",
-      "Cardtype": "1",
-      "Age": 29,
-      "Leader": 1,
-      "Createtime": null,
-      "Passwd": null,
-      "Pay": 0,
-      "Teamno": null,
-      "Pnov": null,
-      "birthday": "1987-07-08 00:00:00",
-      "Status": "1",
-      "Userid": "3f9713dd-5ba5-11e6-a2c5-6c92bf314f0b"
+      "Lineid": "38bac529-fe5a-4a23-8fdd-03ee244b2f45",
+      "Match_id": "5585b465-ced3-4d42-a250-8fc866d8a983",
+      "Name": "汽车",
+      "Players": 4,
+      "Count": 1,
+      "Content": "汽车线路",
+      "Conditions": "{players:\"4\",count:\"1\"}",
+      "Createtime": "2017-02-06 11:24:36",
+      "Status": 1,
+      "PersonPrice": 0.01,
+      "TeamPrice": 0.01
     }
   ]
 }

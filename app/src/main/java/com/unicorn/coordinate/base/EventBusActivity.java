@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import org.greenrobot.eventbus.EventBus;
 
-public abstract class EventActivity extends BaseActivity {
+public abstract class EventBusActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

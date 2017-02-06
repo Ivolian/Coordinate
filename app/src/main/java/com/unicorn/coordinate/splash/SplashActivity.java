@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
-import com.unicorn.coordinate.main.MainActivity;
+import com.unicorn.coordinate.main.MainBusActivity;
 
 import butterknife.BindView;
 
@@ -40,7 +40,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void gotoMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainBusActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.enter, R.anim.exit);
         finish();

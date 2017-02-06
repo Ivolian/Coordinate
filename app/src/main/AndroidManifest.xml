@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".main.MainBusActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -132,7 +132,7 @@
             android:name=".home.LineChooseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.preSignUp.PreSignUpActivity"
+            android:name=".home.preSignUp.PreSignUpBusActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".home.preSignUp.AddPlayerActivity"
