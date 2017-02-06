@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_grey_200"
+    android:background="@color/md_white"
     android:orientation="vertical">
 
     <!-- 标题栏 -->
@@ -55,7 +55,6 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         app:layout_heightPercent="14%sh"
-        app:layout_marginTopPercent="4%sh"
         app:layout_paddingLeftPercent="8%sw">
 
         <TextView
@@ -72,24 +71,96 @@
             android:text="2016-08-25 11:02:27"
             android:textColor="@color/md_black"
             app:layout_marginTopPercent="1%sh"
-            app:layout_textSizePercent="2.2%sh" />
+            app:layout_textSizePercent="2.4%sh" />
 
 
     </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_grey_200" />
 
     <!-- content -->
     <TextView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/md_white"
-        android:gravity="center_vertical"
+        android:layout_weight="1"
         android:textColor="@color/md_black"
-        app:layout_heightPercent="42%sh"
-        app:layout_marginTopPercent="4%sh"
         app:layout_paddingLeftPercent="8%sw"
         app:layout_paddingRightPercent="8%sw"
-        app:layout_textSizePercent="2.2%sh" />
+        app:layout_paddingTopPercent="8%sh"
+        app:layout_textSizePercent="2.4%sh" />
 
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/operationBarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/md_grey_200" />
+
+        <com.zhy.android.percent.support.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_heightPercent="9%sh">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/operationBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/reject"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="拒绝"
+                    android:textColor="@color/md_black"
+                    app:layout_textSizePercent="3%sh" />
+
+                <TextView
+                    android:id="@+id/accept"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="接受"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_textSizePercent="3%sh" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <TextView
+                android:id="@+id/accepted"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="已接受"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_textSizePercent="3%sh" />
+
+            <TextView
+                android:id="@+id/rejected"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="已拒绝"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_textSizePercent="3%sh" />
+
+        </com.zhy.android.percent.support.PercentFrameLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
 
 </com.zhy.android.percent.support.PercentLinearLayout>

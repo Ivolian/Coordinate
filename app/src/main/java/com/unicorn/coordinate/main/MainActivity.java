@@ -112,7 +112,7 @@ public class MainActivity extends EventActivity {
 
     @Subscribe
     public void onEvent(ReadMessageEvent readMessageEvent) {
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(1, true);
     }
 
 

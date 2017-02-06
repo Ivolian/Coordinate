@@ -1,6 +1,8 @@
 package com.unicorn.coordinate.message;
 
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -13,11 +15,14 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.LazyLoadFragment;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.message.event.RefreshMessageEvent;
 import com.unicorn.coordinate.message.model.Message;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -109,6 +114,26 @@ public class MessageFragment extends LazyLoadFragment {
 
     void stopAnim() {
         avi.hide();
+    }
+
+
+    // ====================== eventBus ======================
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    @Subscribe
+    public void refreshMessage(RefreshMessageEvent refreshMessageEvent) {
+        fetchMessageList();
     }
 
 

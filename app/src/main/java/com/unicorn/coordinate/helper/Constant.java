@@ -13,6 +13,8 @@ public class Constant {
 
     public static final String K_USER_ID = "userid";
 
+    public static final String K_INFO_ID = "infoid";
+
     public static final String K_ACCOUNT = "account";
 
     public static final String K_MATCH = "match";

@@ -6,12 +6,15 @@ import android.widget.TextView;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseFragment;
 import com.unicorn.coordinate.helper.ClickHelper;
+import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.message.MessageActivity;
 import com.unicorn.coordinate.profile.matchCert.MatchCertActivity;
 import com.unicorn.coordinate.profile.setting.SettingActivity;
 import com.unicorn.coordinate.profile.userMatch.UserMatchActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
 import com.unicorn.coordinate.utils.ConfigUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,8 +54,7 @@ public class ProfileFragment extends BaseFragment {
     @OnClick(R.id.message)
     public void messageOnClick() {
         if (ClickHelper.isSafe() && ConfigUtils.checkLogin(getActivity())) {
-            Intent intent = new Intent(getActivity(), MessageActivity.class);
-            startActivity(intent);
+            EventBus.getDefault().post(new ReadMessageEvent());
         }
     }
 

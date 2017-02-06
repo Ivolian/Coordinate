@@ -16,6 +16,7 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.message.event.RefreshMessageEvent;
 import com.unicorn.coordinate.task.TaskHelper;
 import com.unicorn.coordinate.user.forgetPwd.ForgetPwdActivity;
 import com.unicorn.coordinate.user.model.UserInfo;
@@ -26,6 +27,7 @@ import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import butterknife.BindView;
@@ -102,6 +104,7 @@ public class LoginActivity extends BaseActivity {
         ConfigUtils.saveAccount(getAccount());
         ToastUtils.show("登录成功");
         TaskHelper.getTask();
+        EventBus.getDefault().post(new RefreshMessageEvent());
         finish();
     }
 
