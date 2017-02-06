@@ -1,5 +1,7 @@
 package com.unicorn.coordinate.home.preSignUp;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +22,7 @@ import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.home.model.Player;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.DensityUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
 import org.json.JSONArray;
@@ -33,21 +36,6 @@ import butterknife.OnClick;
 public class PreSignUpActivity extends BaseActivity {
 
 
-    // ====================== onCreate ======================
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pre_sign_up);
-        getPlayerInfo();
-    }
-
-    @Override
-    public void initViews() {
-        matchName.setText(matchInfo.getMatch_name());
-        // TODO matchStatus
-    }
-
     // ====================== injectExtra ======================
 
     @InjectExtra(Constant.K_MATCH_INFO)
@@ -56,7 +44,27 @@ public class PreSignUpActivity extends BaseActivity {
     @InjectExtra(Constant.K_MY_MATCH_STATUS)
     MyMatchStatus myMatchStatus;
 
-    private void getPlayerInfo() {
+
+    // ====================== onCreate ======================
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pre_sign_up);
+    }
+
+    @Override
+    public void initViews() {
+        matchName.setText(matchInfo.getMatch_name());
+        teamStatus.setText(statusText());
+        initFillInfoAndInvite();
+        getPlayer();
+    }
+
+
+    // ====================== getPlayer ======================
+
+    private void getPlayer() {
         String url = playerUrl();
         Request request = new StringRequest(
                 url,
@@ -106,6 +114,11 @@ public class PreSignUpActivity extends BaseActivity {
     @BindView(R.id.rvTeamInfo)
     RecyclerView rvTeamInfo;
 
+    @BindView(R.id.fillInfo)
+    TextView fillInfo;
+
+    @BindView(R.id.invite)
+    TextView invite;
 
 
     // ======================== 底层方法 ========================
@@ -114,6 +127,33 @@ public class PreSignUpActivity extends BaseActivity {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getplayer?").buildUpon();
         builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
         return builder.toString();
+    }
+
+    private String statusText() {
+        switch (myMatchStatus.getStatus()) {
+            case "1":
+                return "未报名参赛";
+            case "2":
+                return "已设定队名";
+            case "3":
+                return "已选择线路";
+            case "4":
+                return "被邀请，未操作";
+            case "5":
+                return "预报名完成";
+            case "6":
+                return "正式报名完成";
+            default:
+                return "";
+        }
+    }
+
+    private void initFillInfoAndInvite(){
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setColor(Color.parseColor("#65C0F2"));
+        gradientDrawable.setCornerRadius(DensityUtils.dip2px(this, 3));
+        fillInfo.setBackgroundDrawable(gradientDrawable);
+        invite.setBackgroundDrawable(gradientDrawable);
     }
 
 
@@ -125,5 +165,6 @@ public class PreSignUpActivity extends BaseActivity {
             finish();
         }
     }
+
 
 }
