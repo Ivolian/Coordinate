@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.home.model.Player;
-import com.unicorn.coordinate.utils.AESUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Player player = playerList.get(position);
-        holder.name.setText(AESUtils.decrypt(player.getNickname()));
+        holder.name.setText(player.getNickname());
         holder.isLeader.setText(player.getLeader() == 1 ? "队长" : "队员");
         holder.status.setText(playerStatusText(player));
     }

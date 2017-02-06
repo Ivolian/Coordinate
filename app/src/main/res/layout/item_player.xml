@@ -8,7 +8,6 @@
     android:padding="16dp">
 
     <TextView
-        android:layout_marginLeft="32dp"
         android:id="@+id/isLeader"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
