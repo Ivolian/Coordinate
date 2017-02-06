@@ -134,6 +134,9 @@
         <activity
             android:name=".home.preSignUp.PreSignUpActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.preSignUp.AddPlayerActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

@@ -1,5 +1,6 @@
 package com.unicorn.coordinate.home.preSignUp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -107,6 +108,19 @@ public class PreSignUpActivity extends BaseActivity {
     private void initRecyclerView() {
         rvTeamInfo.setLayoutManager(new LinearLayoutManager(this));
         rvTeamInfo.setAdapter(playerAdapter);
+    }
+
+
+    // ======================== addPlayer ========================
+
+    @OnClick(R.id.invite)
+    public void inviteOnClick() {
+        if (ClickHelper.isSafe()) {
+            Intent intent = new Intent(this, AddPlayerActivity.class);
+            intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+            intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+            startActivity(intent);
+        }
     }
 
 

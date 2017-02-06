@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey_200"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <!-- 标题栏 -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <!-- 退回 -->
+        <com.zhy.android.percent.support.PercentFrameLayout
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%sh"
+            app:layout_widthPercent="8%sh">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_white"
+                app:iiv_icon="ion-ios-arrow-left"
+                app:layout_heightPercent="2.8%sh"
+                app:layout_widthPercent="2.8%sh" />
+
+        </com.zhy.android.percent.support.PercentFrameLayout>
+
+        <!-- 标题 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="邀请队友"
+            android:textColor="@color/md_white"
+            app:layout_marginRightPercent="8%sh"
+            app:layout_textSizePercent="3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/matchName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="赛事名称"
+            android:textColor="@color/md_black"
+            app:layout_heightPercent="12%sh"
+            app:layout_textSizePercent="2.8%sh" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_white"
+            android:orientation="vertical"
+            android:paddingBottom="24dp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:paddingTop="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="队友邀请"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.7%sh" />
+
+            <EditText
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@color/md_grey_100"
+                android:hint="输入手机号码"
+                android:padding="12dp"
+                android:textColorHint="@color/md_grey_300"
+                app:layout_textSizePercent="2.5%sh" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/invite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="6dp"
+                    android:text="确认邀请"
+                    android:textColor="@color/md_white"
+                    app:layout_textSizePercent="2.4%sh" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <TextView
+        android:id="@+id/finish"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#04328C"
+        android:gravity="center"
+        android:text="完 成"
+        android:textColor="@color/md_white"
+        app:layout_heightPercent="9%sh"
+        app:layout_textSizePercent="3%sh" />
+
+</com.zhy.android.percent.support.PercentLinearLayout>

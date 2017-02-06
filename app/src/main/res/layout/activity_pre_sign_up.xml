@@ -191,6 +191,7 @@
             app:layout_heightPercent="30%sh" />
 
         <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center_vertical"

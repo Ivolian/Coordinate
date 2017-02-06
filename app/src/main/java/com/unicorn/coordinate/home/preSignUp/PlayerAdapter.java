@@ -55,19 +55,19 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Player player = playerList.get(position);
         holder.name.setText(player.getNickname());
-        holder.isLeader.setText(player.getLeader() == 1 ? "领队" : "队员");
+        holder.isLeader.setText(player.getLeader() == 1 ? "队长" : "队员");
         holder.status.setText(playerStatusText(player));
     }
 
 
     private String playerStatusText(Player player) {
         switch (player.getStatus()) {
-            case "0":
-                return "已邀请";
+            case "9":
+                return "已拒绝";
             case "1":
                 return "已确认";
             case "2":
-                return "已拒绝";
+                return "已邀请";
             default:
                 return "";
         }

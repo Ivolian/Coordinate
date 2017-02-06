@@ -8,9 +8,9 @@
     android:padding="16dp">
 
     <TextView
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="32dp"
         android:id="@+id/isLeader"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:textColor="@color/md_black"
         app:layout_textSizePercent="2.5%sh" />
@@ -18,7 +18,7 @@
     <TextView
         android:layout_marginLeft="16dp"
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:textColor="@color/md_black"
         app:layout_textSizePercent="2.5%sh" />
@@ -26,7 +26,7 @@
     <TextView
         android:layout_marginLeft="16dp"
         android:id="@+id/status"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:textColor="@color/md_black"
         app:layout_textSizePercent="2.5%sh" />
