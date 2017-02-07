@@ -53,6 +53,14 @@ public final class AESUtils {
         }
     }
 
+    public static String decrypt2(final String encryptStr) {
+        try {
+            return aesDecrypt(encryptStr, "124", "1234567890123456");
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     private static SecretKeySpec getSecretKeySpec(final String password) throws UnsupportedEncodingException {
 
         int keyLength = 128;

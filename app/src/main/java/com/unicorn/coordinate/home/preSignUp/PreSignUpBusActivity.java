@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyLine;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.home.model.Player;
+import com.unicorn.coordinate.utils.AESUtils;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
@@ -101,7 +103,7 @@ public class PreSignUpBusActivity extends EventBusActivity {
         List<Player> playerList = new Gson().fromJson(data.toString(), new TypeToken<List<Player>>() {
         }.getType());
         Player leader = playerList.get(0);
-        teamName.setText(leader.getTeamname());
+        teamName.setText(AESUtils.decrypt2(leader.getTeamname()));
         playerAdapter.setPlayerList(playerList);
         playerAdapter.notifyDataSetChanged();
     }
@@ -134,16 +136,18 @@ public class PreSignUpBusActivity extends EventBusActivity {
         }
         JSONObject response = new JSONObject(responseString);
         JSONArray data = response.getJSONArray(Constant.K_DATA);
-        MyLine myLine = new Gson().fromJson(data.toString(), MyLine.class);
+        List<MyLine> myLineList = new Gson().fromJson(data.toString(), new TypeToken<List<MyLine>>() {
+        }.getType());
+        MyLine myLine = myLineList.get(0);
         lineName.setText(myLine.getName());
-
+        Log.e("", "");
         int myLineStatus = myLine.getStatus();
         if (myLineStatus == 1) {
-            fillInfo.setText("填写汽车线路");
+            fillInfo.setText("汽车线路");
             fillInfo.setVisibility(View.VISIBLE);
         }
         if (myLineStatus == 2) {
-            fillInfo.setText("填写宝宝线路");
+            fillInfo.setText("宝宝线路");
             fillInfo.setVisibility(View.VISIBLE);
         }
     }

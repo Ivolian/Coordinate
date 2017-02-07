@@ -1,20 +1,15 @@
-{
-  "status": "ok",
-  "code": "0",
-  "msg": null,
-  "data": [
-    {
-      "Lineid": "38bac529-fe5a-4a23-8fdd-03ee244b2f45",
-      "Match_id": "5585b465-ced3-4d42-a250-8fc866d8a983",
-      "Name": "汽车",
-      "Players": 4,
-      "Count": 1,
-      "Content": "汽车线路",
-      "Conditions": "{players:\"4\",count:\"1\"}",
-      "Createtime": "2017-02-06 11:24:36",
-      "Status": 1,
-      "PersonPrice": 0.01,
-      "TeamPrice": 0.01
-    }
-  ]
-}
+[
+  {
+    "Lineid": "38bac529-fe5a-4a23-8fdd-03ee244b2f45",
+    "Match_id": "5585b465-ced3-4d42-a250-8fc866d8a983",
+    "Name": "汽车",
+    "Players": 4,
+    "Count": 1,
+    "Content": "汽车线路",
+    "Conditions": "{players:\"4\",count:\"1\"}",
+    "Createtime": "2017-02-06 11:24:36",
+    "Status": 1,
+    "PersonPrice": 0.01,
+    "TeamPrice": 0.01
+  }
+]
