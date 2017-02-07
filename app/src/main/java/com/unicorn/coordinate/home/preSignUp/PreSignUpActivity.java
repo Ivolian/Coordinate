@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,7 +41,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class PreSignUpBusActivity extends EventBusActivity {
+public class PreSignUpActivity extends EventBusActivity {
 
 
     // ====================== injectExtra ======================
@@ -140,14 +139,16 @@ public class PreSignUpBusActivity extends EventBusActivity {
         }.getType());
         MyLine myLine = myLineList.get(0);
         lineName.setText(myLine.getName());
+
         int myLineStatus = myLine.getStatus();
         if (myLineStatus == 1) {
             fillInfo.setText("汽车线路");
             fillInfo.setVisibility(View.VISIBLE);
-        }
-        if (myLineStatus == 2) {
+        } else if (myLineStatus == 2) {
             fillInfo.setText("宝宝线路");
             fillInfo.setVisibility(View.VISIBLE);
+        } else {
+            fillInfo.setVisibility(View.GONE);
         }
     }
 
@@ -240,6 +241,9 @@ public class PreSignUpBusActivity extends EventBusActivity {
 
     @BindView(R.id.invite)
     TextView invite;
+
+    @BindView(R.id.signUp)
+    TextView signUp;
 
 
     // ======================== 底层方法 ========================
