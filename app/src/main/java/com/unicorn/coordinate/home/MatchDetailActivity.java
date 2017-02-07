@@ -23,6 +23,7 @@ import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
+import com.unicorn.coordinate.home.preSignUp.FormalSignUpActivity;
 import com.unicorn.coordinate.home.preSignUp.PreSignUpActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DialogUtils;
@@ -133,7 +134,7 @@ public class MatchDetailActivity extends BaseActivity {
 
     private boolean isNeedGetMyMatchStatus() {
         String matchStatus = matchInfo.getStatus();
-        return Arrays.asList("1").contains(matchStatus);
+        return Arrays.asList("1","3").contains(matchStatus);
     }
 
     private void getMyMatchStatus() {
@@ -198,8 +199,8 @@ public class MatchDetailActivity extends BaseActivity {
                 });
                 break;
             case "5":
-
-
+                formalSignUp();
+                break;
         }
     }
 
@@ -225,7 +226,10 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
     private void formalSignUp(){
-
+        Intent intent = new Intent(this, FormalSignUpActivity.class);
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+        startActivity(intent);
     }
 
 

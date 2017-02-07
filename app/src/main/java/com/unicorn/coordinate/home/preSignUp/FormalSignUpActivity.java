@@ -41,7 +41,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class PreSignUpActivity extends EventBusActivity {
+public class FormalSignUpActivity extends EventBusActivity {
 
 
     // ====================== injectExtra ======================
@@ -58,7 +58,7 @@ public class PreSignUpActivity extends EventBusActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pre_sign_up);
+        setContentView(R.layout.activity_formal_sign_up);
     }
 
     @Override
@@ -186,16 +186,8 @@ public class PreSignUpActivity extends EventBusActivity {
             return;
         }
         ToastUtils.show("预报名成功");
-        formalSignUp();
+        finish();
     }
-
-    private void formalSignUp() {
-        Intent intent = new Intent(this, FormalSignUpActivity.class);
-        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
-        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
-        startActivity(intent);
-    }
-
 
     // ======================== playerAdapter ========================
 
