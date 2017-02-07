@@ -1,5 +1,6 @@
 package com.unicorn.coordinate.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.MatchInfo;
+import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
@@ -33,6 +35,9 @@ public class SetTeamNameActivity extends BaseActivity {
 
     @InjectExtra(Constant.K_MATCH_INFO)
     MatchInfo matchInfo;
+
+    @InjectExtra(Constant.K_MY_MATCH_STATUS)
+    MyMatchStatus myMatchStatus;
 
 
     // ====================== onCreate ======================
@@ -126,8 +131,14 @@ public class SetTeamNameActivity extends BaseActivity {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
-        ToastUtils.show("报名成功");
-        finish();
+        chooseLine();
+    }
+
+    private void chooseLine() {
+        Intent intent = new Intent(this, LineChooseActivity.class);
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+        startActivity(intent);
     }
 
 

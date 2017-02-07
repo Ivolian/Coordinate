@@ -1,5 +1,6 @@
 package com.unicorn.coordinate.home;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -19,10 +20,10 @@ import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Line;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
+import com.unicorn.coordinate.home.preSignUp.PreSignUpBusActivity;
 import com.unicorn.coordinate.home.ui.LineView;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
-import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -138,13 +139,13 @@ public class LineChooseActivity extends BaseActivity {
     // ====================== setLine ======================
 
     @OnClick(R.id.nextStep)
-    public void nextStepOnClick(){
-        if (ClickHelper.isSafe()){
+    public void nextStepOnClick() {
+        if (ClickHelper.isSafe()) {
             setLine();
         }
     }
 
-    private void setLine(){
+    private void setLine() {
         String url = setLineUrl();
         Request request = new StringRequest(
                 url,
@@ -167,8 +168,14 @@ public class LineChooseActivity extends BaseActivity {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
-        ToastUtils.show("线路选择成功");
-        finish();
+        preSignUp();
+    }
+
+    private void preSignUp() {
+        Intent intent = new Intent(this, PreSignUpBusActivity.class);
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+        startActivity(intent);
     }
 
 
