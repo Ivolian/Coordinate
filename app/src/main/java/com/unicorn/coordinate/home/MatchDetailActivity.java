@@ -305,6 +305,17 @@ public class MatchDetailActivity extends BaseActivity {
 //    4 8 9  报名结束 不能点击
 //    5 比赛结束 不能点击
 
+    /*
+    0 已创建不能预报名
+    1 预报名开始可以开始预报名
+    2 预报名结束不能预报名
+    3 正式报名开始可以支付
+    4 比赛开始不能预报名不能报名
+    5 比赛结束不能预报名不能报名
+    9 正式报名结束只有此状态下可以替换队员更换队长
+    8 比赛开始前准备(锁定信息，不能更换队员)
+     */
+
     private String matchStatusText() {
         switch (matchInfo.getStatus()) {
             case "0":

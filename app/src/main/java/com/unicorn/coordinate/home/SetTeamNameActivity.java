@@ -132,6 +132,7 @@ public class SetTeamNameActivity extends BaseActivity {
             return;
         }
         chooseLine();
+        finish();
     }
 
     private void chooseLine() {

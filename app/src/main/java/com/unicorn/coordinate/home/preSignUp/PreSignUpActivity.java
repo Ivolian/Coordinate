@@ -187,6 +187,7 @@ public class PreSignUpActivity extends EventBusActivity {
         }
         ToastUtils.show("预报名成功");
         formalSignUp();
+        finish();
     }
 
     private void formalSignUp() {

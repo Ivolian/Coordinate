@@ -55,11 +55,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/matchName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center"
-            android:text=""
+            android:gravity="center_vertical"
+            android:text="队伍信息"
             android:textColor="@color/md_black"
             app:layout_heightPercent="8%sh"
             app:layout_textSizePercent="2.8%sh" />
@@ -177,7 +176,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="队伍信息:"
+                android:text="人员信息:"
                 android:textColor="@color/md_black"
                 app:layout_textSizePercent="2.8%sh" />
 
@@ -190,60 +189,88 @@
             android:scrollbars="none"
             app:layout_heightPercent="30%sh" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="支付信息"
+            android:textColor="@color/md_black"
+            app:layout_heightPercent="8%sh"
+            app:layout_textSizePercent="2.8%sh" />
+
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingRight="16dp"
-            app:layout_heightPercent="10%sh">
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp"
+            app:layout_heightPercent="8%sh">
 
-            <View
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="invisible" />
+                android:text="支付金额:"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.8%sh" />
 
             <TextView
-                android:visibility="gone"
-                android:id="@+id/fillInfo"
+                android:id="@+id/payPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:gravity="center"
-                android:paddingBottom="6dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="6dp"
                 android:text=""
-                android:textColor="@color/md_white"
-                app:layout_textSizePercent="2.4%sh" />
-
-            <TextView
-                android:id="@+id/invite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="6dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="6dp"
-                android:text="邀请队友"
-                android:textColor="@color/md_white"
-                app:layout_textSizePercent="2.4%sh" />
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.8%sh" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/md_grey_200" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp"
+            app:layout_heightPercent="8%sh">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="支付状态:"
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.8%sh" />
+
+            <TextView
+                android:id="@+id/payStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/md_black"
+                app:layout_textSizePercent="2.8%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <TextView
-        android:id="@+id/signUp"
+        android:id="@+id/pay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#04328C"
         android:gravity="center"
-        android:text="完成预报名"
+        android:text="报名付费"
         android:textColor="@color/md_white"
+        android:visibility="gone"
         app:layout_heightPercent="9%sh"
         app:layout_textSizePercent="3%sh" />
 

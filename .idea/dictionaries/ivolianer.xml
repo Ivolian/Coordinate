@@ -5,6 +5,7 @@
       <w>getmatchinfo</w>
       <w>getmyline</w>
       <w>getmymatchstatus</w>
+      <w>getmyorder</w>
       <w>getplayer</w>
       <w>tcom</w>
       <w>tname</w>

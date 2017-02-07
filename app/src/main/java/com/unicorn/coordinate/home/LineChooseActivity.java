@@ -169,6 +169,7 @@ public class LineChooseActivity extends BaseActivity {
             return;
         }
         preSignUp();
+        finish();
     }
 
     private void preSignUp() {
