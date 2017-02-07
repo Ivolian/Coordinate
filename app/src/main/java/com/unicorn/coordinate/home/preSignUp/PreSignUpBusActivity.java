@@ -140,7 +140,6 @@ public class PreSignUpBusActivity extends EventBusActivity {
         }.getType());
         MyLine myLine = myLineList.get(0);
         lineName.setText(myLine.getName());
-        Log.e("", "");
         int myLineStatus = myLine.getStatus();
         if (myLineStatus == 1) {
             fillInfo.setText("汽车线路");

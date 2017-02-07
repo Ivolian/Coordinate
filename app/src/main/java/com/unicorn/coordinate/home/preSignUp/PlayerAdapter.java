@@ -36,6 +36,9 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         @BindView(R.id.isLeader)
         TextView isLeader;
 
+        @BindView(R.id.mobile)
+        TextView mobile;
+
         @BindView(R.id.name)
         TextView name;
 
@@ -56,6 +59,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Player player = playerList.get(position);
         holder.name.setText(AESUtils.decrypt2(player.getNickname()));
+        holder.mobile.setText(player.getMobile());
         holder.isLeader.setText(player.getLeader() == 1 ? "队长" : "队员");
         holder.status.setText(playerStatusText(player));
     }
