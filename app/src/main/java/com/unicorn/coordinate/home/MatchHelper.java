@@ -1,6 +1,7 @@
 package com.unicorn.coordinate.home;
 
 import com.unicorn.coordinate.home.model.MatchInfo;
+import com.unicorn.coordinate.home.model.MyMatchStatus;
 
 import java.util.Arrays;
 
@@ -49,6 +50,25 @@ public class MatchHelper {
     public static boolean isNeedGetMyMatchStatus(MatchInfo matchInfo) {
         String matchStatus = matchInfo.getStatus();
         return Arrays.asList("1", "3").contains(matchStatus);
+    }
+
+    public static String myMatchStatusText(MyMatchStatus myMatchStatus) {
+        switch (myMatchStatus.getStatus()) {
+            case "1":
+                return "未报名参赛";
+            case "2":
+                return "已设定队名";
+            case "3":
+                return "已选择线路";
+            case "4":
+                return "被邀请，未操作";
+            case "5":
+                return "预报名完成";
+            case "6":
+                return "正式报名完成";
+            default:
+                return "";
+        }
     }
 
 }

@@ -136,7 +136,7 @@ public class FormalSignUpActivity extends BaseActivity {
         List<MyLine> myLineList = new Gson().fromJson(data.toString(), new TypeToken<List<MyLine>>() {
         }.getType());
         MyLine myLine = myLineList.get(0);
-        lineName.setText(myLine.getName());
+        lineName.setText(myLine.getLinename());
     }
 
 

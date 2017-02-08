@@ -184,7 +184,7 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvTeamInfo"
+            android:id="@+id/rvPlayers"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scrollbars="none"
@@ -206,8 +206,7 @@
                 android:visibility="invisible" />
 
             <TextView
-                android:visibility="gone"
-                android:id="@+id/fillInfo"
+                android:id="@+id/addExtra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
@@ -221,7 +220,7 @@
                 app:layout_textSizePercent="2.4%sh" />
 
             <TextView
-                android:id="@+id/invite"
+                android:id="@+id/addPlayer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="6dp"
@@ -237,7 +236,7 @@
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <TextView
-        android:id="@+id/signUp"
+        android:id="@+id/complete"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#04328C"
