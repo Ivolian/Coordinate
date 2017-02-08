@@ -69,8 +69,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="16dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingTop="16dp"
                     android:text="比赛信息"
                     android:textColor="@color/md_black"
@@ -103,7 +103,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/md_grey_200" />
 
                 <LinearLayout
@@ -143,29 +143,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingBottom="16dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="16dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingTop="16dp"
                     android:text="线路选择"
                     android:textColor="@color/md_black"
                     android:textSize="18dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    android:text="线路类型"
+                    android:textColor="@color/md_black"
+                    android:textSize="16dp" />
+
                 <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:scrollbars="none"
-                    >
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
 
                     <com.zhy.android.percent.support.PercentLinearLayout
                         android:id="@+id/lineTypeContainer"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingRight="16dp">
@@ -174,16 +183,24 @@
 
                 </HorizontalScrollView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    android:text="线路选择"
+                    android:textColor="@color/md_black"
+                    android:textSize="16dp" />
+
                 <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:scrollbars="none"
-                    >
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
 
                     <com.zhy.android.percent.support.PercentLinearLayout
                         android:id="@+id/lineContainer"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingRight="16dp">
@@ -212,42 +229,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:paddingBottom="16dp"
-                    android:paddingTop="16dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
                     android:text="线路信息"
                     android:textColor="@color/md_black"
                     android:textSize="18dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/lineName"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
                     android:paddingBottom="16dp"
-                    android:paddingTop="16dp">
+                    android:paddingTop="16dp"
+                    android:textColor="@color/md_black"
+                    android:textSize="16dp" />
 
-                    <TextView
-                        android:id="@+id/lineName"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="开赛日期"
-                        android:textColor="@color/md_black"
-                        android:textSize="16dp" />
-
-                    <TextView
-                        android:id="@+id/content"
-                        android:text="两个大人 一个小孩"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/md_black"
-                        android:textSize="16dp" />
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    android:text="两个大人 一个小孩"
+                    android:textColor="@color/md_black"
+                    android:textSize="16dp" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/md_grey_200" />
 
                 <LinearLayout
@@ -270,7 +279,7 @@
                         android:id="@+id/teamPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/md_black"
+                        android:textColor="@color/md_red_400"
                         android:textSize="16dp" />
 
                 </LinearLayout>

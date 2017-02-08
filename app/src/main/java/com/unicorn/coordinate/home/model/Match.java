@@ -171,7 +171,10 @@ public class Match implements Serializable {
 
     //
 
-    public String getDate(){
+    public String getDate() {
+        if (Date4 == null) {
+            return "";
+        }
         return Date4.substring(0, 10);
     }
 

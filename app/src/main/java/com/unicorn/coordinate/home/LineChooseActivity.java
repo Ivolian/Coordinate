@@ -25,6 +25,7 @@ import com.unicorn.coordinate.home.ui.LineTypeView;
 import com.unicorn.coordinate.home.ui.LineView;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
+import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -154,12 +155,13 @@ public class LineChooseActivity extends BaseActivity {
     }
 
     private void renderLine() {
+        lineContainer.removeAllViews();
         for (final Line line : lineList) {
             final LineView lineView = new LineView(this);
             PercentLinearLayout.LayoutParams lp = new PercentLinearLayout.LayoutParams(PercentLinearLayout.LayoutParams.WRAP_CONTENT, PercentLinearLayout.LayoutParams.WRAP_CONTENT);
             lp.setMargins(DensityUtils.dip2px(this, 16), 0, 0, 0);
             lineContainer.addView(lineView, lp);
-            lineView.setText(line.getName());
+            lineView.setText(line.getLinename());
             lineView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -173,15 +175,15 @@ public class LineChooseActivity extends BaseActivity {
 
     private void lineOnChoose(Line line) {
         for (LineView lineView : lineViewList) {
-            if (lineView.getText().equals(line.getName())) {
+            if (lineView.getText().equals(line.getLinename())) {
                 lineView.select();
             } else {
                 lineView.unselect();
             }
         }
-        lineName.setText(line.getName());
+        lineName.setText(line.getLinename());
         content.setText(line.getContent());
-        teamPrice.setText("￥" + line.getTeamPrice());
+        teamPrice.setText("￥" + line.getPrice());
         lineChosen = line;
     }
 
@@ -218,6 +220,7 @@ public class LineChooseActivity extends BaseActivity {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
+        ToastUtils.show("选择线路成功");
         preSignUp();
         finish();
     }

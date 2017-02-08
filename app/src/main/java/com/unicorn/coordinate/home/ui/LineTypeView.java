@@ -37,7 +37,7 @@ public class LineTypeView extends TextView {
     private void init() {
         // selected
         bgSelected = new GradientDrawable();
-        bgSelected.setColor(ContextCompat.getColor(getContext(),R.color.md_yellow_300));
+        bgSelected.setColor(ContextCompat.getColor(getContext(),R.color.md_orange_300));
         bgSelected.setCornerRadius(12);
         // unselected
         bgUnSelected = new GradientDrawable();

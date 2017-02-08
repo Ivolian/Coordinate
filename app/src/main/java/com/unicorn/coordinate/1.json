@@ -1,15 +1,41 @@
-[
-  {
-    "Lineid": "38bac529-fe5a-4a23-8fdd-03ee244b2f45",
-    "Match_id": "5585b465-ced3-4d42-a250-8fc866d8a983",
-    "Name": "汽车",
-    "Players": 4,
-    "Count": 1,
-    "Content": "汽车线路",
-    "Conditions": "{players:\"4\",count:\"1\"}",
-    "Createtime": "2017-02-06 11:24:36",
-    "Status": 1,
-    "PersonPrice": 0.01,
-    "TeamPrice": 0.01
-  }
-]
+{
+  "status": "ok",
+  "code": "0",
+  "msg": null,
+  "data": [
+    {
+      "Linesid": "10d3f65b-0a29-422a-b7b4-464ddfc7cad6",
+      "Matchid": "211a812b-57c2-4e03-abb5-02f95f558fbe",
+      "Lineid": "360f3864-6cb1-4fa7-8931-71db033f977f",
+      "Linename": "静安",
+      "Status": 0,
+      "Playercount": 5,
+      "Content": "<p>静安</p>",
+      "Url": "",
+      "Summary": "",
+      "Pointscount": 10,
+      "Condition_Sex": null,
+      "Condition_Age": null,
+      "Condition_Subline": null,
+      "Createtime": "2017-02-07 23:00:38",
+      "Price": "0.01"
+    },
+    {
+      "Linesid": "82f6b03d-4411-487a-bf35-08d9e8b92547",
+      "Matchid": "211a812b-57c2-4e03-abb5-02f95f558fbe",
+      "Lineid": "360f3864-6cb1-4fa7-8931-71db033f977f",
+      "Linename": "徐汇",
+      "Status": 0,
+      "Playercount": 5,
+      "Content": "<p>111</p>",
+      "Url": "",
+      "Summary": "",
+      "Pointscount": 10,
+      "Condition_Sex": null,
+      "Condition_Age": null,
+      "Condition_Subline": null,
+      "Createtime": "2017-02-07 22:58:06",
+      "Price": "0.01"
+    }
+  ]
+}

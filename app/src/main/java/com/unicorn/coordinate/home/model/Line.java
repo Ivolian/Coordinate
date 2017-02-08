@@ -3,30 +3,54 @@ package com.unicorn.coordinate.home.model;
 public class Line {
 
     /**
-     * Lineid : 06ad7679-00a1-46db-aafd-2c526ee24f6a
-     * Match_id : d3335b57-3835-46f9-85f4-4b2bcfb25e24
-     * Name : 亲子线路
-     * Players : 5
-     * Count : 100
-     * Content : 两个大人一个小孩
-     * Conditions : {players:"5",count:"100"}
-     * Createtime : 2017-01-30 21:02:32
-     * Status : 2
-     * PersonPrice : 60.0
-     * TeamPrice : 180.0
+     * Linesid : 10d3f65b-0a29-422a-b7b4-464ddfc7cad6
+     * Matchid : 211a812b-57c2-4e03-abb5-02f95f558fbe
+     * Lineid : 360f3864-6cb1-4fa7-8931-71db033f977f
+     * Linename : 静安
+     * Status : 0
+     * Playercount : 5
+     * Content : <p>静安</p>
+     * Url :
+     * Summary :
+     * Pointscount : 10
+     * Condition_Sex :
+     * Condition_Age :
+     * Condition_Subline :
+     * Createtime : 2017-02-07 23:00:38
+     * Price : 0.01
      */
 
+    private String Linesid;
+    private String Matchid;
     private String Lineid;
-    private String Match_id;
-    private String Name;
-    private int Players;
-    private int Count;
-    private String Content;
-    private String Conditions;
-    private String Createtime;
+    private String Linename;
     private int Status;
-    private double PersonPrice;
-    private double TeamPrice;
+    private int Playercount;
+    private String Content;
+    private String Url;
+    private String Summary;
+    private int Pointscount;
+    private String Condition_Sex;
+    private String Condition_Age;
+    private String Condition_Subline;
+    private String Createtime;
+    private String Price;
+
+    public String getLinesid() {
+        return Linesid;
+    }
+
+    public void setLinesid(String Linesid) {
+        this.Linesid = Linesid;
+    }
+
+    public String getMatchid() {
+        return Matchid;
+    }
+
+    public void setMatchid(String Matchid) {
+        this.Matchid = Matchid;
+    }
 
     public String getLineid() {
         return Lineid;
@@ -36,60 +60,12 @@ public class Line {
         this.Lineid = Lineid;
     }
 
-    public String getMatch_id() {
-        return Match_id;
+    public String getLinename() {
+        return Linename;
     }
 
-    public void setMatch_id(String Match_id) {
-        this.Match_id = Match_id;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String Name) {
-        this.Name = Name;
-    }
-
-    public int getPlayers() {
-        return Players;
-    }
-
-    public void setPlayers(int Players) {
-        this.Players = Players;
-    }
-
-    public int getCount() {
-        return Count;
-    }
-
-    public void setCount(int Count) {
-        this.Count = Count;
-    }
-
-    public String getContent() {
-        return Content;
-    }
-
-    public void setContent(String Content) {
-        this.Content = Content;
-    }
-
-    public String getConditions() {
-        return Conditions;
-    }
-
-    public void setConditions(String Conditions) {
-        this.Conditions = Conditions;
-    }
-
-    public String getCreatetime() {
-        return Createtime;
-    }
-
-    public void setCreatetime(String Createtime) {
-        this.Createtime = Createtime;
+    public void setLinename(String Linename) {
+        this.Linename = Linename;
     }
 
     public int getStatus() {
@@ -100,20 +76,83 @@ public class Line {
         this.Status = Status;
     }
 
-    public double getPersonPrice() {
-        return PersonPrice;
+    public int getPlayercount() {
+        return Playercount;
     }
 
-    public void setPersonPrice(double PersonPrice) {
-        this.PersonPrice = PersonPrice;
+    public void setPlayercount(int Playercount) {
+        this.Playercount = Playercount;
     }
 
-    public double getTeamPrice() {
-        return TeamPrice;
+    public String getContent() {
+        return Content;
     }
 
-    public void setTeamPrice(double TeamPrice) {
-        this.TeamPrice = TeamPrice;
+    public void setContent(String Content) {
+        this.Content = Content;
     }
 
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String Url) {
+        this.Url = Url;
+    }
+
+    public String getSummary() {
+        return Summary;
+    }
+
+    public void setSummary(String Summary) {
+        this.Summary = Summary;
+    }
+
+    public int getPointscount() {
+        return Pointscount;
+    }
+
+    public void setPointscount(int Pointscount) {
+        this.Pointscount = Pointscount;
+    }
+
+    public String getCondition_Sex() {
+        return Condition_Sex;
+    }
+
+    public void setCondition_Sex(String Condition_Sex) {
+        this.Condition_Sex = Condition_Sex;
+    }
+
+    public String getCondition_Age() {
+        return Condition_Age;
+    }
+
+    public void setCondition_Age(String Condition_Age) {
+        this.Condition_Age = Condition_Age;
+    }
+
+    public String getCondition_Subline() {
+        return Condition_Subline;
+    }
+
+    public void setCondition_Subline(String Condition_Subline) {
+        this.Condition_Subline = Condition_Subline;
+    }
+
+    public String getCreatetime() {
+        return Createtime;
+    }
+
+    public void setCreatetime(String Createtime) {
+        this.Createtime = Createtime;
+    }
+
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String Price) {
+        this.Price = Price;
+    }
 }
