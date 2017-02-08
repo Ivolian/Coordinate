@@ -150,7 +150,7 @@ public class PreSignUpActivity extends EventBusActivity {
             addExtra.setText("宝宝线路");
             addExtra.setVisibility(View.VISIBLE);
         } else {
-            addExtra.setVisibility(View.GONE);
+            addExtra.setVisibility(View.INVISIBLE);
         }
     }
 
