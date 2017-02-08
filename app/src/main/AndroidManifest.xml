@@ -126,7 +126,7 @@
         <!---->
 
         <activity
-            android:name=".home.SetTeamNameActivity"
+            android:name=".home.TeamNameSetActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".home.LineChooseActivity"

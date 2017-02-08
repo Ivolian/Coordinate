@@ -28,7 +28,7 @@ import com.unicorn.coordinate.volley.SimpleVolley;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SetTeamNameActivity extends BaseActivity {
+public class TeamNameSetActivity extends BaseActivity {
 
 
     // ====================== injectExtra ======================
@@ -45,12 +45,11 @@ public class SetTeamNameActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_team_name);
+        setContentView(R.layout.activity_team_name_set);
     }
 
     @Override
     public void initViews() {
-        matchName.setText(matchInfo.getMatch_name());
         initCheckTeamName();
     }
 
@@ -60,7 +59,7 @@ public class SetTeamNameActivity extends BaseActivity {
     @OnClick(R.id.checkTeamName)
     public void checkTeamNameOnClick() {
         if (ClickHelper.isSafe()) {
-            if (!TextUtils.isEmpty(teamName.getText())) {
+            if (!TextUtils.isEmpty(etTeamName.getText())) {
                 checkTeamName();
             } else {
                 ToastUtils.show("队名不能为空");
@@ -95,12 +94,12 @@ public class SetTeamNameActivity extends BaseActivity {
     }
 
 
-    // ====================== 报名 ======================
+    // ====================== 下一步 ======================
 
-    @OnClick(R.id.signUp)
-    public void signUpOnClick() {
+    @OnClick(R.id.nextStep)
+    public void nextStepOnClick() {
         if (ClickHelper.isSafe()) {
-            if (!TextUtils.isEmpty(teamName.getText())) {
+            if (!TextUtils.isEmpty(etTeamName.getText())) {
                 regTeamName();
             } else {
                 ToastUtils.show("队名不能为空");
@@ -131,7 +130,9 @@ public class SetTeamNameActivity extends BaseActivity {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
+        ToastUtils.show("队名设定成功");
         chooseLine();
+
         finish();
     }
 
@@ -143,22 +144,23 @@ public class SetTeamNameActivity extends BaseActivity {
     }
 
 
-    // ====================== views ======================
-
-    @BindView(R.id.matchName)
-    TextView matchName;
-
-    @BindView(R.id.teamName)
-    EditText teamName;
-
-    @BindView(R.id.checkTeamName)
-    TextView checkTeamName;
-
-    @BindView(R.id.companyName)
-    TextView companyName;
-
-
     // ======================== low level methods ========================
+
+    private String checkTeamNameUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/CheckTname?").buildUpon();
+        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
+        builder.appendQueryParameter(Constant.K_TEAM_NAME, etTeamName.getText().toString().trim());
+        return builder.toString();
+    }
+
+    private String regTeamNameUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/RegTeamName?").buildUpon();
+        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        builder.appendQueryParameter("tname", etTeamName.getText().toString().trim());
+        builder.appendQueryParameter("tcom", etCompanyName.getText().toString().trim());
+        return builder.toString();
+    }
 
     private void initCheckTeamName() {
         GradientDrawable gradientDrawable = new GradientDrawable();
@@ -167,24 +169,20 @@ public class SetTeamNameActivity extends BaseActivity {
         checkTeamName.setBackgroundDrawable(gradientDrawable);
     }
 
-    private String checkTeamNameUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/CheckTname?").buildUpon();
-        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
-        builder.appendQueryParameter(Constant.K_TEAM_NAME, teamName.getText().toString().trim());
-        return builder.toString();
-    }
 
-    private String regTeamNameUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/RegTeamName?").buildUpon();
-        builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
-        builder.appendQueryParameter("tname", teamName.getText().toString().trim());
-        builder.appendQueryParameter("tcom", companyName.getText().toString().trim());
-        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
-        return builder.toString();
-    }
+    // ====================== views ======================
+
+    @BindView(R.id.etTeamName)
+    EditText etTeamName;
+
+    @BindView(R.id.checkTeamName)
+    TextView checkTeamName;
+
+    @BindView(R.id.etCompanyName)
+    TextView etCompanyName;
 
 
-    // ======================== back ========================
+    // ======================== ignore ========================
 
     @OnClick(R.id.back)
     public void backOnClick() {

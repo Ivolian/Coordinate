@@ -120,9 +120,11 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
     private void getMyMatchStatusIfNeed() {
+        // TODO 可以点击的只有1和3？
         if (MatchHelper.isNeedGetMyMatchStatus(matchInfo)) {
             getMyMatchStatus();
         } else {
+            // TODO 不能点击时提示比赛状态
             ToastUtils.show(MatchHelper.matchStatusText(matchInfo));
         }
     }
@@ -164,7 +166,7 @@ public class MatchDetailActivity extends BaseActivity {
         2、已设定队名    => 进入线路选择
         3、已选择线路    => 进入预报名界面
         4、被邀请，未操作 => 弹出对话框，你有被邀请信息，请马上处理，进入读取信息页面
-        5、预报名完成
+        5、预报名完成    => 正式报名界面 （队员没有预报名）
         6、正式报名完成
      */
 
@@ -195,7 +197,7 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
     private void setTeamName() {
-        Intent intent = new Intent(this, SetTeamNameActivity.class);
+        Intent intent = new Intent(this, TeamNameSetActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
         intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
         startActivity(intent);

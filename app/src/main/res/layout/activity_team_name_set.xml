@@ -48,45 +48,36 @@
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
-    <TextView
-        android:id="@+id/matchName"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/md_black"
-        app:layout_heightPercent="12%sh"
-        app:layout_textSizePercent="2.8%sh" />
-
+    <!-- 队名 -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
+        android:paddingBottom="8dp"
         android:paddingLeft="16dp"
+        android:paddingTop="8dp"
         android:text="请输入您的队名（由2-6个中文或等同英文）"
         android:textColor="@color/md_black"
-        app:layout_heightPercent="6%sh"
-        app:layout_textSizePercent="2.4%sh" />
+        android:textSize="15dp" />
 
-    <com.zhy.android.percent.support.PercentLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="75dp"
         android:background="@color/md_white"
-        android:gravity="center_vertical"
-        app:layout_heightPercent="10%sh">
+        android:gravity="center_vertical">
 
         <EditText
-            android:id="@+id/teamName"
+            android:id="@+id/etTeamName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:hint="例:城市坐标"
-            android:maxLines="1"
+            android:maxLength="6"
             android:paddingLeft="16dp"
-            android:singleLine="true"
             android:textColorHint="@color/md_grey_400"
-            app:layout_textSizePercent="2.4%sh" />
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/checkTeamName"
@@ -97,55 +88,59 @@
             android:padding="8dp"
             android:text="检测队名是否可用"
             android:textColor="@color/md_white"
-            app:layout_textSizePercent="2.4%sh" />
+            android:textSize="15dp" />
 
-    </com.zhy.android.percent.support.PercentLinearLayout>
+    </LinearLayout>
+
+    <!-- 公司名 -->
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
+        android:paddingBottom="8dp"
         android:paddingLeft="16dp"
+        android:paddingTop="8dp"
         android:text="请输入您的公司名称（可为空）"
         android:textColor="@color/md_black"
-        app:layout_heightPercent="6%sh"
-        app:layout_textSizePercent="2.4%sh" />
+        android:textSize="15dp" />
 
-    <com.zhy.android.percent.support.PercentLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="75dp"
         android:background="@color/md_white"
-        android:gravity="center_vertical"
-        app:layout_heightPercent="10%sh">
+        android:gravity="center_vertical">
 
         <EditText
-            android:id="@+id/companyName"
+            android:id="@+id/etCompanyName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:hint="例:登山协会"
-            android:maxLines="1"
+            android:maxLength="20"
             android:paddingLeft="16dp"
-            android:singleLine="true"
             android:textColorHint="@color/md_grey_400"
-            app:layout_textSizePercent="2.4%sh" />
+            android:textSize="15dp" />
 
-    </com.zhy.android.percent.support.PercentLinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <!-- 下一步 -->
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/signUp"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/nextStep"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/loginButton"
+        android:background="#04328C"
         android:gravity="center"
-        android:text="立即报名"
+        android:text="下一步"
         android:textColor="@color/md_white"
-        app:layout_heightPercent="8%sh"
-        app:layout_marginTopPercent="8%sh"
-        app:layout_textSizePercent="3%sh"
-        app:layout_widthPercent="46%sw" />
+        app:layout_heightPercent="9%sh"
+        app:layout_textSizePercent="3%sh" />
 
 </com.zhy.android.percent.support.PercentLinearLayout>
