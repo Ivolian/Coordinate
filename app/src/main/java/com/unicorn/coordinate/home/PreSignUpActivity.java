@@ -219,11 +219,18 @@ public class PreSignUpActivity extends EventBusActivity {
     public void addExtraOnClick() {
         int myLineStatus = myLine.getStatus();
         if (myLineStatus == 1) {
-            // // TODO: 2017/2/8
-            ToastUtils.show("汽车线路");
+            addExtra1();
         } else if (myLineStatus == 2) {
+            // // TODO: 2017/2/8
             ToastUtils.show("宝宝线路");
         }
+    }
+
+    private void addExtra1() {
+        Intent intent = new Intent(this, DriverActivity.class);
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+        startActivity(intent);
     }
 
 

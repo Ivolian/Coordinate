@@ -140,6 +140,9 @@
         <activity
             android:name=".home.FormalSignUpActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.DriverActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
