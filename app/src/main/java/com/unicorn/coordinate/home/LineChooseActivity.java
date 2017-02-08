@@ -18,8 +18,10 @@ import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Line;
+import com.unicorn.coordinate.home.model.LineType;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
+import com.unicorn.coordinate.home.ui.LineTypeView;
 import com.unicorn.coordinate.home.ui.LineView;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
@@ -38,42 +40,23 @@ import butterknife.OnClick;
 public class LineChooseActivity extends BaseActivity {
 
 
-    // ====================== injectExtra ======================
-
-    @InjectExtra(Constant.K_MATCH_INFO)
-    MatchInfo matchInfo;
-
-    @InjectExtra(Constant.K_MY_MATCH_STATUS)
-    MyMatchStatus myMatchStatus;
-
-
-    // ====================== onCreate ======================
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_line_choose);
-    }
+    // ====================== initViews ======================
 
     @Override
     public void initViews() {
-        matchName.setText(matchInfo.getMatch_name());
         date.setText(matchInfo.getDate4());
         area.setText(matchInfo.getArea2());
-        getLine();
+        getLineType();
     }
 
+    // ====================== getLineType ======================
 
-    // ====================== getLine ======================
+    List<LineType> lineTypeList;
 
-    Line lineChosen;
+    List<LineTypeView> lineTypeViewList = new ArrayList<>();
 
-    List<Line> lineList;
-
-    List<LineView> lineViewList = new ArrayList<>();
-
-    private void getLine() {
-        String url = getLineUrl();
+    private void getLineType() {
+        String url = lineTypeUrl();
         Request request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -92,6 +75,74 @@ public class LineChooseActivity extends BaseActivity {
     }
 
     private void copeResponse(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONArray data = response.getJSONArray(Constant.K_DATA);
+        lineTypeList = new Gson().fromJson(data.toString(), new TypeToken<List<LineType>>() {
+        }.getType());
+        renderLineType();
+    }
+
+    private void renderLineType() {
+        for (final LineType lineType : lineTypeList) {
+            final LineTypeView lineTypeView = new LineTypeView(this);
+            PercentLinearLayout.LayoutParams lp = new PercentLinearLayout.LayoutParams(PercentLinearLayout.LayoutParams.WRAP_CONTENT, PercentLinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(DensityUtils.dip2px(this, 16), 0, 0, 0);
+            lineTypeContainer.addView(lineTypeView, lp);
+            lineTypeView.setText(lineType.getName());
+            lineTypeView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    lineTypeOnChoose(lineType);
+                }
+            });
+            lineTypeViewList.add(lineTypeView);
+        }
+        lineTypeOnChoose(lineTypeList.get(0));
+    }
+
+    private void lineTypeOnChoose(LineType lineType) {
+        for (LineTypeView lineTypeView : lineTypeViewList) {
+            if (lineTypeView.getText().equals(lineType.getName())) {
+                lineTypeView.select();
+            } else {
+                lineTypeView.unselect();
+            }
+        }
+        getLine(lineType);
+    }
+
+
+    // ====================== getLine ======================
+
+    Line lineChosen;
+
+    List<Line> lineList;
+
+    List<LineView> lineViewList = new ArrayList<>();
+
+    private void getLine(LineType lineType) {
+        String url = lineUrl(lineType);
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse2(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse2(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
@@ -152,7 +203,7 @@ public class LineChooseActivity extends BaseActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            copeResponse2(response);
+                            copeResponse3(response);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -163,7 +214,7 @@ public class LineChooseActivity extends BaseActivity {
         SimpleVolley.addRequest(request);
     }
 
-    private void copeResponse2(String responseString) throws Exception {
+    private void copeResponse3(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
         }
@@ -181,14 +232,14 @@ public class LineChooseActivity extends BaseActivity {
 
     // ====================== views ======================
 
-    @BindView(R.id.matchName)
-    TextView matchName;
-
     @BindView(R.id.date)
     TextView date;
 
     @BindView(R.id.area)
     TextView area;
+
+    @BindView(R.id.lineTypeContainer)
+    PercentLinearLayout lineTypeContainer;
 
     @BindView(R.id.lineContainer)
     PercentLinearLayout lineContainer;
@@ -205,9 +256,15 @@ public class LineChooseActivity extends BaseActivity {
 
     // ======================== 底层方法 ========================
 
-    private String getLineUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getline?").buildUpon();
+    private String lineTypeUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getlinetype?").buildUpon();
         builder.appendQueryParameter(Constant.K_MATCH_ID, matchInfo.getMatch_id());
+        return builder.toString();
+    }
+
+    private String lineUrl(LineType lineType) {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getlinebytype?").buildUpon();
+        builder.appendQueryParameter("typeid", lineType.getLineid());
         return builder.toString();
     }
 
@@ -219,7 +276,20 @@ public class LineChooseActivity extends BaseActivity {
     }
 
 
-    // ======================== back ========================
+    // ====================== ignore ======================
+
+    @InjectExtra(Constant.K_MATCH_INFO)
+    MatchInfo matchInfo;
+
+    @InjectExtra(Constant.K_MY_MATCH_STATUS)
+    MyMatchStatus myMatchStatus;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_line_choose);
+    }
 
     @OnClick(R.id.back)
     public void backOnClick() {

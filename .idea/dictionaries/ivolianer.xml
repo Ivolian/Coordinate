@@ -3,6 +3,8 @@
     <words>
       <w>addextra</w>
       <w>getline</w>
+      <w>getlinebytype</w>
+      <w>getlinetype</w>
       <w>getmatchinfo</w>
       <w>getmyline</w>
       <w>getmymatchstatus</w>
@@ -11,6 +13,7 @@
       <w>tcom</w>
       <w>tname</w>
       <w>tnname</w>
+      <w>typeid</w>
     </words>
   </dictionary>
 </component>
