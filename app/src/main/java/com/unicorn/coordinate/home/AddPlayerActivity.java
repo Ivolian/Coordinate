@@ -1,5 +1,7 @@
 package com.unicorn.coordinate.home;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +25,7 @@ import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.home.model.Player;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.DensityUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
@@ -30,6 +33,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,34 +42,68 @@ import butterknife.OnClick;
 public class AddPlayerActivity extends BaseActivity {
 
 
-    // ====================== injectExtra ======================
-
-    @InjectExtra(Constant.K_MATCH_INFO)
-    MatchInfo matchInfo;
-
-    @InjectExtra(Constant.K_MY_MATCH_STATUS)
-    MyMatchStatus myMatchStatus;
-
-
-    // ====================== onCreate ======================
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_player);
-    }
+    // ====================== initViews ======================
 
     @Override
     public void initViews() {
-        initRecyclerView();
-        matchName.setText(matchInfo.getMatch_name());
-        getPlayer();
+        initSth();
+        initRvPlayers();
+        getPlayers();
     }
+
+    // ====================== players ======================
+
+    final private PlayerAdapter playerAdapter = new PlayerAdapter();
+
+    private void initRvPlayers() {
+        rvPlayers.setLayoutManager(new LinearLayoutManager(this));
+        rvPlayers.setAdapter(playerAdapter);
+    }
+
+    private void getPlayers() {
+        String url = playersUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse2(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse2(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONArray data = response.getJSONArray(Constant.K_DATA);
+        List<Player> playerList = new Gson().fromJson(data.toString(), new TypeToken<List<Player>>() {
+        }.getType());
+
+        // 显示除了队长之外的队员
+        List<Player> playerListBesideLeader = new ArrayList<>();
+        for (Player player : playerList) {
+            if (player.getLeader() != 1) {
+                playerListBesideLeader.add(player);
+            }
+        }
+        playerAdapter.setPlayerList(playerListBesideLeader);
+        playerAdapter.notifyDataSetChanged();
+    }
+
 
     // ====================== addPlayer ======================
 
-    @OnClick(R.id.invite)
-    public void inviteOnClick() {
+    @OnClick(R.id.addPlayer)
+    public void addPlayerOnClick() {
         if (ClickHelper.isSafe()) {
             if (TextUtils.isEmpty(mobile.getText())) {
                 ToastUtils.show("手机号码不能为空");
@@ -99,61 +137,11 @@ public class AddPlayerActivity extends BaseActivity {
             return;
         }
         ToastUtils.show("邀请已发送");
-        getPlayer();
+        getPlayers();
     }
 
-
-    // ======================== playerAdapter ========================
-
-    final private PlayerAdapter playerAdapter = new PlayerAdapter();
-
-    private void initRecyclerView() {
-        rvPlayers.setLayoutManager(new LinearLayoutManager(this));
-        rvPlayers.setAdapter(playerAdapter);
-    }
-
-    private void getPlayer() {
-        String url = playerUrl();
-        Request request = new StringRequest(
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            copeResponse2(response);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                SimpleVolley.getDefaultErrorListener()
-        );
-        SimpleVolley.addRequest(request);
-    }
-
-    private void copeResponse2(String responseString) throws Exception {
-        if (ResponseHelper.isWrong(responseString)) {
-            return;
-        }
-        JSONObject response = new JSONObject(responseString);
-        JSONArray data = response.getJSONArray(Constant.K_DATA);
-        List<Player> playerList = new Gson().fromJson(data.toString(), new TypeToken<List<Player>>() {
-        }.getType());
-        // TODO
-        playerAdapter.setPlayerList(playerList);
-        playerAdapter.notifyDataSetChanged();
-    }
-
-    private String playerUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getplayer?").buildUpon();
-        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
-        return builder.toString();
-    }
 
     // ====================== views ======================
-
-    @BindView(R.id.matchName)
-    TextView matchName;
 
     @BindView(R.id.mobile)
     TextView mobile;
@@ -161,8 +149,17 @@ public class AddPlayerActivity extends BaseActivity {
     @BindView(R.id.rvPlayers)
     RecyclerView rvPlayers;
 
+    @BindView(R.id.addPlayer)
+    TextView addPlayer;
+
 
     // ====================== low level methods ======================
+
+    private String playersUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getplayer?").buildUpon();
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        return builder.toString();
+    }
 
     private String addPlayerUrl() {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/addplayer?").buildUpon();
@@ -171,8 +168,27 @@ public class AddPlayerActivity extends BaseActivity {
         return builder.toString();
     }
 
+    private void initSth() {
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setColor(Color.parseColor("#65C0F2"));
+        gradientDrawable.setCornerRadius(DensityUtils.dip2px(this, 3));
+        addPlayer.setBackgroundDrawable(gradientDrawable);
+    }
 
-    // ======================== back ========================
+
+    // ======================== ignore ========================
+
+    @InjectExtra(Constant.K_MATCH_INFO)
+    MatchInfo matchInfo;
+
+    @InjectExtra(Constant.K_MY_MATCH_STATUS)
+    MyMatchStatus myMatchStatus;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_player);
+    }
 
     @OnClick(R.id.back)
     public void backOnClick() {
@@ -184,6 +200,14 @@ public class AddPlayerActivity extends BaseActivity {
 
     @OnClick(R.id.finish)
     public void finishOnClick() {
+        if (ClickHelper.isSafe()) {
+            EventBus.getDefault().post(new RefreshPlayerEvent());
+            finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
         if (ClickHelper.isSafe()) {
             EventBus.getDefault().post(new RefreshPlayerEvent());
             finish();

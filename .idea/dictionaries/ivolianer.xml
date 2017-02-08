@@ -2,6 +2,7 @@
   <dictionary name="ivolianer">
     <words>
       <w>addextra</w>
+      <w>addplayer</w>
       <w>getline</w>
       <w>getlinebytype</w>
       <w>getlinetype</w>
