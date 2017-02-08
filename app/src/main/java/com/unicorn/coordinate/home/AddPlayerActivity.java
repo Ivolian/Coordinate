@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.home.preSignUp;
+package com.unicorn.coordinate.home;
 
 import android.net.Uri;
 import android.os.Bundle;

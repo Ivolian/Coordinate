@@ -23,8 +23,6 @@ import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.home.model.Match;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
-import com.unicorn.coordinate.home.preSignUp.FormalSignUpActivity;
-import com.unicorn.coordinate.home.preSignUp.PreSignUpActivity;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
@@ -33,8 +31,6 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
-
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -101,40 +97,34 @@ public class MatchDetailActivity extends BaseActivity {
     private void fillViews() {
         name.setText(matchInfo.getMatch_name());
         date.setText(matchInfo.getDate());
-        status.setText(matchStatusText());
+        status.setText(MatchHelper.matchStatusText(matchInfo));
         date1.setText(matchInfo.getDate1());
         date2.setText(matchInfo.getDate2());
         date3.setText(matchInfo.getDate3());
         date4.setText(matchInfo.getDate4());
         content.setText(matchInfo.getContent());
-        // 加载结束，显示内容
+        // 加载结束，显示内容，之前为不可见
         container.setVisibility(View.VISIBLE);
     }
 
 
-
     // ====================== getMyMatchStatus ======================
 
-    @OnClick(R.id.signUpMatch)
-    public void signUpMatchOnClick() {
+    private MyMatchStatus myMatchStatus;
+
+    @OnClick(R.id.signUp)
+    public void signUpOnClick() {
         if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)) {
             getMyMatchStatusIfNeed();
         }
     }
 
-    private MyMatchStatus myMatchStatus;
-
     private void getMyMatchStatusIfNeed() {
-        if (isNeedGetMyMatchStatus()) {
+        if (MatchHelper.isNeedGetMyMatchStatus(matchInfo)) {
             getMyMatchStatus();
         } else {
-            ToastUtils.show(matchStatusText());
+            ToastUtils.show(MatchHelper.matchStatusText(matchInfo));
         }
-    }
-
-    private boolean isNeedGetMyMatchStatus() {
-        String matchStatus = matchInfo.getStatus();
-        return Arrays.asList("1","3").contains(matchStatus);
     }
 
     private void getMyMatchStatus() {
@@ -225,11 +215,23 @@ public class MatchDetailActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void formalSignUp(){
+    private void formalSignUp() {
         Intent intent = new Intent(this, FormalSignUpActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
         intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
         startActivity(intent);
+    }
+
+
+    // ======================== low level method ========================
+
+    private String matchInfoUrl() {
+        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + match.getMatch_id();
+    }
+
+    private String myMatchStatusUrl() {
+        return ConfigUtils.getBaseUrl() + "/api/getmymatchstatus?matchid=" + match.getMatch_id()
+                + "&userid=" + ConfigUtils.getUserId();
     }
 
 
@@ -263,7 +265,7 @@ public class MatchDetailActivity extends BaseActivity {
     ScrollView container;
 
 
-    // ====================== avi ======================
+    // ====================== ignore ======================
 
     @BindView(R.id.avi)
     AVLoadingIndicatorView avi;
@@ -276,67 +278,12 @@ public class MatchDetailActivity extends BaseActivity {
         avi.hide();
     }
 
-
-    // ======================== back ========================
-
     @OnClick(R.id.back)
     public void backOnClick() {
         if (ClickHelper.isSafe()) {
             finish();
         }
     }
-
-
-    // ======================== low level method ========================
-
-    private String matchInfoUrl() {
-        return ConfigUtils.getBaseUrl() + "/api/getmatchinfo?matchid=" + match.getMatch_id();
-    }
-
-    private String myMatchStatusUrl() {
-        return ConfigUtils.getBaseUrl() + "/api/getmymatchstatus?matchid=" + match.getMatch_id()
-                + "&userid=" + ConfigUtils.getUserId();
-    }
-
-//    0 报名未开始  不能点击
-//    1 立即预报名  可以点击(链接到开始报名页面)
-//    2 预报名结束  可以点击(链接后续再改)
-//    3 报名付费    可以点击(链接后续再改)
-//    4 8 9  报名结束 不能点击
-//    5 比赛结束 不能点击
-
-    /*
-    0 已创建不能预报名
-    1 预报名开始可以开始预报名
-    2 预报名结束不能预报名
-    3 正式报名开始可以支付
-    4 比赛开始不能预报名不能报名
-    5 比赛结束不能预报名不能报名
-    9 正式报名结束只有此状态下可以替换队员更换队长
-    8 比赛开始前准备(锁定信息，不能更换队员)
-     */
-
-    private String matchStatusText() {
-        switch (matchInfo.getStatus()) {
-            case "0":
-                return "报名未开始";
-            case "1":
-                return "立即预报名";
-            case "2":
-                return "预报名结束";
-            case "3":
-                return "报名付费";
-            case "4":
-            case "8":
-            case "9":
-                return "报名结束";
-            case "5":
-                return "比赛结束";
-            default:
-                return "";
-        }
-    }
-
 
 
 }

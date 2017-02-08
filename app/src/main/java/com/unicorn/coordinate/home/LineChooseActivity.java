@@ -20,7 +20,6 @@ import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.Line;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
-import com.unicorn.coordinate.home.preSignUp.PreSignUpActivity;
 import com.unicorn.coordinate.home.ui.LineView;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;

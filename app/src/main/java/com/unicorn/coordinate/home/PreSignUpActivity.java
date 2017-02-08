@@ -1,4 +1,4 @@
-package com.unicorn.coordinate.home.preSignUp;
+package com.unicorn.coordinate.home;
 
 import android.content.Intent;
 import android.graphics.Color;
