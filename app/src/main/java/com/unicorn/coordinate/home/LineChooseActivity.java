@@ -274,7 +274,7 @@ public class LineChooseActivity extends BaseActivity {
     private String setLineUrl() {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/SelLine?").buildUpon();
         builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
-        builder.appendQueryParameter("lineid", lineChosen.getLineid());
+        builder.appendQueryParameter("lineid", lineChosen.getLinesid());
         return builder.toString();
     }
 

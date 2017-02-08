@@ -282,6 +282,7 @@ public class PreSignUpActivity extends EventBusActivity  implements ImagePickerC
         new OkHttpClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
                 Log.e("ressult","faule");
 //                ToastUtils.show("faliuee");
 //                    System.out.println("上传失败:e.getLocalizedMessage() = " + e.getLocalizedMessage());
