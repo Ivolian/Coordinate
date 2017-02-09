@@ -15,10 +15,11 @@ import com.f2prateek.dart.InjectExtra;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unicorn.coordinate.R;
-import com.unicorn.coordinate.base.BaseActivity;
+import com.unicorn.coordinate.base.EventBusActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.home.event.PaySuccessEvent;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyLine;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
@@ -28,6 +29,7 @@ import com.unicorn.coordinate.utils.AESUtils;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -37,7 +39,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class FormalSignUpActivity extends BaseActivity {
+public class FormalSignUpActivity extends EventBusActivity {
 
 
     // ====================== initViews ======================
@@ -139,6 +141,7 @@ public class FormalSignUpActivity extends BaseActivity {
         MyLine myLine = myLineList.get(0);
         lineName.setText(myLine.getLinename());
         payPrice.setText("￥" + myLine.getPrice());
+        // TODO
         payStatus.setText(myLine.getStatus() == 1 ? "未支付" : "已支付");
     }
 
@@ -186,6 +189,11 @@ public class FormalSignUpActivity extends BaseActivity {
         Intent intent = new Intent(this, PayActivity.class);
         intent.putExtra(Constant.K_MY_ORDER, myOrder);
         startActivity(intent);
+    }
+
+    @Subscribe
+    public void onPaySuccess(PaySuccessEvent paySuccessEvent){
+        finish();
     }
 
 

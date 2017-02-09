@@ -65,4 +65,5 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.kbeanie:multipicker:1.1.31@aar'
     compile files('libs/alipaySingle-20161222.jar')
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

@@ -18,10 +18,13 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.home.event.PaySuccessEvent;
 import com.unicorn.coordinate.home.model.MyOrder;
 import com.unicorn.coordinate.pay.AuthResult;
 import com.unicorn.coordinate.pay.OrderInfoUtil2_0;
 import com.unicorn.coordinate.pay.PayResult;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Map;
 
@@ -32,7 +35,7 @@ public class PayActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_line_choose);
+        setContentView(R.layout.activity_pay);
     }
 
     @InjectExtra(Constant.K_MY_ORDER)
@@ -41,9 +44,18 @@ public class PayActivity extends BaseActivity {
     @OnClick(R.id.back)
     public void backOnClick() {
         if (ClickHelper.isSafe()) {
+            finish();
+        }
+    }
+
+    @OnClick(R.id.pay)
+    public void payOnClick() {
+        if (ClickHelper.isSafe()) {
             pay();
         }
     }
+
+
 
     private void pay() {
         payV2();
@@ -94,6 +106,8 @@ public class PayActivity extends BaseActivity {
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        EventBus.getDefault().post(new PaySuccessEvent());
+                        finish();
 
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
@@ -182,57 +196,6 @@ public class PayActivity extends BaseActivity {
         payThread.start();
     }
 
-    /**
-     * 支付宝账户授权业务
-     *
-     * @param v
-     */
-    public void authV2(View v) {
-        if (TextUtils.isEmpty(PID) || TextUtils.isEmpty(APPID)
-                || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))
-                || TextUtils.isEmpty(TARGET_ID)) {
-            new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置PARTNER |APP_ID| RSA_PRIVATE| TARGET_ID")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialoginterface, int i) {
-                        }
-                    }).show();
-            return;
-        }
-
-        /**
-         * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
-         * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
-         * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
-         *
-         * authInfo的获取必须来自服务端；
-         */
-        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-        Map<String, String> authInfoMap = OrderInfoUtil2_0.buildAuthInfoMap(PID, APPID, TARGET_ID, rsa2);
-        String info = OrderInfoUtil2_0.buildOrderParam(authInfoMap);
-
-        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
-        String sign = OrderInfoUtil2_0.getSign(authInfoMap, privateKey, rsa2);
-        final String authInfo = info + "&" + sign;
-        Runnable authRunnable = new Runnable() {
-
-            @Override
-            public void run() {
-                // 构造AuthTask 对象
-                AuthTask authTask = new AuthTask(PayActivity.this);
-                // 调用授权接口，获取授权结果
-                Map<String, String> result = authTask.authV2(authInfo, true);
-
-                Message msg = new Message();
-                msg.what = SDK_AUTH_FLAG;
-                msg.obj = result;
-                mHandler.sendMessage(msg);
-            }
-        };
-
-        // 必须异步调用
-        Thread authThread = new Thread(authRunnable);
-        authThread.start();
-    }
 
 
 }
