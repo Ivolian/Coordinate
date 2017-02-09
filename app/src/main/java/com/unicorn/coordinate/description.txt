@@ -3,18 +3,24 @@
 太平洋百货后面商务楼
 到了36F换7号电梯到36B
 
+// 后台
+http://139.196.107.169:8000/main/Member?id=&tel=18000000021
+
+// TO DO
+1. 比赛须知
+2. 宝宝界面
+3. 取消组队
+
+// DOING
+4. 正式报名界面
+5. 支付界面
+6. 支付宝支付
 
 
-// 测试用户 & 密码
-18000 000021到18000000025
-111111 123456
+支付通知的测试地址
+    order.notify_url = @"http://139.196.107.169/pay/notify_return";
+    order.return_url = @"http://139.196.107.169/pay/success_return";
 
-
-
-1. 预报名界面
-2. 邀请界面
-3. 司机界面
-4. 宝宝界面
-5. 正式报名界面
-
-6. 支付
+正式地址
+    order.notify_url = @"http://www.chengshidingxiang.com/pay/notify_return";
+    order.return_url = @"http://www.chengshidingxiang.com/pay/success_return";

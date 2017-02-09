@@ -25,6 +25,8 @@ public class Constant {
 
     public static final String K_MESSAGE = "message";
 
+    public static final String K_MY_ORDER = "myOrder";
+
     public static final String K_MATCH_ID = "matchid";
 
     public static final String K_TEAM_NAME = "teamname";

@@ -48,219 +48,242 @@
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
-    <com.zhy.android.percent.support.PercentLinearLayout
+
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:text="队伍信息"
-            android:textColor="@color/md_black"
-            app:layout_heightPercent="8%sh"
-            app:layout_textSizePercent="2.8%sh" />
+        android:layout_weight="1">
 
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp"
-            app:layout_heightPercent="8%sh">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
+            <!-- 队伍信息 -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="队伍名称:"
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
-            <TextView
-                android:id="@+id/teamName"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="16dp"
+                    android:text="队伍信息"
+                    android:textColor="@color/md_black"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="队伍名称"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/teamName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/md_grey_200" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="队伍状态"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/teamStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/md_grey_200" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="线路名称"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/lineName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/md_grey_200" />
+
+            <!-- 人员信息 -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="16dp"
+                    android:text="人员信息"
+                    android:textColor="@color/md_black"
+                    android:textSize="18dp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPlayers"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/md_grey_200" />
+
+            <!-- 支付信息 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="16dp"
+                    android:text="支付信息"
+                    android:textColor="@color/md_black"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="支付金额"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/payPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_red_400"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/md_grey_200" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="支付状态"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/payStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/md_grey_200" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/md_grey_200" />
-
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp"
-            app:layout_heightPercent="8%sh">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="队伍状态:"
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-            <TextView
-                android:id="@+id/teamStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-        </com.zhy.android.percent.support.PercentLinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/md_grey_200" />
-
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp"
-            app:layout_heightPercent="8%sh">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="线路名称:"
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-            <TextView
-                android:id="@+id/lineName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-        </com.zhy.android.percent.support.PercentLinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@color/md_grey_100" />
-
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp"
-            app:layout_heightPercent="6%sh">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="人员信息:"
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-        </com.zhy.android.percent.support.PercentLinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvTeamInfo"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scrollbars="none"
-            app:layout_heightPercent="30%sh" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:text="支付信息"
-            android:textColor="@color/md_black"
-            app:layout_heightPercent="8%sh"
-            app:layout_textSizePercent="2.8%sh" />
-
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp"
-            app:layout_heightPercent="8%sh">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="支付金额:"
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-            <TextView
-                android:id="@+id/payPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-        </com.zhy.android.percent.support.PercentLinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/md_grey_200" />
-
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp"
-            app:layout_heightPercent="8%sh">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="支付状态:"
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-            <TextView
-                android:id="@+id/payStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/md_black"
-                app:layout_textSizePercent="2.8%sh" />
-
-        </com.zhy.android.percent.support.PercentLinearLayout>
-
-
-    </com.zhy.android.percent.support.PercentLinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/pay"
