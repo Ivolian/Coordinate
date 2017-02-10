@@ -155,7 +155,16 @@ public class MatchDetailActivity extends BaseActivity {
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         myMatchStatus = new Gson().fromJson(data.toString(), MyMatchStatus.class);
+//        readMatchInstruction();
         signUp();
+    }
+
+    private void readMatchInstruction() {
+        Intent intent = new Intent(this, MatchInstructionActivity.class);
+        intent.putExtra(Constant.K_TITLE, "比赛须知");
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+        startActivity(intent);
     }
 
 
@@ -173,7 +182,7 @@ public class MatchDetailActivity extends BaseActivity {
     private void signUp() {
         switch (myMatchStatus.getStatus()) {
             case "1":
-                setTeamName();
+                readMatchInstruction();
                 break;
             case "2":
                 chooseLine();

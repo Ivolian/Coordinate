@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -199,6 +200,42 @@ public class PreSignUpActivity extends EventBusActivity {
         startActivity(intent);
     }
 
+    // ======================== cancelTeam ========================
+
+    @OnClick(R.id.cancelTeam)
+    public void cancelTeamOnClick() {
+        if (ClickHelper.isSafe()) {
+            cancelTeam();
+        }
+    }
+
+    private void cancelTeam() {
+        String url = cancelTeamUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse4(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse4(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        ToastUtils.show("组队已取消");
+        finish();
+    }
+
 
     // ======================== addPlayer ========================
 
@@ -254,6 +291,9 @@ public class PreSignUpActivity extends EventBusActivity {
     @BindView(R.id.addPlayer)
     TextView addPlayer;
 
+    @BindView(R.id.cancelTeam)
+    TextView cancelTeam;
+
 
     // ======================== 底层方法 ========================
 
@@ -276,12 +316,24 @@ public class PreSignUpActivity extends EventBusActivity {
         return builder.toString();
     }
 
+    private String cancelTeamUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/cancelteam?").buildUpon();
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        return builder.toString();
+    }
+
     private void initSth() {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setColor(Color.parseColor("#65C0F2"));
         gradientDrawable.setCornerRadius(DensityUtils.dip2px(this, 3));
         addExtra.setBackgroundDrawable(gradientDrawable);
         addPlayer.setBackgroundDrawable(gradientDrawable);
+
+        GradientDrawable g2 = new GradientDrawable();
+        g2.setColor(ContextCompat.getColor(this, R.color.md_red_400));
+        g2.setCornerRadius(DensityUtils.dip2px(this, 3));
+        cancelTeam.setBackgroundDrawable(g2);
     }
 
 

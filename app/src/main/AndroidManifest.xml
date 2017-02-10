@@ -149,6 +149,11 @@
             android:name=".home.PayActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".home.MatchInstructionActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"

@@ -3,10 +3,12 @@
     <words>
       <w>addextra</w>
       <w>addplayer</w>
+      <w>alipay</w>
       <w>getline</w>
       <w>getlinebytype</w>
       <w>getlinetype</w>
       <w>getmatchinfo</w>
+      <w>getmatchnotice</w>
       <w>getmyline</w>
       <w>getmymatchstatus</w>
       <w>getmyorder</w>
