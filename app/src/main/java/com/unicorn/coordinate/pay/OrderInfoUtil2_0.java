@@ -81,6 +81,7 @@ public class OrderInfoUtil2_0 {
 		keyValues.put("version", "1.0");
 
 		keyValues.put("notify_url", "http://139.196.107.169/pay/notify_return");
+		keyValues.put("return_url", "http://139.196.107.169/pay/success_return");
 
 		return keyValues;
 	}
