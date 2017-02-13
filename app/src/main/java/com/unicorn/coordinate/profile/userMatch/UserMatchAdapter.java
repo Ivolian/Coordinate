@@ -12,6 +12,7 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.profile.model.UserMatch;
+import com.unicorn.coordinate.utils.AESUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class UserMatchAdapter extends RecyclerView.Adapter<UserMatchAdapter.View
     public void onBindViewHolder(ViewHolder holder, final int position) {
         UserMatch userMatch = userMatchList.get(position);
         holder.matchName.setText(userMatch.getMatch_name());
-        holder.teamName.setText("队伍名称: " + userMatch.getTeamname());
+        holder.teamName.setText("队伍名称: " + AESUtils.decrypt2(userMatch.getTeamname()));
     }
 
 
