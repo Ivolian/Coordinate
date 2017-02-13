@@ -66,15 +66,35 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="16dp"
-                    android:text="比赛信息"
-                    android:textColor="@color/md_black"
-                    android:textSize="18dp" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="开赛日期"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/teamName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/md_grey_200" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,22 +186,12 @@
                     android:textColor="@color/md_black"
                     android:textSize="16dp" />
 
-                <HorizontalScrollView
+                <com.wefika.flowlayout.FlowLayout
+                    android:id="@+id/lineTypeContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
+                    android:layout_height="wrap_content"/>
 
-                    <com.zhy.android.percent.support.PercentLinearLayout
-                        android:id="@+id/lineTypeContainer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingRight="16dp">
 
-                    </com.zhy.android.percent.support.PercentLinearLayout>
-
-                </HorizontalScrollView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -192,23 +202,10 @@
                     android:textColor="@color/md_black"
                     android:textSize="16dp" />
 
-                <HorizontalScrollView
+                <com.wefika.flowlayout.FlowLayout
+                    android:id="@+id/lineContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
-
-                    <com.zhy.android.percent.support.PercentLinearLayout
-                        android:id="@+id/lineContainer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingRight="16dp">
-
-                    </com.zhy.android.percent.support.PercentLinearLayout>
-
-                </HorizontalScrollView>
-
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

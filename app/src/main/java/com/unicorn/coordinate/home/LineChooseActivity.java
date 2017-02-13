@@ -27,7 +27,7 @@ import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
-import com.zhy.android.percent.support.PercentLinearLayout;
+import com.wefika.flowlayout.FlowLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -89,8 +89,8 @@ public class LineChooseActivity extends BaseActivity {
     private void renderLineType() {
         for (final LineType lineType : lineTypeList) {
             final LineTypeView lineTypeView = new LineTypeView(this);
-            PercentLinearLayout.LayoutParams lp = new PercentLinearLayout.LayoutParams(PercentLinearLayout.LayoutParams.WRAP_CONTENT, PercentLinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(DensityUtils.dip2px(this, 16), 0, 0, 0);
+            FlowLayout.LayoutParams lp = new FlowLayout.LayoutParams(FlowLayout.LayoutParams.WRAP_CONTENT, FlowLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(0, DensityUtils.dip2px(this, 8), DensityUtils.dip2px(this, 8), 0);
             lineTypeContainer.addView(lineTypeView, lp);
             lineTypeView.setText(lineType.getName());
             lineTypeView.setOnClickListener(new View.OnClickListener() {
@@ -158,8 +158,8 @@ public class LineChooseActivity extends BaseActivity {
         lineContainer.removeAllViews();
         for (final Line line : lineList) {
             final LineView lineView = new LineView(this);
-            PercentLinearLayout.LayoutParams lp = new PercentLinearLayout.LayoutParams(PercentLinearLayout.LayoutParams.WRAP_CONTENT, PercentLinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(DensityUtils.dip2px(this, 16), 0, 0, 0);
+            FlowLayout.LayoutParams lp = new FlowLayout.LayoutParams(FlowLayout.LayoutParams.WRAP_CONTENT, FlowLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(0, DensityUtils.dip2px(this, 8), DensityUtils.dip2px(this, 8), 0);
             lineContainer.addView(lineView, lp);
             lineView.setText(line.getLinename());
             lineView.setOnClickListener(new View.OnClickListener() {
@@ -242,10 +242,10 @@ public class LineChooseActivity extends BaseActivity {
     TextView area;
 
     @BindView(R.id.lineTypeContainer)
-    PercentLinearLayout lineTypeContainer;
+    FlowLayout lineTypeContainer;
 
     @BindView(R.id.lineContainer)
-    PercentLinearLayout lineContainer;
+    FlowLayout lineContainer;
 
     @BindView(R.id.lineName)
     TextView lineName;
