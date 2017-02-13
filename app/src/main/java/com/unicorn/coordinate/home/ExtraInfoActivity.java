@@ -40,7 +40,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
-public class DriverActivity extends BaseActivity implements ImagePickerCallback {
+public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallback {
 
 
     // ====================== initViews ======================
@@ -58,7 +58,7 @@ public class DriverActivity extends BaseActivity implements ImagePickerCallback 
     @OnClick(R.id.pickPhoto)
     public void pickPhotoOnClick() {
         new MaterialDialog.Builder(this)
-                .title("上传驾照照片")
+                .title("上传附加信息")
                 .items(Arrays.asList("拍照", "从相册中选取"))
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -137,11 +137,11 @@ public class DriverActivity extends BaseActivity implements ImagePickerCallback 
                 return;
             }
             if (TextUtils.isEmpty(etNumber.getText())) {
-                ToastUtils.show("驾照号码不能为空");
+                ToastUtils.show("号码不能为空");
                 return;
             }
             if (photoPath == null) {
-                ToastUtils.show("请上传驾照照片");
+                ToastUtils.show("请上传附加信息");
                 return;
             }
             submit();
@@ -152,7 +152,8 @@ public class DriverActivity extends BaseActivity implements ImagePickerCallback 
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         builder.addFormDataPart("type", "2");
         builder.addFormDataPart("teamid", myMatchStatus.getTeamid());
-        builder.addFormDataPart("info1", "驾照者姓名");
+        builder.addFormDataPart("info1", etName.getText().toString().trim());
+        builder.addFormDataPart("info2", etNumber.getText().toString().trim());
         File photo = new File(photoPath);
         builder.addFormDataPart("Info3", photo.getName(), RequestBody.create(MediaType.parse("image/png"), photo));
 
@@ -182,7 +183,7 @@ public class DriverActivity extends BaseActivity implements ImagePickerCallback 
                             if (ResponseHelper.isWrong(response.body().string())) {
                                 return;
                             }
-                            ToastUtils.show("提交驾驶信息成功");
+                            ToastUtils.show("提交附加信息成功");
                             finish();
                         } catch (Exception e) {
                             //
@@ -218,7 +219,7 @@ public class DriverActivity extends BaseActivity implements ImagePickerCallback 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver);
+        setContentView(R.layout.activity_extra_info);
     }
 
     @OnClick(R.id.back)

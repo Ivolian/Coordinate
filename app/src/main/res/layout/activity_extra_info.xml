@@ -43,7 +43,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="驾照信息"
+            android:text="附加信息"
             android:textColor="@color/md_white"
             app:layout_marginRightPercent="8%sh"
             app:layout_textSizePercent="3%sh" />
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="请输入驾驶员姓名"
+                android:text="请输入姓名"
                 android:textColor="@color/md_black"
                 android:textSize="18dp" />
 
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="请输入驾照号码"
+                android:text="请输入号码"
                 android:textColor="@color/md_black"
                 android:textSize="18dp" />
 
@@ -102,7 +102,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/md_grey_100"
                 android:gravity="center"
-                android:hint="驾照号码"
+                android:hint="号码"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/md_black"
@@ -132,7 +132,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 android:gravity="center_horizontal"
-                android:text="上传驾照照片"
+                android:text="附加信息上传"
                 android:textColor="@color/md_white"
                 android:textSize="18dp" />
 

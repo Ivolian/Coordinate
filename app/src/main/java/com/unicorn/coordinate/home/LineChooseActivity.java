@@ -3,9 +3,12 @@ package com.unicorn.coordinate.home;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -26,6 +29,7 @@ import com.unicorn.coordinate.home.ui.LineView;
 import com.unicorn.coordinate.utils.AESUtils;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
+import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.wefika.flowlayout.FlowLayout;
@@ -159,7 +163,7 @@ public class LineChooseActivity extends BaseActivity {
     private void renderLine() {
         lineContainer.removeAllViews();
         for (final Line line : lineList) {
-                final LineView lineView = new LineView(this);
+            final LineView lineView = new LineView(this);
             FlowLayout.LayoutParams lp = new FlowLayout.LayoutParams(FlowLayout.LayoutParams.WRAP_CONTENT, FlowLayout.LayoutParams.WRAP_CONTENT);
             lp.setMargins(0, DensityUtils.dip2px(this, 8), DensityUtils.dip2px(this, 8), 0);
             lineContainer.addView(lineView, lp);
@@ -195,7 +199,12 @@ public class LineChooseActivity extends BaseActivity {
     @OnClick(R.id.nextStep)
     public void nextStepOnClick() {
         if (ClickHelper.isSafe()) {
-            setLine();
+            DialogUtils.showConfirm(this, "是否选择" + lineChosen.getLinename() + "线路，选择之后不能修改", new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    setLine();
+                }
+            });
         }
     }
 
