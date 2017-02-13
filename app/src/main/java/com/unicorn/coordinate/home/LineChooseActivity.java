@@ -200,7 +200,7 @@ public class LineChooseActivity extends BaseActivity {
     @OnClick(R.id.nextStep)
     public void nextStepOnClick() {
         if (ClickHelper.isSafe()) {
-            DialogUtils.showConfirm(this, "是否选择" + lineChosen.getLinename() + "线路，选择之后不能修改", new MaterialDialog.SingleButtonCallback() {
+            DialogUtils.showConfirm(this, "是否选择" + lineChosen.getLinename() + "，如需更改需解散队伍，重新组队选择线路", new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                     setLine();
