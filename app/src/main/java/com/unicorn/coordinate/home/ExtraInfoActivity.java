@@ -40,6 +40,8 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
+import static com.unicorn.coordinate.R.id.photo;
+
 public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallback {
 
 
@@ -140,7 +142,7 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
                 ToastUtils.show("号码不能为空");
                 return;
             }
-            if (photoPath == null) {
+            if (type.equals("2") && photoPath == null) {
                 ToastUtils.show("请上传附加信息");
                 return;
             }
@@ -150,12 +152,14 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
 
     private void submit() {
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        builder.addFormDataPart("type", "2");
+        builder.addFormDataPart("type", type);
         builder.addFormDataPart("teamid", myMatchStatus.getTeamid());
         builder.addFormDataPart("info1", etName.getText().toString().trim());
         builder.addFormDataPart("info2", etNumber.getText().toString().trim());
-        File photo = new File(photoPath);
-        builder.addFormDataPart("Info3", photo.getName(), RequestBody.create(MediaType.parse("image/png"), photo));
+        if (type.equals("2")) {
+            File photo = new File(photoPath);
+            builder.addFormDataPart("Info3", photo.getName(), RequestBody.create(MediaType.parse("image/png"), photo));
+        }
 
         MultipartBody requestBody = builder.build();
         okhttp3.Request request = new okhttp3.Request.Builder()
@@ -203,7 +207,7 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
     @BindView(R.id.number)
     EditText etNumber;
 
-    @BindView(R.id.photo)
+    @BindView(photo)
     ImageView ivPhoto;
 
 
@@ -214,6 +218,9 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
 
     @InjectExtra(Constant.K_MY_MATCH_STATUS)
     MyMatchStatus myMatchStatus;
+
+    @InjectExtra("type")
+    String type;
 
 
     @Override

@@ -134,6 +134,7 @@ public class PreSignUpActivity extends EventBusActivity {
         SimpleVolley.addRequest(request);
     }
 
+    String type;
     private void copeResponse2(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
@@ -146,14 +147,17 @@ public class PreSignUpActivity extends EventBusActivity {
         myLine = myLineList.get(0);
         lineName.setText(myLine.getLinename());
 
-//        int myLineStatus = myLine.getStatus();
-//        if (myLineStatus == 1) {
+        int myLineStatus = myLine.getStatus();
+        if (myLineStatus == 1) {
+            type = "2";
 //            addExtra.setText("汽车线路");
 //            addExtra.setVisibility(View.VISIBLE);
-//        } else if (myLineStatus == 2) {
+        } else if (myLineStatus == 2) {
+            type = "1";
 //            addExtra.setText("宝宝线路");
 //            addExtra.setVisibility(View.VISIBLE);
-//        } else {
+        }
+//        else {
 //            addExtra.setVisibility(View.INVISIBLE);
 //        }
     }
@@ -271,6 +275,7 @@ public class PreSignUpActivity extends EventBusActivity {
         Intent intent = new Intent(this, ExtraInfoActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
         intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+        intent.putExtra("type", type);
         startActivity(intent);
     }
 
