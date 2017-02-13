@@ -8,14 +8,21 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 import com.f2prateek.dart.InjectExtra;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.volley.SimpleVolley;
+
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,10 +45,40 @@ public class MatchInstructionActivity extends BaseActivity {
     public void initViews() {
         tvTitle.setText(title);
         initWebView();
+        fetchHtml();
+    }
+
+    private void fetchHtml() {
+        String url = htmlUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        String data = response.getString(Constant.K_DATA);
+//        webView.loadData(data, "text/html", "UTF-8");
+       webView.loadData(data, "text/html; charset=UTF-8", null);
         startTiming();
     }
 
-    protected String getUrl() {
+    protected String htmlUrl() {
         return ConfigUtils.getBaseUrl() + "/api/getmatchnotice?matchid=" + matchInfo.getMatch_id();
     }
 
@@ -105,8 +142,6 @@ public class MatchInstructionActivity extends BaseActivity {
     TextView tvTitle;
 
 
-
-
     // ======================== initWebView =========================
 
     @BindView(R.id.webView)
@@ -118,7 +153,7 @@ public class MatchInstructionActivity extends BaseActivity {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl(getUrl());
+//        webSettings.setDefaultTextEncodingName("UTF-8");
     }
 
 
