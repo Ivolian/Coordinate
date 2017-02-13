@@ -18,6 +18,7 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.EventBusActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.PayStatusHelper;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.PaySuccessEvent;
 import com.unicorn.coordinate.home.model.MatchInfo;
@@ -54,6 +55,7 @@ public class FormalSignUpActivity extends EventBusActivity {
         }
         getPlayers();
         getMyLine();
+        checkPay();
     }
 
 
@@ -142,7 +144,7 @@ public class FormalSignUpActivity extends EventBusActivity {
         lineName.setText(myLine.getLinename());
         payPrice.setText("￥" + myLine.getPrice());
         // TODO
-        payStatus.setText(myLine.getStatus() == 1 ? "未支付" : "已支付");
+//        payStatus.setText(myLine.getStatus() == 1 ? "未支付" : "已支付");
     }
 
 
@@ -192,8 +194,40 @@ public class FormalSignUpActivity extends EventBusActivity {
     }
 
     @Subscribe
-    public void onPaySuccess(PaySuccessEvent paySuccessEvent){
+    public void onPaySuccess(PaySuccessEvent paySuccessEvent) {
         finish();
+    }
+
+
+    // ======================== 获取支付状态 ========================
+
+    private void checkPay() {
+        String url = checkPayUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponseZ(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponseZ(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONObject data = response.getJSONObject(Constant.K_DATA);
+        String status = data.getString("status");
+        payStatus.setText(PayStatusHelper.payStatusText(status));
     }
 
 
@@ -214,6 +248,12 @@ public class FormalSignUpActivity extends EventBusActivity {
     private String orderUrl() {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getmyorder?").buildUpon();
         builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        return builder.toString();
+    }
+
+    private String checkPayUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/checkpay?").buildUpon();
         builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
         return builder.toString();
     }
