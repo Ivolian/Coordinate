@@ -61,7 +61,7 @@ public class SwipeableRecyclerViewTouchListener implements RecyclerView.OnItemTo
     public SwipeableRecyclerViewTouchListener(RecyclerView recyclerView, SwipeListener listener, final RecyclerView.OnScrollListener onScrollListener) {
         ViewConfiguration vc = ViewConfiguration.get(recyclerView.getContext());
         mSlop = vc.getScaledTouchSlop();
-        mMinFlingVelocity = vc.getScaledMinimumFlingVelocity() * 16;
+        mMinFlingVelocity = vc.getScaledMinimumFlingVelocity() * 5;
         mMaxFlingVelocity = vc.getScaledMaximumFlingVelocity();
         mAnimationTime = recyclerView.getContext().getResources().getInteger(
                 android.R.integer.config_shortAnimTime);

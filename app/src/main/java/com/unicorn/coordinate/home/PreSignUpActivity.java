@@ -56,13 +56,15 @@ public class PreSignUpActivity extends EventBusActivity {
         initRxPlayers();
         initSth();
         teamStatus.setText(MatchHelper.myMatchStatusText(myMatchStatus));
-
+        addSwipeListener();
         getPlayers();
         getMyLine();
     }
 
 
     // ====================== player ======================
+
+    List<Player> playerList;
 
     final private PlayerAdapter playerAdapter = new PlayerAdapter();
 
@@ -96,7 +98,7 @@ public class PreSignUpActivity extends EventBusActivity {
         }
         JSONObject response = new JSONObject(responseString);
         JSONArray data = response.getJSONArray(Constant.K_DATA);
-        List<Player> playerList = new Gson().fromJson(data.toString(), new TypeToken<List<Player>>() {
+        playerList = new Gson().fromJson(data.toString(), new TypeToken<List<Player>>() {
         }.getType());
 
         Player player = playerList.get(0);
@@ -136,6 +138,7 @@ public class PreSignUpActivity extends EventBusActivity {
     }
 
     String type;
+
     private void copeResponse2(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
@@ -153,7 +156,7 @@ public class PreSignUpActivity extends EventBusActivity {
             type = "2";
         } else if (myLineStatus == 2) {
             type = "1";
-        }else {
+        } else {
             addExtra.setVisibility(View.INVISIBLE);
         }
     }
@@ -281,6 +284,74 @@ public class PreSignUpActivity extends EventBusActivity {
     }
 
 
+    private void addSwipeListener() {
+        SwipeableRecyclerViewTouchListener swipeTouchListener =
+                new SwipeableRecyclerViewTouchListener(rvPlayers,
+                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
+                            @Override
+                            public boolean canSwipe(int position) {
+                                return playerList.get(position).getLeader() != 1;
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    Player player = playerList.get(position);
+                                    deletePlayer(player.getMobile());
+                                    playerAdapter.notifyItemRemoved(position);
+                                    playerList.remove(position);
+                                    playerAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    Player player = playerList.get(position);
+                                    deletePlayer(player.getMobile());
+                                    playerAdapter.notifyItemRemoved(position);
+                                    playerList.remove(position);
+                                    playerAdapter.notifyDataSetChanged();
+                                }
+
+                            }
+                        },
+                        new RecyclerView.OnScrollListener() {
+                            @Override
+                            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                            }
+                        });
+        rvPlayers.addOnItemTouchListener(swipeTouchListener);
+    }
+
+    private void deletePlayer(String mobile) {
+        String url = deletePlayerUrl(mobile);
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponseZ(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponseZ(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+
+        ToastUtils.show("删除成功");
+//        finish();
+    }
+
     // ======================== views ========================
 
     @BindView(R.id.teamName)
@@ -330,6 +401,14 @@ public class PreSignUpActivity extends EventBusActivity {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/cancelteam?").buildUpon();
         builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
         builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        return builder.toString();
+    }
+
+    private String deletePlayerUrl(String mobile) {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/delplayer?").buildUpon();
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        builder.appendQueryParameter("mobile", mobile);
         return builder.toString();
     }
 

@@ -8,6 +8,7 @@
       <w>cancelteam</w>
       <w>checkpay</w>
       <w>completepay</w>
+      <w>delplayer</w>
       <w>getline</w>
       <w>getlinebytype</w>
       <w>getlinetype</w>
