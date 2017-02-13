@@ -103,6 +103,7 @@ public class MatchDetailActivity extends BaseActivity {
         date3.setText(matchInfo.getDate3());
         date4.setText(matchInfo.getDate4());
         content.setText(matchInfo.getContent());
+        tvSignUp.setText(MatchHelper.matchStatusText(matchInfo));
         // 加载结束，显示内容，之前为不可见
         container.setVisibility(View.VISIBLE);
     }
@@ -269,6 +270,8 @@ public class MatchDetailActivity extends BaseActivity {
     @BindView(R.id.container)
     ScrollView container;
 
+    @BindView(R.id.signUp)
+    TextView tvSignUp;
 
     // ====================== ignore ======================
 

@@ -42,7 +42,24 @@ public class MatchHelper {
             case "5":
                 return "比赛结束";
             default:
-                return "";
+                return "等待比赛";
+        }
+    }
+
+    public static String matchStatusText2(MatchInfo matchInfo) {
+        switch (matchInfo.getStatus()) {
+            case "0":
+                return "比赛未开始";
+            case "1":
+                return "开始预报名";
+            case "2":
+                return "预报名结束";
+            case "3":
+                return "报名付费";
+            case "5":
+                return "比赛结束";
+            default:
+                return "等待比赛";
         }
     }
 
