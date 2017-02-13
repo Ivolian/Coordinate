@@ -75,7 +75,9 @@
             android:background="@null"
             android:hint="例:城市坐标"
             android:maxLength="6"
+            android:maxLines="1"
             android:paddingLeft="16dp"
+            android:singleLine="true"
             android:textColorHint="@color/md_grey_400"
             android:textSize="15dp" />
 
@@ -120,7 +122,9 @@
             android:background="@null"
             android:hint="例:登山协会"
             android:maxLength="20"
+            android:maxLines="1"
             android:paddingLeft="16dp"
+            android:singleLine="true"
             android:textColorHint="@color/md_grey_400"
             android:textSize="15dp" />
 
