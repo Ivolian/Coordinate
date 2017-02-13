@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -150,16 +151,11 @@ public class PreSignUpActivity extends EventBusActivity {
         int myLineStatus = myLine.getStatus();
         if (myLineStatus == 1) {
             type = "2";
-//            addExtra.setText("汽车线路");
-//            addExtra.setVisibility(View.VISIBLE);
         } else if (myLineStatus == 2) {
             type = "1";
-//            addExtra.setText("宝宝线路");
-//            addExtra.setVisibility(View.VISIBLE);
+        }else {
+            addExtra.setVisibility(View.INVISIBLE);
         }
-//        else {
-//            addExtra.setVisibility(View.INVISIBLE);
-//        }
     }
 
 
