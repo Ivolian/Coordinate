@@ -5,10 +5,13 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -22,6 +25,7 @@ import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
+import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
@@ -100,7 +104,13 @@ public class TeamNameSetActivity extends BaseActivity {
     public void nextStepOnClick() {
         if (ClickHelper.isSafe()) {
             if (!TextUtils.isEmpty(etTeamName.getText())) {
-                regTeamName();
+                DialogUtils.showConfirm(this, "是否填写" + etTeamName.getText() +
+                        "作为队名，提交之后不能更换", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        regTeamName();
+                    }
+                });
             } else {
                 ToastUtils.show("队名不能为空");
             }
