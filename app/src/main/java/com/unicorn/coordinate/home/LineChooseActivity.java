@@ -54,6 +54,7 @@ public class LineChooseActivity extends BaseActivity {
         date.setText(matchInfo.getDate4());
         area.setText(matchInfo.getArea2());
         getLineType();
+        getMyMatchStatusIfNeed();
     }
 
     // ====================== getLineType ======================
@@ -301,7 +302,6 @@ public class LineChooseActivity extends BaseActivity {
     @InjectExtra(Constant.K_MY_MATCH_STATUS)
     MyMatchStatus myMatchStatus;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -313,6 +313,49 @@ public class LineChooseActivity extends BaseActivity {
         if (ClickHelper.isSafe()) {
             finish();
         }
+    }
+
+
+    //
+
+    private void getMyMatchStatusIfNeed() {
+        final String teamId = myMatchStatus.getTeamid();
+        if (teamId == null || teamId.equals("")) {
+            getMyMatchStatus();
+        }
+    }
+
+    private void getMyMatchStatus() {
+        String url = myMatchStatusUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponseZ(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponseZ(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONObject data = response.getJSONObject(Constant.K_DATA);
+        myMatchStatus = new Gson().fromJson(data.toString(), MyMatchStatus.class);
+    }
+
+    private String myMatchStatusUrl() {
+        return ConfigUtils.getBaseUrl() + "/api/getmymatchstatus?matchid=" + matchInfo.getMatch_id()
+                + "&userid=" + ConfigUtils.getUserId();
     }
 
 
