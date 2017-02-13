@@ -217,7 +217,12 @@ public class PreSignUpActivity extends EventBusActivity {
     @OnClick(R.id.cancelTeam)
     public void cancelTeamOnClick() {
         if (ClickHelper.isSafe()) {
-            cancelTeam();
+            DialogUtils.showConfirm(this, "是否取消组队", new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    cancelTeam();
+                }
+            });
         }
     }
 
