@@ -3,6 +3,7 @@ package com.unicorn.coordinate.home;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.f2prateek.dart.InjectExtra;
+import com.google.gson.Gson;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
@@ -22,6 +24,7 @@ import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.PaySuccessEvent;
 import com.unicorn.coordinate.home.model.MyOrder;
+import com.unicorn.coordinate.home.model.MyPayResult;
 import com.unicorn.coordinate.pay.OrderInfoUtil2_0;
 import com.unicorn.coordinate.pay.PayResult;
 import com.unicorn.coordinate.utils.ConfigUtils;
@@ -136,7 +139,9 @@ public class PayActivity extends BaseActivity {
     // ======================== 反馈支付结果 ============================
 
     private void feedback(PayResult payResult) {
-        String url = feedbackUrl(payResult.getResult());
+        MyPayResult myPayResult = new Gson().fromJson(payResult.getResult(), MyPayResult.class);
+        String url = feedbackUrl(myPayResult.getAlipay_trade_app_pay_response().getTrade_no(),
+                payResult.getResultStatus(), myPayResult.getAlipay_trade_app_pay_response().getSeller_id());
         Request request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -162,8 +167,18 @@ public class PayActivity extends BaseActivity {
         finish();
     }
 
-    private String feedbackUrl(String result) {
-        return ConfigUtils.getBaseUrl() + "/api/completepay2?result=" + result;
+    private String feedbackUrl(String trade_no, String trade_status, String buyer_email) {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/completepay?").buildUpon();
+        builder.appendQueryParameter("orderid", myOrder.getOrderid());
+        builder.appendQueryParameter("trade_no", trade_no);
+        builder.appendQueryParameter("trade_status", trade_status);
+        builder.appendQueryParameter("buyer_email", buyer_email);
+        return builder.toString();
+
+//        trade_no	2017021321001004010287445167
+//        trade_status	9000
+//        buyer_email	2088801855353392
+//        return ConfigUtils.getBaseUrl() + "/api/completepay2?result=" + result;
     }
 
 
