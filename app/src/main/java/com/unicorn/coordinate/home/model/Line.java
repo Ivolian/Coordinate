@@ -3,26 +3,29 @@ package com.unicorn.coordinate.home.model;
 public class Line {
 
     /**
-     * Linesid : 10d3f65b-0a29-422a-b7b4-464ddfc7cad6
-     * Matchid : 211a812b-57c2-4e03-abb5-02f95f558fbe
-     * Lineid : 360f3864-6cb1-4fa7-8931-71db033f977f
-     * Linename : 静安
+     * Linesid : 992f23fa-f601-43ac-9f54-a6ace48646be
+     * Matchid : 423e5467-2b46-4a36-b00b-c5421f51338c
+     * Lineid : 12f6242e-de1e-4524-86d6-76ad08a16f48
+     * Lineno :
+     * Linename : 标准随机
      * Status : 0
      * Playercount : 5
-     * Content : <p>静安</p>
+     * Content : 标准5人线路，随机分配
      * Url :
      * Summary :
      * Pointscount : 10
      * Condition_Sex :
      * Condition_Age :
      * Condition_Subline :
-     * Createtime : 2017-02-07 23:00:38
+     * Createtime : 2017-02-10 10:49:30
      * Price : 0.01
+     * Notice :
      */
 
     private String Linesid;
     private String Matchid;
     private String Lineid;
+    private String Lineno;
     private String Linename;
     private int Status;
     private int Playercount;
@@ -35,6 +38,7 @@ public class Line {
     private String Condition_Subline;
     private String Createtime;
     private String Price;
+    private String Notice;
 
     public String getLinesid() {
         return Linesid;
@@ -58,6 +62,14 @@ public class Line {
 
     public void setLineid(String Lineid) {
         this.Lineid = Lineid;
+    }
+
+    public String getLineno() {
+        return Lineno;
+    }
+
+    public void setLineno(String Lineno) {
+        this.Lineno = Lineno;
     }
 
     public String getLinename() {
@@ -154,5 +166,13 @@ public class Line {
 
     public void setPrice(String Price) {
         this.Price = Price;
+    }
+
+    public String getNotice() {
+        return Notice;
+    }
+
+    public void setNotice(String Notice) {
+        this.Notice = Notice;
     }
 }

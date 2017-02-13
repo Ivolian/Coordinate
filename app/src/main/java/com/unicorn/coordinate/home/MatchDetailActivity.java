@@ -206,13 +206,6 @@ public class MatchDetailActivity extends BaseActivity {
         }
     }
 
-    private void setTeamName() {
-        Intent intent = new Intent(this, TeamNameSetActivity.class);
-        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
-        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
-        startActivity(intent);
-    }
-
     private void chooseLine() {
         Intent intent = new Intent(this, LineChooseActivity.class);
         intent.putExtra(Constant.K_MATCH_INFO, matchInfo);

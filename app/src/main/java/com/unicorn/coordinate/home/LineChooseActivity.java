@@ -23,6 +23,7 @@ import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.home.ui.LineTypeView;
 import com.unicorn.coordinate.home.ui.LineView;
+import com.unicorn.coordinate.utils.AESUtils;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
@@ -45,6 +46,7 @@ public class LineChooseActivity extends BaseActivity {
 
     @Override
     public void initViews() {
+        teamName.setText(AESUtils.decrypt2(myMatchStatus.getTeamname()));
         date.setText(matchInfo.getDate4());
         area.setText(matchInfo.getArea2());
         getLineType();
@@ -157,7 +159,7 @@ public class LineChooseActivity extends BaseActivity {
     private void renderLine() {
         lineContainer.removeAllViews();
         for (final Line line : lineList) {
-            final LineView lineView = new LineView(this);
+                final LineView lineView = new LineView(this);
             FlowLayout.LayoutParams lp = new FlowLayout.LayoutParams(FlowLayout.LayoutParams.WRAP_CONTENT, FlowLayout.LayoutParams.WRAP_CONTENT);
             lp.setMargins(0, DensityUtils.dip2px(this, 8), DensityUtils.dip2px(this, 8), 0);
             lineContainer.addView(lineView, lp);
@@ -181,8 +183,8 @@ public class LineChooseActivity extends BaseActivity {
                 lineView.unselect();
             }
         }
-        lineName.setText(line.getLinename());
         content.setText(line.getContent());
+        notice.setText(line.getNotice());
         teamPrice.setText("￥" + line.getPrice());
         lineChosen = line;
     }
@@ -235,6 +237,9 @@ public class LineChooseActivity extends BaseActivity {
 
     // ====================== views ======================
 
+    @BindView(R.id.teamName)
+    TextView teamName;
+
     @BindView(R.id.date)
     TextView date;
 
@@ -247,11 +252,11 @@ public class LineChooseActivity extends BaseActivity {
     @BindView(R.id.lineContainer)
     FlowLayout lineContainer;
 
-    @BindView(R.id.lineName)
-    TextView lineName;
-
     @BindView(R.id.content)
     TextView content;
+
+    @BindView(R.id.notice)
+    TextView notice;
 
     @BindView(R.id.teamPrice)
     TextView teamPrice;
