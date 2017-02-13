@@ -5,12 +5,14 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -30,6 +32,7 @@ import com.unicorn.coordinate.home.model.Player;
 import com.unicorn.coordinate.utils.AESUtils;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DensityUtils;
+import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
@@ -143,16 +146,16 @@ public class PreSignUpActivity extends EventBusActivity {
         myLine = myLineList.get(0);
         lineName.setText(myLine.getLinename());
 
-        int myLineStatus = myLine.getStatus();
-        if (myLineStatus == 1) {
-            addExtra.setText("汽车线路");
-            addExtra.setVisibility(View.VISIBLE);
-        } else if (myLineStatus == 2) {
-            addExtra.setText("宝宝线路");
-            addExtra.setVisibility(View.VISIBLE);
-        } else {
-            addExtra.setVisibility(View.INVISIBLE);
-        }
+//        int myLineStatus = myLine.getStatus();
+//        if (myLineStatus == 1) {
+//            addExtra.setText("汽车线路");
+//            addExtra.setVisibility(View.VISIBLE);
+//        } else if (myLineStatus == 2) {
+//            addExtra.setText("宝宝线路");
+//            addExtra.setVisibility(View.VISIBLE);
+//        } else {
+//            addExtra.setVisibility(View.INVISIBLE);
+//        }
     }
 
 
@@ -161,7 +164,12 @@ public class PreSignUpActivity extends EventBusActivity {
     @OnClick(R.id.complete)
     public void completeOnClick() {
         if (ClickHelper.isSafe()) {
-            completeSign();
+            DialogUtils.showConfirm(this, "是否预报名完成", new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    completeSign();
+                }
+            });
         }
     }
 
@@ -254,12 +262,8 @@ public class PreSignUpActivity extends EventBusActivity {
 
     @OnClick(R.id.addExtra)
     public void addExtraOnClick() {
-        int myLineStatus = myLine.getStatus();
-        if (myLineStatus == 1) {
+        if (ClickHelper.isSafe()) {
             addExtra1();
-        } else if (myLineStatus == 2) {
-            // // TODO: 2017/2/8
-            ToastUtils.show("宝宝线路");
         }
     }
 

@@ -6,16 +6,9 @@
 // 后台
 http://139.196.107.169:8000/main/Member?id=&tel=18000000021
 
-// TO DO
-1. 比赛须知
-2. 宝宝界面
-3. 取消组队
-
 // todo
 1. lineChoose teamId 没有
-2.
-
-
+2. 支付状态
 
 支付通知的测试地址
     order.notify_url = @"http://139.196.107.169/pay/notify_return";

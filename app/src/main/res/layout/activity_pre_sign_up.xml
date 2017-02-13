@@ -220,7 +220,7 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="6dp"
-                    android:text=""
+                    android:text="附加信息"
                     android:textColor="@color/md_white"
                     app:layout_textSizePercent="2.4%sh" />
 
