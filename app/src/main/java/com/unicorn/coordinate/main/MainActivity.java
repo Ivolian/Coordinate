@@ -20,6 +20,7 @@ import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.ReadMessageEvent;
 import com.unicorn.coordinate.message.event.RefreshMessageEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.UpdateUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -42,7 +43,7 @@ public class MainActivity extends EventBusActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-//        UpdateUtils.checkUpdate(this);
+        UpdateUtils.checkUpdate(this);
     }
 
     public void initViews() {
@@ -166,10 +167,9 @@ public class MainActivity extends EventBusActivity {
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         int cnt = data.getInt("Cnt");
-        if (cnt > 0) {
-            messageCount.setText("" + cnt);
+//        if (cnt > 0) {
             messageCount.setVisibility(View.VISIBLE);
-        }
+//        }
     }
 
     private String messageCountUrl() {

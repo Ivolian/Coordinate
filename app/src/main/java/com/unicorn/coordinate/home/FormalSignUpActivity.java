@@ -49,10 +49,7 @@ public class FormalSignUpActivity extends EventBusActivity {
     public void initViews() {
         initRvPlayers();
         teamStatus.setText(MatchHelper.myMatchStatusText(myMatchStatus));
-        // 报名付费 & 领队
-        if (myMatchStatus.getMacthStatus().equals("3") && myMatchStatus.getIsLeader().equals("1")) {
-            pay.setVisibility(View.VISIBLE);
-        }
+
         getPlayers();
         getMyLine();
         checkPay();
@@ -228,6 +225,12 @@ public class FormalSignUpActivity extends EventBusActivity {
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         String status = data.getString("status");
         payStatus.setText(PayStatusHelper.payStatusText(status));
+
+        // 报名付费 & 领队
+        if (myMatchStatus.getMacthStatus().equals("3") && myMatchStatus.getIsLeader().equals("1")
+                && status.equals("0")) {
+            pay.setVisibility(View.VISIBLE);
+        }
     }
 
 

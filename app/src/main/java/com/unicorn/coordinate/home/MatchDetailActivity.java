@@ -202,6 +202,7 @@ public class MatchDetailActivity extends BaseActivity {
                 break;
             case "5":
             case "6":
+            case "7":
                 formalSignUp();
                 break;
         }
