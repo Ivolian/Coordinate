@@ -18,8 +18,10 @@
       <w>getmyline</w>
       <w>getmymatchstatus</w>
       <w>getmyorder</w>
+      <w>getnewmsgcount</w>
       <w>getplayer</w>
       <w>orderid</w>
+      <w>setreadmsg</w>
       <w>tcom</w>
       <w>tname</w>
       <w>tnname</w>

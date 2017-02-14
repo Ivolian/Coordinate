@@ -7,7 +7,6 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseFragment;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.home.event.ReadMessageEvent;
-import com.unicorn.coordinate.message.MessageActivity;
 import com.unicorn.coordinate.profile.matchCert.MatchCertActivity;
 import com.unicorn.coordinate.profile.setting.SettingActivity;
 import com.unicorn.coordinate.profile.userMatch.UserMatchActivity;

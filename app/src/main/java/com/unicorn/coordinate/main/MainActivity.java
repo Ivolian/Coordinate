@@ -1,20 +1,30 @@
 package com.unicorn.coordinate.main;
 
+import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.EventBusActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
+import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.ReadMessageEvent;
+import com.unicorn.coordinate.message.event.RefreshMessageEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
-import com.unicorn.coordinate.utils.UpdateUtils;
+import com.unicorn.coordinate.volley.SimpleVolley;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -32,11 +42,12 @@ public class MainActivity extends EventBusActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        UpdateUtils.checkUpdate(this);
+//        UpdateUtils.checkUpdate(this);
     }
 
     public void initViews() {
         initViewpager();
+        initMessageCount();
     }
 
 
@@ -115,5 +126,61 @@ public class MainActivity extends EventBusActivity {
         viewPager.setCurrentItem(1, true);
     }
 
+
+    // ======================== getMessageCount =========================
+
+    @BindView(R.id.messageCount)
+    TextView messageCount;
+
+    private void initMessageCount() {
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setCornerRadius(1000);
+        gradientDrawable.setColor(ContextCompat.getColor(this, R.color.md_red_400));
+        messageCount.setBackgroundDrawable(gradientDrawable);
+        getMessageCount();
+    }
+
+    private void getMessageCount() {
+        String url = messageCountUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONObject data = response.getJSONObject(Constant.K_DATA);
+        int cnt = data.getInt("Cnt");
+        if (cnt > 0) {
+            messageCount.setText("" + cnt);
+            messageCount.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private String messageCountUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getnewmsgcount?").buildUpon();
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        return builder.toString();
+    }
+
+    @Subscribe
+    public void refreshMessage(RefreshMessageEvent refreshMessageEvent) {
+        getMessageCount();
+    }
 
 }

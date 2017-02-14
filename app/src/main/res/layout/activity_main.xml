@@ -51,44 +51,64 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
 
         <!-- 消息 -->
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/message"
+        <com.zhy.android.percent.support.PercentFrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_heightPercent="4%sh"
-                app:layout_marginBottomPercent="0.5%sh"
-                app:layout_widthPercent="4%sh" />
+            android:layout_weight="1">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="消息"
-                app:layout_textSizePercent="2.2%sh" />
+                android:visibility="invisible"
+                android:id="@+id/messageCount"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="right|top"
+                android:background="@color/md_red_300"
+                android:gravity="center"
+                android:text="2"
+                app:layout_marginRightPercent="1%sw"
+                app:layout_marginTopPercent="1%sw"
+                android:textColor="@color/md_white"
+                app:layout_heightPercent="6%sw"
+                app:layout_textSizePercent="4%sw"
+                app:layout_widthPercent="6%sw" />
 
-        </com.zhy.android.percent.support.PercentLinearLayout>
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_heightPercent="4%sh"
+                    app:layout_marginBottomPercent="0.5%sh"
+                    app:layout_widthPercent="4%sh" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="消息"
+                    app:layout_textSizePercent="2.2%sh" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentFrameLayout>
         <!--&lt;!&ndash; 添加 &ndash;&gt;-->
         <!--<com.zhy.android.percent.support.PercentLinearLayout-->
-            <!--android:id="@+id/add"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
+        <!--android:id="@+id/add"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical">-->
 
-            <!--<ImageView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:src="@drawable/add"-->
-                <!--app:layout_heightPercent="8%sh"-->
-                <!--app:layout_widthPercent="8%sh" />-->
+        <!--<ImageView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:src="@drawable/add"-->
+        <!--app:layout_heightPercent="8%sh"-->
+        <!--app:layout_widthPercent="8%sh" />-->
 
         <!--</com.zhy.android.percent.support.PercentLinearLayout>-->
 

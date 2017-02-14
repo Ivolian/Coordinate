@@ -94,11 +94,41 @@ public class MessageFragment extends LazyLoadFragment {
         }.getType());
         adapter.setMessageList(messageList);
         adapter.notifyDataSetChanged();
+        setMessageRead();
     }
 
     private String getUrl(final String userId) {
         Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getmessage?").buildUpon();
         builder.appendQueryParameter(Constant.K_USER_ID, userId);
+        return builder.toString();
+    }
+
+    // ====================== 设置全部未读消息为已读 ======================
+
+    private void setMessageRead() {
+        String url = messageReadUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            if (ResponseHelper.isWrong(response)) {
+                                // do nothing
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private String messageReadUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/setreadmsg?").buildUpon();
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
         return builder.toString();
     }
 
