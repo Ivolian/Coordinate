@@ -1,6 +1,7 @@
 package com.unicorn.coordinate.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -8,8 +9,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.f2prateek.dart.InjectExtra;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kbeanie.multipicker.api.CameraImagePicker;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
@@ -21,10 +27,15 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
+import com.unicorn.coordinate.home.model.ExtraInfo;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
+import com.unicorn.coordinate.volley.SimpleVolley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +60,7 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
 
     @Override
     public void initViews() {
-
+        getExtra();
     }
 
     String photoPath;
@@ -198,6 +209,57 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
         });
     }
 
+    // ====================== getExtra ======================
+
+    private void getExtra() {
+        String url = extraUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONArray data = response.getJSONArray(Constant.K_DATA);
+        List<ExtraInfo> extraInfoList = new Gson().fromJson(data.toString(), new TypeToken<List<ExtraInfo>>() {
+        }.getType());
+        if (extraInfoList.size() !=0 ){
+            ExtraInfo extraInfo = extraInfoList.get(0);
+            fillViews(extraInfo);
+        }
+    }
+
+    private void fillViews(ExtraInfo extraInfo){
+        etName.setText(extraInfo.getInfo1());
+        etNumber.setText(extraInfo.getInfo2());
+        if (type.equals("2")) {
+            Glide.with(SimpleApplication.getInstance())
+                    .load(ConfigUtils.getBaseUrl() + extraInfo.getInfo3())
+                    .crossFade()
+                    .into(ivPhoto);
+        }
+    }
+
+    private String extraUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getextra?").buildUpon();
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        return builder.toString();
+    }
 
     // ====================== views ======================
 

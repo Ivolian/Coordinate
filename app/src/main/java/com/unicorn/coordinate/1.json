@@ -4,23 +4,13 @@
   "msg": null,
   "data": [
     {
-      "Linesid": "992f23fa-f601-43ac-9f54-a6ace48646be",
-      "Matchid": "423e5467-2b46-4a36-b00b-c5421f51338c",
-      "Lineid": "12f6242e-de1e-4524-86d6-76ad08a16f48",
-      "Lineno": null,
-      "Linename": "标准随机",
-      "Status": 0,
-      "Playercount": 5,
-      "Content": "标准5人线路，随机分配",
-      "Url": "",
-      "Summary": "",
-      "Pointscount": 10,
-      "Condition_Sex": null,
-      "Condition_Age": null,
-      "Condition_Subline": null,
-      "Createtime": "2017-02-10 10:49:30",
-      "Price": "0.01",
-      "Notice": ""
+      "Id": "4919dc3a-dff2-49a7-9820-229f78c9e532",
+      "updt": "2017-02-14 12:45:23",
+      "extype": "2",
+      "teamid": "015f5037-ce4c-4949-ad3f-8fcc38e77e75",
+      "info1": "你好",
+      "info2": "123",
+      "info3": "/uploadimg/cf2432ad-2120-4233-b08b-19d9533d40db.jpg"
     }
   ]
 }
