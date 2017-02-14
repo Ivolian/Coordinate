@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.OnClick;
 
-public class MainBusActivity extends EventBusActivity {
+public class MainActivity extends EventBusActivity {
 
 
     // ======================== onCreate =========================
