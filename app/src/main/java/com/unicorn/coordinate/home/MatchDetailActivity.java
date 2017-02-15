@@ -289,6 +289,7 @@ public class MatchDetailActivity extends BaseActivity {
                 chooseLine();
                 break;
             case "3":
+            case "5":
                 preSignUp();
                 break;
             case "4":

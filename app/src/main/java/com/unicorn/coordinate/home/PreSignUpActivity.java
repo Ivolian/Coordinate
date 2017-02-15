@@ -48,7 +48,12 @@ import butterknife.OnClick;
 
 public class PreSignUpActivity extends EventBusActivity {
 
+    @BindView(R.id.complete)
+    TextView complete;
 
+    private boolean isLeader() {
+        return myMatchStatus.getIsLeader().equals("1");
+    }
     // ====================== initViews ======================
 
     @Override
@@ -56,7 +61,14 @@ public class PreSignUpActivity extends EventBusActivity {
         initRxPlayers();
         initSth();
         teamStatus.setText(MatchHelper.myMatchStatusText(myMatchStatus));
-        addSwipeListener();
+        if (isLeader()) {
+            addSwipeListener();
+        }
+        complete.setVisibility(isLeader()?View.VISIBLE:View.INVISIBLE);
+        addExtra.setVisibility(isLeader()?View.VISIBLE:View.INVISIBLE);
+        addPlayer.setVisibility(isLeader()?View.VISIBLE:View.INVISIBLE);
+        cancelTeam.setVisibility(isLeader()?View.VISIBLE:View.INVISIBLE);
+
         getPlayers();
         getMyLine();
     }
@@ -297,7 +309,7 @@ public class PreSignUpActivity extends EventBusActivity {
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
                                 for (final int position : reverseSortedPositions) {
                                     final Player player = playerList.get(position);
-                                    DialogUtils.showConfirm(PreSignUpActivity.this, "确认删除" +  AESUtils.decrypt2(player.getNickname()) + "?", new MaterialDialog.SingleButtonCallback() {
+                                    DialogUtils.showConfirm(PreSignUpActivity.this, "确认删除" + AESUtils.decrypt2(player.getNickname()) + "?", new MaterialDialog.SingleButtonCallback() {
                                         @Override
                                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                             deletePlayer(player.getMobile());
