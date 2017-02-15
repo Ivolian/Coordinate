@@ -140,8 +140,6 @@ public class FormalSignUpActivity extends EventBusActivity {
         MyLine myLine = myLineList.get(0);
         lineName.setText(myLine.getLinename());
         payPrice.setText("￥" + myLine.getPrice());
-        // TODO
-//        payStatus.setText(myLine.getStatus() == 1 ? "未支付" : "已支付");
     }
 
 
@@ -187,6 +185,7 @@ public class FormalSignUpActivity extends EventBusActivity {
     private void pay(MyOrder myOrder) {
         Intent intent = new Intent(this, PayActivity.class);
         intent.putExtra(Constant.K_MY_ORDER, myOrder);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
         startActivity(intent);
     }
 
@@ -228,7 +227,8 @@ public class FormalSignUpActivity extends EventBusActivity {
 
         // 报名付费 & 领队
         if (myMatchStatus.getMacthStatus().equals("3") && myMatchStatus.getIsLeader().equals("1")
-                && status.equals("0")) {
+//                && status.equals("0")
+                ) {
             pay.setVisibility(View.VISIBLE);
         }
     }

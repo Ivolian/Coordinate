@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
@@ -21,19 +22,24 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
+import com.unicorn.coordinate.helper.PayStatusHelper;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.PaySuccessEvent;
+import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.home.model.MyOrder;
 import com.unicorn.coordinate.home.model.MyPayResult;
 import com.unicorn.coordinate.pay.OrderInfoUtil2_0;
 import com.unicorn.coordinate.pay.PayResult;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
 
 import java.util.Map;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class PayActivity extends BaseActivity {
@@ -41,13 +47,82 @@ public class PayActivity extends BaseActivity {
 
     // ======================== payOnClick ============================
 
+    @BindView(R.id.pay)
+    TextView pay;
+
     @OnClick(R.id.pay)
     public void payOnClick() {
-        if (ClickHelper.isSafe()) {
-            payV2();
+        if (ClickHelper.isSafe() && time == 0) {
+            checkPay();
         }
     }
 
+    private void checkPay() {
+        String url = checkPayUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponseZ(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponseZ(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONObject data = response.getJSONObject(Constant.K_DATA);
+        String status = data.getString("status");
+        if (status.equals("0")) {
+            payV2();
+        }else {
+            ToastUtils.show(PayStatusHelper.payStatusText(status));
+            startTiming();
+        }
+
+    }
+
+
+    // ======================== timing =========================
+
+    private final Handler handler = new Handler();
+
+    private int time = 0;
+
+    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            pay.setText(time == 0 ? "确认支付" : "请稍后再试（" + time + "S）");
+            if (time == 0) {
+                return;
+            }
+            time--;
+            handler.postDelayed(this, 1000);
+        }
+    };
+
+    private void startTiming() {
+        time = 10;
+        handler.post(runnable);
+    }
+
+
+
+    private String checkPayUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/checkpay?").buildUpon();
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        return builder.toString();
+    }
 
     // ======================== payV2 ============================
 
@@ -192,6 +267,9 @@ public class PayActivity extends BaseActivity {
 
     @InjectExtra(Constant.K_MY_ORDER)
     MyOrder myOrder;
+
+    @InjectExtra(Constant.K_MY_MATCH_STATUS)
+    MyMatchStatus myMatchStatus;
 
     @OnClick(R.id.back)
     public void backOnClick() {
