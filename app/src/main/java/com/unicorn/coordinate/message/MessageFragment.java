@@ -15,8 +15,10 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.LazyLoadFragment;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
-import com.unicorn.coordinate.message.event.RefreshMessageEvent;
 import com.unicorn.coordinate.message.model.Message;
+import com.unicorn.coordinate.message.model.MessageDetailReadEvent;
+import com.unicorn.coordinate.message.model.MessageReadEvent;
+import com.unicorn.coordinate.message.model.UserChangeEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -50,7 +52,11 @@ public class MessageFragment extends LazyLoadFragment {
         fetchMessageList();
     }
 
+    @Override
+    public void onUserVisible() {
+        EventBus.getDefault().post(new MessageReadEvent());
 
+    }
     // ====================== 图集列表 ======================
 
     @BindView(R.id.recyclerView)
@@ -94,7 +100,6 @@ public class MessageFragment extends LazyLoadFragment {
         }.getType());
         adapter.setMessageList(messageList);
         adapter.notifyDataSetChanged();
-        setMessageRead();
     }
 
     private String getUrl(final String userId) {
@@ -105,32 +110,7 @@ public class MessageFragment extends LazyLoadFragment {
 
     // ====================== 设置全部未读消息为已读 ======================
 
-    private void setMessageRead() {
-        String url = messageReadUrl();
-        Request request = new StringRequest(
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            if (ResponseHelper.isWrong(response)) {
-                                // do nothing
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                SimpleVolley.getDefaultErrorListener()
-        );
-        SimpleVolley.addRequest(request);
-    }
 
-    private String messageReadUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/setreadmsg?").buildUpon();
-        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
-        return builder.toString();
-    }
 
 
     // ====================== avi ======================
@@ -162,7 +142,13 @@ public class MessageFragment extends LazyLoadFragment {
     }
 
     @Subscribe
-    public void refreshMessage(RefreshMessageEvent refreshMessageEvent) {
+    public void onMessageReadEvent(MessageDetailReadEvent MessageReadEvent) {
+        fetchMessageList();
+    }
+
+
+    @Subscribe
+    public void onUserChangeEvent(UserChangeEvent userChangeEvent) {
         fetchMessageList();
     }
 

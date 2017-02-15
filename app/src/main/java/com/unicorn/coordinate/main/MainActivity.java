@@ -18,7 +18,8 @@ import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.ReadMessageEvent;
-import com.unicorn.coordinate.message.event.RefreshMessageEvent;
+import com.unicorn.coordinate.message.model.MessageReadEvent;
+import com.unicorn.coordinate.message.model.UserChangeEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.UpdateUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
@@ -167,9 +168,9 @@ public class MainActivity extends EventBusActivity {
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         int cnt = data.getInt("Cnt");
-//        if (cnt > 0) {
+        if (cnt > 0) {
             messageCount.setVisibility(View.VISIBLE);
-//        }
+        }
     }
 
     private String messageCountUrl() {
@@ -179,8 +180,41 @@ public class MainActivity extends EventBusActivity {
     }
 
     @Subscribe
-    public void refreshMessage(RefreshMessageEvent refreshMessageEvent) {
+    public void onUserChangeEvent(UserChangeEvent userChangeEvent) {
         getMessageCount();
+    }
+
+    @Subscribe
+    public void onMessageReadEvent(MessageReadEvent messageReadEvent) {
+        messageCount.setVisibility(View.INVISIBLE);
+        setMessageRead();
+    }
+
+    private void setMessageRead() {
+        String url = messageReadUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            if (ResponseHelper.isWrong(response)) {
+                                // do nothing
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private String messageReadUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/setreadmsg?").buildUpon();
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        return builder.toString();
     }
 
 }

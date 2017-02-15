@@ -14,8 +14,8 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
-import com.unicorn.coordinate.message.event.RefreshMessageEvent;
 import com.unicorn.coordinate.message.model.Message;
+import com.unicorn.coordinate.message.model.MessageDetailReadEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
@@ -105,7 +105,7 @@ public class MessageDetailActivity extends BaseActivity {
             return;
         }
         ToastUtils.show("已接受");
-        EventBus.getDefault().post(new RefreshMessageEvent());
+        EventBus.getDefault().post(new MessageDetailReadEvent());
         finish();
     }
 
@@ -143,7 +143,7 @@ public class MessageDetailActivity extends BaseActivity {
             return;
         }
         ToastUtils.show("已拒绝");
-        EventBus.getDefault().post(new RefreshMessageEvent());
+        EventBus.getDefault().post(new MessageDetailReadEvent());
         finish();
     }
 
