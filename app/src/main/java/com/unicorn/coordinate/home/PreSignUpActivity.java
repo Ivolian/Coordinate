@@ -295,25 +295,34 @@ public class PreSignUpActivity extends EventBusActivity {
 
                             @Override
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
-                                for (int position : reverseSortedPositions) {
-                                    Player player = playerList.get(position);
-                                    deletePlayer(player.getMobile());
-                                    playerAdapter.notifyItemRemoved(position);
-                                    playerList.remove(position);
-                                    playerAdapter.notifyDataSetChanged();
+                                for (final int position : reverseSortedPositions) {
+                                    final Player player = playerList.get(position);
+                                    DialogUtils.showConfirm(PreSignUpActivity.this, "确认删除" +  AESUtils.decrypt2(player.getNickname()) + "?", new MaterialDialog.SingleButtonCallback() {
+                                        @Override
+                                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                            deletePlayer(player.getMobile());
+                                            playerAdapter.notifyItemRemoved(position);
+                                            playerList.remove(position);
+                                            playerAdapter.notifyDataSetChanged();
+                                        }
+                                    });
                                 }
                             }
 
                             @Override
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
-                                for (int position : reverseSortedPositions) {
-                                    Player player = playerList.get(position);
-                                    deletePlayer(player.getMobile());
-                                    playerAdapter.notifyItemRemoved(position);
-                                    playerList.remove(position);
-                                    playerAdapter.notifyDataSetChanged();
+                                for (final int position : reverseSortedPositions) {
+                                    final Player player = playerList.get(position);
+                                    DialogUtils.showConfirm(PreSignUpActivity.this, "确认删除" + AESUtils.decrypt2(player.getNickname()) + "?", new MaterialDialog.SingleButtonCallback() {
+                                        @Override
+                                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                            deletePlayer(player.getMobile());
+                                            playerAdapter.notifyItemRemoved(position);
+                                            playerList.remove(position);
+                                            playerAdapter.notifyDataSetChanged();
+                                        }
+                                    });
                                 }
-
                             }
                         },
                         new RecyclerView.OnScrollListener() {
