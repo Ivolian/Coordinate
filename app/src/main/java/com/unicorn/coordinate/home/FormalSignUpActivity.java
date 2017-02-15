@@ -53,6 +53,12 @@ public class FormalSignUpActivity extends EventBusActivity {
         getPlayers();
         getMyLine();
         checkPay();
+
+        // 报名付费 & 领队
+        if (myMatchStatus.getMacthStatus().equals("3") && myMatchStatus.getIsLeader().equals("1")
+                && !myMatchStatus.getStatus().equals("7")) {
+            pay.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -225,12 +231,7 @@ public class FormalSignUpActivity extends EventBusActivity {
         String status = data.getString("status");
         payStatus.setText(PayStatusHelper.payStatusText(status));
 
-        // 报名付费 & 领队
-        if (myMatchStatus.getMacthStatus().equals("3") && myMatchStatus.getIsLeader().equals("1")
-//                && status.equals("0")
-                ) {
-            pay.setVisibility(View.VISIBLE);
-        }
+
     }
 
 

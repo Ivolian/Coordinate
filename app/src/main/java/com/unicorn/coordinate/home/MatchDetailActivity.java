@@ -25,7 +25,6 @@ import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.DialogUtils;
-import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -56,6 +55,7 @@ public class MatchDetailActivity extends BaseActivity {
     @Override
     public void initViews() {
         fetchMatchInfo();
+        getMyMatchStatus();
     }
 
 
@@ -103,7 +103,6 @@ public class MatchDetailActivity extends BaseActivity {
         date3.setText(matchInfo.getDate3());
         date4.setText(matchInfo.getDate4());
         content.setText(matchInfo.getContent());
-        tvSignUp.setText(MatchHelper.matchStatusText(matchInfo));
         // 加载结束，显示内容，之前为不可见
         container.setVisibility(View.VISIBLE);
     }
@@ -113,22 +112,34 @@ public class MatchDetailActivity extends BaseActivity {
 
     private MyMatchStatus myMatchStatus;
 
-    @OnClick(R.id.signUp)
-    public void signUpOnClick() {
-        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)) {
-            getMyMatchStatusIfNeed();
-        }
-    }
+    /*
+    0 已创建
+    显示“报名未开始” 不可点击
 
-    private void getMyMatchStatusIfNeed() {
-        // TODO 可以点击的只有1和3？
-        if (MatchHelper.isNeedGetMyMatchStatus(matchInfo)) {
-            getMyMatchStatus();
-        } else {
-            // TODO 不能点击时提示比赛状态
-            ToastUtils.show(MatchHelper.matchStatusText(matchInfo));
-        }
-    }
+    1 预报名开始可以开始预报名
+    显示：立即预报名，后续根据status操作，现在是对的
+
+    2 预报名结束不能预报名
+    显示：预报名已结束
+    status=6的可以点击进去，到预报名完成界面，付费按钮不显示
+
+    3 正式报名开始可以支付
+    status=6 显示 ”立即支付“ 按钮可以点击进入
+    status=7 显示 “已完成报名”，可以点击进入现在的完成页面(付费页面不显示按钮)，下方付费按钮不显示
+
+    9 正式报名结束只有此状态下可以替换队员更换队长
+    status=7的可以点击进去现在完成页面(付费页面不显示按钮)，下面的立即支付按钮不显示
+
+    4 比赛开始不能预报名不能报名
+    显示比赛中，不判断status
+
+    5 比赛结束不能预报名不能报名
+    显示比赛结束，不判断status
+
+    8 比赛开始前准备(锁定信息，不能更换队员)
+    显示比赛中，不判断status
+     */
+
 
     private void getMyMatchStatus() {
         String url = myMatchStatusUrl();
@@ -156,16 +167,45 @@ public class MatchDetailActivity extends BaseActivity {
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         myMatchStatus = new Gson().fromJson(data.toString(), MyMatchStatus.class);
-//        readMatchInstruction();
+        tvSignUp.setText(MatchHelper.signUpText(myMatchStatus));
+    }
+
+    private void getMyMatchStatus2() {
+        String url = myMatchStatusUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse22(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse22(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONObject data = response.getJSONObject(Constant.K_DATA);
+        myMatchStatus = new Gson().fromJson(data.toString(), MyMatchStatus.class);
+        tvSignUp.setText(MatchHelper.signUpText(myMatchStatus));
         signUp();
     }
 
-    private void readMatchInstruction() {
-        Intent intent = new Intent(this, MatchInstructionActivity.class);
-        intent.putExtra(Constant.K_TITLE, "比赛须知");
-        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
-        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
-        startActivity(intent);
+
+    @OnClick(R.id.signUp)
+    public void signUpOnClick() {
+        if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)) {
+          getMyMatchStatus2();
+        }
     }
 
 
@@ -181,6 +221,63 @@ public class MatchDetailActivity extends BaseActivity {
      */
 
     private void signUp() {
+        String matchStatus = myMatchStatus.getMacthStatus();
+        String status = myMatchStatus.getStatus();
+        switch (matchStatus) {
+            case "0":
+            case "4":
+            case "5":
+            case "8":
+                break;
+            case "1":
+                preSignUpZ();
+                break;
+            case "2":
+                if (status.equals("6")) {
+                    formalSignUp();
+                }
+                break;
+            case "3":
+                if (status.equals("6") || status.equals("7")) {
+                    formalSignUp();
+                }
+                break;
+            case "9":
+                if (status.equals("7")) {
+                    formalSignUp();
+                }
+                break;
+        }
+
+
+//        switch (myMatchStatus.getStatus()) {
+//            case "1":
+//                readMatchInstruction();
+//                break;
+//            case "2":
+//                chooseLine();
+//                break;
+//            case "3":
+//                preSignUp();
+//                break;
+//            case "4":
+//                DialogUtils.showConfirm(this, "你有被邀请信息，请马上处理", new MaterialDialog.SingleButtonCallback() {
+//                    @Override
+//                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//                        EventBus.getDefault().post(new ReadMessageEvent());
+//                        finish();
+//                    }
+//                });
+//                break;
+//            case "5":
+//            case "6":
+//            case "7":
+//                formalSignUp();
+//                break;
+//        }
+    }
+
+    private void preSignUpZ() {
         switch (myMatchStatus.getStatus()) {
             case "1":
                 readMatchInstruction();
@@ -200,12 +297,15 @@ public class MatchDetailActivity extends BaseActivity {
                     }
                 });
                 break;
-            case "5":
-            case "6":
-            case "7":
-                formalSignUp();
-                break;
         }
+    }
+
+    private void readMatchInstruction() {
+        Intent intent = new Intent(this, MatchInstructionActivity.class);
+        intent.putExtra(Constant.K_TITLE, "比赛须知");
+        intent.putExtra(Constant.K_MATCH_INFO, matchInfo);
+        intent.putExtra(Constant.K_MY_MATCH_STATUS, myMatchStatus);
+        startActivity(intent);
     }
 
     private void chooseLine() {
