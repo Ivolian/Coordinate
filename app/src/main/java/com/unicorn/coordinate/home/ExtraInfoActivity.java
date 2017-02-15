@@ -60,6 +60,7 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
 
     @Override
     public void initViews() {
+        ivPhoto.setVisibility(type.equals("2") ? View.VISIBLE : View.INVISIBLE);
         getExtra();
     }
 
@@ -238,13 +239,13 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<ExtraInfo> extraInfoList = new Gson().fromJson(data.toString(), new TypeToken<List<ExtraInfo>>() {
         }.getType());
-        if (extraInfoList.size() !=0 ){
+        if (extraInfoList.size() != 0) {
             ExtraInfo extraInfo = extraInfoList.get(0);
             fillViews(extraInfo);
         }
     }
 
-    private void fillViews(ExtraInfo extraInfo){
+    private void fillViews(ExtraInfo extraInfo) {
         etName.setText(extraInfo.getInfo1());
         etNumber.setText(extraInfo.getInfo2());
         if (type.equals("2")) {
