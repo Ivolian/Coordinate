@@ -55,7 +55,9 @@ public class MatchDetailActivity extends BaseActivity {
     @Override
     public void initViews() {
         fetchMatchInfo();
-        getMyMatchStatus();
+        if (!ConfigUtils.notLogin()) {
+            getMyMatchStatusFirst();
+        }
     }
 
 
@@ -103,12 +105,13 @@ public class MatchDetailActivity extends BaseActivity {
         date3.setText(matchInfo.getDate3());
         date4.setText(matchInfo.getDate4());
         content.setText(matchInfo.getContent());
+        tvSignUp.setText(MatchHelper.matchStatusText(matchInfo));
         // 加载结束，显示内容，之前为不可见
         container.setVisibility(View.VISIBLE);
     }
 
 
-    // ====================== getMyMatchStatus ======================
+    // ====================== getMyMatchStatusFirst ======================
 
     private MyMatchStatus myMatchStatus;
 
@@ -141,7 +144,7 @@ public class MatchDetailActivity extends BaseActivity {
      */
 
 
-    private void getMyMatchStatus() {
+    private void getMyMatchStatusFirst() {
         String url = myMatchStatusUrl();
         Request request = new StringRequest(
                 url,
@@ -170,7 +173,7 @@ public class MatchDetailActivity extends BaseActivity {
         tvSignUp.setText(MatchHelper.signUpText(myMatchStatus));
     }
 
-    private void getMyMatchStatus2() {
+    private void getMyMatchStatus() {
         String url = myMatchStatusUrl();
         Request request = new StringRequest(
                 url,
@@ -204,7 +207,7 @@ public class MatchDetailActivity extends BaseActivity {
     @OnClick(R.id.signUp)
     public void signUpOnClick() {
         if (ClickHelper.isSafe() && ConfigUtils.checkLogin(this)) {
-          getMyMatchStatus2();
+            getMyMatchStatus();
         }
     }
 
