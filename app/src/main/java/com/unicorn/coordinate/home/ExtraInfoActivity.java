@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
@@ -61,6 +62,7 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
     @Override
     public void initViews() {
         ivPhoto.setVisibility(type.equals("2") ? View.VISIBLE : View.INVISIBLE);
+        tvPickPhoto.setVisibility(type.equals("2") ? View.VISIBLE : View.INVISIBLE);
         getExtra();
     }
 
@@ -68,6 +70,9 @@ public class ExtraInfoActivity extends BaseActivity implements ImagePickerCallba
 
 
     // ====================== pickPhotoOnClick ======================
+
+    @BindView(R.id.pickPhoto)
+    TextView tvPickPhoto;
 
     @OnClick(R.id.pickPhoto)
     public void pickPhotoOnClick() {
