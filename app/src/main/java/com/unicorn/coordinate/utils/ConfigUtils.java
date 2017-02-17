@@ -14,13 +14,15 @@ import java.io.File;
 
 public class ConfigUtils {
 
-    final static private String TEST_IP = "139.196.107.169";
+    final static private String IP = "adapp.chengshidingxiang.com";
+//    final static private String IP = "139.196.107.169";
 
-    final static private String TEST_PORT = "9003";
-//    final static private String TEST_PORT = "9001";
+
+    final static private String PORT = "80";
+//    final static private String PORT = "9003";
 
     public static String getBaseUrl() {
-        return "http://" + TEST_IP + ":" + TEST_PORT;
+        return "http://" + IP + ":" + PORT;
     }
 
     public static String getImageBaseUrl() {

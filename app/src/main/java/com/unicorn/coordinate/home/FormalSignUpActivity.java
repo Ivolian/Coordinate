@@ -18,7 +18,6 @@ import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.EventBusActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
-import com.unicorn.coordinate.helper.PayStatusHelper;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.PaySuccessEvent;
 import com.unicorn.coordinate.home.model.MatchInfo;
@@ -52,7 +51,8 @@ public class FormalSignUpActivity extends EventBusActivity {
 
         getPlayers();
         getMyLine();
-        checkPay();
+//        checkPay();
+        getOrder();
 
         // 报名付费 & 领队
         if (myMatchStatus.getMacthStatus().equals("3") && myMatchStatus.getIsLeader().equals("1")
@@ -154,7 +154,7 @@ public class FormalSignUpActivity extends EventBusActivity {
     @OnClick(R.id.pay)
     public void payOnClick() {
         if (ClickHelper.isSafe()) {
-            getOrder();
+            pay(myOrder);
         }
     }
 
@@ -177,6 +177,8 @@ public class FormalSignUpActivity extends EventBusActivity {
         SimpleVolley.addRequest(request);
     }
 
+    private MyOrder myOrder;
+
     private void copeResponse3(String responseString) throws Exception {
         if (ResponseHelper.isWrong(responseString)) {
             return;
@@ -185,7 +187,10 @@ public class FormalSignUpActivity extends EventBusActivity {
         JSONArray data = response.getJSONArray(Constant.K_DATA);
         List<MyOrder> myOrderList = new Gson().fromJson(data.toString(), new TypeToken<List<MyOrder>>() {
         }.getType());
-        pay(myOrderList.get(0));
+        myOrder = myOrderList.get(0);
+        payStatus.setText(orderStatusText(myOrder));
+
+//        pay(myOrderList.get(0));
     }
 
     private void pay(MyOrder myOrder) {
@@ -200,39 +205,6 @@ public class FormalSignUpActivity extends EventBusActivity {
         finish();
     }
 
-
-    // ======================== 获取支付状态 ========================
-
-    private void checkPay() {
-        String url = checkPayUrl();
-        Request request = new StringRequest(
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            copeResponseZ(response);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                SimpleVolley.getDefaultErrorListener()
-        );
-        SimpleVolley.addRequest(request);
-    }
-
-    private void copeResponseZ(String responseString) throws Exception {
-        if (ResponseHelper.isWrong(responseString)) {
-            return;
-        }
-        JSONObject response = new JSONObject(responseString);
-        JSONObject data = response.getJSONObject(Constant.K_DATA);
-        String status = data.getString("status");
-        payStatus.setText(PayStatusHelper.payStatusText(status));
-
-
-    }
 
 
     // ======================== 底层方法 ========================
@@ -255,11 +227,26 @@ public class FormalSignUpActivity extends EventBusActivity {
         builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
         return builder.toString();
     }
+//
+//    private String checkPayUrl() {
+//        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/checkpay?").buildUpon();
+//        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+//        return builder.toString();
+//    }
 
-    private String checkPayUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/checkpay?").buildUpon();
-        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
-        return builder.toString();
+    private String orderStatusText(MyOrder myOrder) {
+        switch (myOrder.getStatus()) {
+            case 0:
+                return "未支付";
+            case 1:
+                return "正在支付";
+            case 2:
+                return "成功支付";
+            case 8:
+                return "支付失败";
+            default:
+                return "";
+        }
     }
 
 

@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.f2prateek.dart.InjectExtra;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
@@ -35,8 +36,10 @@ import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -83,17 +86,87 @@ public class PayActivity extends BaseActivity {
         JSONObject response = new JSONObject(responseString);
         JSONObject data = response.getJSONObject(Constant.K_DATA);
         String status = data.getString("status");
+        // checkpay之后，case 0 ，再获取一次订单号，然后再提交
         if (status.equals("0")) {
-            payV2();
-        }else {
+            getMyOrder();
+        } else {
+            /*
+            1：比赛不是支付状态，不能支付 按钮不能点击
+            2：正在支付  倒数10S不能点击
+            3：已经成功支付 直接不能点击
+            4：报名数量已经完成 直接不能点击
+            5：报名队列已满） 倒数10秒
+             */
+            switch (status) {
+                case "1":
+                    pay.setText("比赛不是支付状态，不能支付");
+                    time = -1;
+                    break;
+                case "2":
+                    timingText = "正在支付";
+                    startTiming();
+                    break;
+                case "3":
+                    pay.setText("已经成功支付");
+                    time = -1;
+                    break;
+                case "4":
+                    pay.setText("报名数量已经完成");
+                    time = -1;
+                    break;
+                case "5":
+                    timingText = "报名队列已满";
+                    startTiming();
+                    break;
+
+            }
             ToastUtils.show(PayStatusHelper.payStatusText(status));
             startTiming();
         }
 
     }
 
+    private void getMyOrder() {
+        String url = orderUrl();
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            copeResponse3(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
+    }
+
+    private void copeResponse3(String responseString) throws Exception {
+        if (ResponseHelper.isWrong(responseString)) {
+            return;
+        }
+        JSONObject response = new JSONObject(responseString);
+        JSONArray data = response.getJSONArray(Constant.K_DATA);
+        List<MyOrder> myOrderList = new Gson().fromJson(data.toString(), new TypeToken<List<MyOrder>>() {
+        }.getType());
+        myOrder = myOrderList.get(0);
+        payV2();
+    }
+
+    private String orderUrl() {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/getmyorder?").buildUpon();
+        builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
+        builder.appendQueryParameter("teamid", myMatchStatus.getTeamid());
+        return builder.toString();
+    }
+
 
     // ======================== timing =========================
+    private String timingText = "";
 
     private final Handler handler = new Handler();
 
@@ -102,7 +175,7 @@ public class PayActivity extends BaseActivity {
     private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            pay.setText(time == 0 ? "确认支付" : "请稍后再试（" + time + "S）");
+            pay.setText(time == 0 ? "确认支付" : timingText + ",请稍后再试（" + time + "S）");
             if (time == 0) {
                 return;
             }
@@ -115,7 +188,6 @@ public class PayActivity extends BaseActivity {
         time = 10;
         handler.post(runnable);
     }
-
 
 
     private String checkPayUrl() {

@@ -251,33 +251,6 @@ public class MatchDetailActivity extends BaseActivity {
                 }
                 break;
         }
-
-
-//        switch (myMatchStatus.getStatus()) {
-//            case "1":
-//                readMatchInstruction();
-//                break;
-//            case "2":
-//                chooseLine();
-//                break;
-//            case "3":
-//                preSignUp();
-//                break;
-//            case "4":
-//                DialogUtils.showConfirm(this, "你有被邀请信息，请马上处理", new MaterialDialog.SingleButtonCallback() {
-//                    @Override
-//                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-//                        EventBus.getDefault().post(new ReadMessageEvent());
-//                        finish();
-//                    }
-//                });
-//                break;
-//            case "5":
-//            case "6":
-//            case "7":
-//                formalSignUp();
-//                break;
-//        }
     }
 
     private void preSignUpZ() {
@@ -290,6 +263,7 @@ public class MatchDetailActivity extends BaseActivity {
                 break;
             case "3":
             case "5":
+            case "6":
                 preSignUp();
                 break;
             case "4":
