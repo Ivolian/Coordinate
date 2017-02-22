@@ -16,7 +16,7 @@ public class ConfigUtils {
 
     final static private String IP = "adapp.chengshidingxiang.com";
 //    final static private String IP = "139.196.107.169";
-
+//
 
     final static private String PORT = "80";
 //    final static private String PORT = "9003";

@@ -233,6 +233,7 @@ public class LineChooseActivity extends BaseActivity {
             return;
         }
         ToastUtils.show("选择线路成功");
+        myMatchStatus.setStatus("3");
         preSignUp();
         finish();
     }

@@ -64,10 +64,10 @@ public class PreSignUpActivity extends EventBusActivity {
         if (isLeader()) {
             addSwipeListener();
         }
-        complete.setVisibility(isLeader() && myMatchStatus.getStatus().equals(3)?View.VISIBLE:View.GONE);
-        addExtra.setVisibility(isLeader()&& myMatchStatus.getStatus().equals(3)?View.VISIBLE:View.INVISIBLE);
-        addPlayer.setVisibility(isLeader()&& myMatchStatus.getStatus().equals(3)?View.VISIBLE:View.INVISIBLE);
-        cancelTeam.setVisibility(isLeader()&& myMatchStatus.getStatus().equals(3)?View.VISIBLE:View.INVISIBLE);
+        complete.setVisibility(isLeader() && myMatchStatus.getStatus().equals("3") ? View.VISIBLE : View.GONE);
+        addExtra.setVisibility(isLeader() && myMatchStatus.getStatus().equals("3") ? View.VISIBLE : View.INVISIBLE);
+        addPlayer.setVisibility(isLeader() && myMatchStatus.getStatus().equals("3") ? View.VISIBLE : View.INVISIBLE);
+        cancelTeam.setVisibility(isLeader() && myMatchStatus.getStatus().equals("3") ? View.VISIBLE : View.INVISIBLE);
 
         getPlayers();
         getMyLine();
