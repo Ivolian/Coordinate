@@ -43,7 +43,7 @@ public class LineTypeView extends TextView {
         bgUnSelected = new GradientDrawable();
         bgUnSelected.setColor(Color.WHITE);
         bgUnSelected.setCornerRadius(10);
-        bgUnSelected.setStroke(1, Color.BLACK);
+        bgUnSelected.setStroke(DensityUtils.dip2px(getContext(), 1), ContextCompat.getColor(getContext(), R.color.md_grey_400));
 
         //
         setTextSize(COMPLEX_UNIT_DIP, 16);
