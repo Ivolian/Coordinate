@@ -6,12 +6,13 @@ public class MyMatchStatus implements Serializable {
 
 
     /**
-     * Teamid : 85bdd523-2f24-48f3-aa79-2bb576e22df4
-     * Teamname : dVR9TFItwNiCkbmlo2xDBg==
-     * Status : 2
+     * Teamid : b68deab0-1467-41c2-914d-cb442f83f6c4
+     * Teamname : 3fBOiLuojaHfh6ihZOZevw==
+     * Status : 3
      * IsLeader : 1
      * MacthStatus : 3
-     * Linesname :
+     * Linesname : Pdvg+yUUqQDwSKFc2k4QNg==
+     * TeamType : 0
      */
 
     private String Teamid;
@@ -20,6 +21,7 @@ public class MyMatchStatus implements Serializable {
     private String IsLeader;
     private String MacthStatus;
     private String Linesname;
+    private int TeamType;
 
     public String getTeamid() {
         return Teamid;
@@ -67,5 +69,13 @@ public class MyMatchStatus implements Serializable {
 
     public void setLinesname(String Linesname) {
         this.Linesname = Linesname;
+    }
+
+    public int getTeamType() {
+        return TeamType;
+    }
+
+    public void setTeamType(int TeamType) {
+        this.TeamType = TeamType;
     }
 }

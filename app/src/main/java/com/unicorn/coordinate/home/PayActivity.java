@@ -56,9 +56,20 @@ public class PayActivity extends BaseActivity {
     @OnClick(R.id.pay)
     public void payOnClick() {
         if (ClickHelper.isSafe() && time == 0) {
-            checkPay();
+            checkTeamType();
         }
     }
+
+    private void checkTeamType(){
+        final int teamType = myMatchStatus.getTeamType();
+        if (teamType == 0){
+            checkPay();
+        }else {
+//            直接调用getmyorder接口后去支付宝支付，支付完后调用completepay。
+            getMyOrder();
+        }
+    }
+
 
     private void checkPay() {
         String url = checkPayUrl();

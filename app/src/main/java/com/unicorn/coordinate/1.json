@@ -2,19 +2,13 @@
   "status": "ok",
   "code": "0",
   "msg": null,
-  "data": [
-    {
-      "Id": "02e95df4-dab5-4faf-8839-6396ba9d30bd",
-      "Match_Id": "423e5467-2b46-4a36-b00b-c5421f51338c",
-      "Orderid": "FH63622797248456120562",
-      "Teamid": "ac749590-28e4-43cf-9fe5-5cd3f90b5539",
-      "Lineid": "e0acab29-eec9-4035-8f6b-f5048ffd012e",
-      "Userid": "3f97160c-5ba5-11e6-a2c5-6c92bf314f0b",
-      "Ordertotal": "0.01",
-      "Status": 8,
-      "Createtime": null,
-      "Title": "[2017上海城市定向赛]报名费用",
-      "Paytime": "2017-02-15 23:14:40"
-    }
-  ]
-}
+  "data": {
+    "Teamid": "b68deab0-1467-41c2-914d-cb442f83f6c4",
+    "Teamname": "3fBOiLuojaHfh6ihZOZevw==",
+    "Status": "3",
+    "IsLeader": "1",
+    "MacthStatus": "3",
+    "Linesname": "Pdvg+yUUqQDwSKFc2k4QNg==",
+    "TeamType": 0
+  }
+}mY
