@@ -52,7 +52,7 @@ public class MessageDetailActivity extends BaseActivity {
         content.setText(message.getContext());
 
         String type = message.getType();
-        if (type != null && type.equals("3")) {
+        if (type != null && (type.equals("3") || type.equals("4"))) {
             operationBarContainer.setVisibility(View.VISIBLE);
         }
 
@@ -182,14 +182,16 @@ public class MessageDetailActivity extends BaseActivity {
     // ======================== 底层方法 ========================
 
     private String acceptUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/accept?").buildUpon();
+        String part = message.getType().equals("4") ? "/api/acceptchange?" : "/api/accept?";
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + part).buildUpon();
         builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
         builder.appendQueryParameter(Constant.K_INFO_ID, message.getInfoid());
         return builder.toString();
     }
 
     private String rejectUrl() {
-        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/reject?").buildUpon();
+        String part = message.getType().equals("4") ? "/api/rejectchange?" : "/api/reject?";
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + part).buildUpon();
         builder.appendQueryParameter(Constant.K_USER_ID, ConfigUtils.getUserId());
         builder.appendQueryParameter(Constant.K_INFO_ID, message.getInfoid());
         return builder.toString();

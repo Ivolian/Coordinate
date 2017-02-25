@@ -16,26 +16,41 @@
         android:id="@+id/mobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/md_black"
         android:textSize="15dp" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_weight="1"
-        android:minWidth="45dp"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/md_black"
         android:textSize="15dp" />
 
     <TextView
         android:id="@+id/status"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="1"
+        android:minWidth="40dp"
         android:textColor="@color/md_black"
         android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/operation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="2dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="2dp"
+        android:text="操作"
+        android:textColor="@color/md_white"
+        android:textSize="15dp" />
+
 
 </com.zhy.android.percent.support.PercentLinearLayout>
 

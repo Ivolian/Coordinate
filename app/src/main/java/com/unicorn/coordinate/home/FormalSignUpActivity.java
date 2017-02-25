@@ -20,6 +20,7 @@ import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.home.event.PaySuccessEvent;
+import com.unicorn.coordinate.home.event.RefreshPlayerEvent;
 import com.unicorn.coordinate.home.model.MatchInfo;
 import com.unicorn.coordinate.home.model.MyLine;
 import com.unicorn.coordinate.home.model.MyMatchStatus;
@@ -69,6 +70,11 @@ public class FormalSignUpActivity extends EventBusActivity {
     private void initRvPlayers() {
         rvPlayers.setLayoutManager(new LinearLayoutManager(this));
         rvPlayers.setAdapter(playerAdapter);
+        playerAdapter.couldOperate = true;
+        // todo
+//        playerAdapter.couldOperate = myMatchStatus.getMacthStatus().equals("9")
+//                && myMatchStatus.getStatus().equals("7")
+//                && myMatchStatus.getIsLeader().equals("1");
     }
 
     private void getPlayers() {
@@ -205,7 +211,10 @@ public class FormalSignUpActivity extends EventBusActivity {
         finish();
     }
 
-
+    @Subscribe
+    public void refreshPlayer(RefreshPlayerEvent refreshPlayerEvent) {
+        getPlayers();
+    }
 
     // ======================== 底层方法 ========================
 
