@@ -132,7 +132,6 @@ public class PayActivity extends BaseActivity {
 
             }
             ToastUtils.show(PayStatusHelper.payStatusText(status));
-            startTiming();
         }
 
     }

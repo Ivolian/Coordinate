@@ -244,6 +244,8 @@ public class FormalSignUpActivity extends EventBusActivity {
                 return "成功支付";
             case 8:
                 return "支付失败";
+            case 9:
+                return "订单取消";
             default:
                 return "";
         }
