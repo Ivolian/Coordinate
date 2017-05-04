@@ -17,3 +17,13 @@ http://139.196.107.169:8000/main/Member?id=&tel=18000000021
 正式地址
     order.notify_url = @"http://www.chengshidingxiang.com/pay/notify_return";
     order.return_url = @"http://www.chengshidingxiang.com/pay/success_return";
+
+
+    测试队伍 30002 嗨爆突击队
+    金悦     15221658860         已推送
+    龚维栋     13817604657         已下载
+    潘吉     15021643707         已推送
+    潘利     13661932302         已推送
+    陆奕珺     13651616682         已下载
+
+    登录密码123456
