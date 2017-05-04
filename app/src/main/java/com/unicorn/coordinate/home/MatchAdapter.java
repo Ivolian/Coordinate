@@ -81,7 +81,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Match match = matchList.get(position);
-        String imgUrl = ConfigUtils.getImageBaseUrl() + match.getPic1();
+        String imgUrl = ConfigUtils.getImageBaseUrl() + match.getPic2();
         loadPicture(imgUrl, holder.picture);
         holder.name.setText(match.getMatch_name());
         holder.date.setText(match.getDate());
