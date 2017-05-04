@@ -70,11 +70,9 @@ public class FormalSignUpActivity extends EventBusActivity {
     private void initRvPlayers() {
         rvPlayers.setLayoutManager(new LinearLayoutManager(this));
         rvPlayers.setAdapter(playerAdapter);
-        playerAdapter.couldOperate = true;
-        // todo
-//        playerAdapter.couldOperate = myMatchStatus.getMacthStatus().equals("9")
-//                && myMatchStatus.getStatus().equals("7")
-//                && myMatchStatus.getIsLeader().equals("1");
+        playerAdapter.couldOperate = myMatchStatus.getMacthStatus().equals("9")
+                && myMatchStatus.getStatus().equals("7")
+                && myMatchStatus.getIsLeader().equals("1");
     }
 
     private void getPlayers() {

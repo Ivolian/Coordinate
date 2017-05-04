@@ -2,9 +2,12 @@ package com.unicorn.coordinate.message;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -17,6 +20,7 @@ import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.message.model.Message;
 import com.unicorn.coordinate.message.model.MessageDetailReadEvent;
 import com.unicorn.coordinate.utils.ConfigUtils;
+import com.unicorn.coordinate.utils.DialogUtils;
 import com.unicorn.coordinate.utils.ToastUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 import com.zhy.android.percent.support.PercentLinearLayout;
@@ -77,7 +81,12 @@ public class MessageDetailActivity extends BaseActivity {
     @OnClick(R.id.accept)
     public void acceptOnClick() {
         if (ClickHelper.isSafe()) {
-            accept();
+            DialogUtils.showConfirm(this, "确认接受？", new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    accept();
+                }
+            });
         }
     }
 
@@ -115,7 +124,12 @@ public class MessageDetailActivity extends BaseActivity {
     @OnClick(R.id.reject)
     public void rejectOnClick() {
         if (ClickHelper.isSafe()) {
-            reject();
+            DialogUtils.showConfirm(this, "确认拒绝？", new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    reject();
+                }
+            });
         }
     }
 

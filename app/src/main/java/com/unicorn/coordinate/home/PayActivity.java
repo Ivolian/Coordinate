@@ -60,11 +60,11 @@ public class PayActivity extends BaseActivity {
         }
     }
 
-    private void checkTeamType(){
+    private void checkTeamType() {
         final int teamType = myMatchStatus.getTeamType();
-        if (teamType == 0){
+        if (teamType == 0) {
             checkPay();
-        }else {
+        } else {
 //            直接调用getmyorder接口后去支付宝支付，支付完后调用completepay。
             getMyOrder();
         }
@@ -164,6 +164,8 @@ public class PayActivity extends BaseActivity {
         List<MyOrder> myOrderList = new Gson().fromJson(data.toString(), new TypeToken<List<MyOrder>>() {
         }.getType());
         myOrder = myOrderList.get(0);
+        tvOrderTitle.setText(myOrder.getTitle());
+        tvOrderTotal.setText("￥" + myOrder.getOrdertotal() + "元");
         payV2();
     }
 
@@ -232,8 +234,9 @@ public class PayActivity extends BaseActivity {
                         Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                         feedback(payResult);
                     } else {
-                        Toast.makeText(PayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        feedback2(payResult);
+                        Toast.makeText(PayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 }
@@ -338,6 +341,18 @@ public class PayActivity extends BaseActivity {
 //        return ConfigUtils.getBaseUrl() + "/api/completepay2?result=" + result;
     }
 
+    private String feedbackUrl2(String trade_status) {
+        Uri.Builder builder = Uri.parse(ConfigUtils.getBaseUrl() + "/api/completepay?").buildUpon();
+        builder.appendQueryParameter("orderid", myOrder.getOrderid());
+        builder.appendQueryParameter("trade_status", trade_status);
+        return builder.toString();
+
+//        trade_no	2017021321001004010287445167
+//        trade_status	9000
+//        buyer_email	2088801855353392
+//        return ConfigUtils.getBaseUrl() + "/api/completepay2?result=" + result;
+    }
+
 
     // ======================== ignore ============================
 
@@ -353,11 +368,41 @@ public class PayActivity extends BaseActivity {
     @InjectExtra(Constant.K_MY_MATCH_STATUS)
     MyMatchStatus myMatchStatus;
 
+    @BindView(R.id.tvOrderTitle)
+    TextView tvOrderTitle;
+
+    @BindView(R.id.tvOrderTotal)
+    TextView tvOrderTotal;
+
     @OnClick(R.id.back)
     public void backOnClick() {
         if (ClickHelper.isSafe()) {
             finish();
         }
+    }
+
+
+    //
+
+    private void feedback2(PayResult payResult) {
+        String url = feedbackUrl2(payResult.getResultStatus());
+        Request request = new StringRequest(
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            if (ResponseHelper.isWrong(response)) {
+                                return;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                SimpleVolley.getDefaultErrorListener()
+        );
+        SimpleVolley.addRequest(request);
     }
 
 
