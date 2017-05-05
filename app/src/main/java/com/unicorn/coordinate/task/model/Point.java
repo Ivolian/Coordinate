@@ -10,20 +10,24 @@ import java.io.Serializable;
 public class Point implements Serializable{
 
     /**
-     * Pointid : 104cbeb8-51d0-4f84-b03f-8fb076343cdd
-     * Lineguid : 1159c597-4e45-49f1-b23a-5a58354ac34d
-     * Id : null
-     * Eventid : null
-     * Lineid : null
-     * Pointname : Ki6CPPGcidOCwZD0UoAfU/PKp39qAw+9fCJYp3yV/l8=
-     * Content : ILJ2odKBg7/dIKuogfHQlT+sYprsAMH0ku8erx/rHD6DP9Y+dXk2xq8fah9oDyParRIKlz8IgVpgcmUDosYU9Pmj6KF4kj4s0Ne3r9HIph1GlS3o5Zk8n1+Ccf91rNLTNV+UKJGucgNe+7FuTkxMh/VmvYxVcsBiDbFvR4OqgwD9a89gz+cOCcHWs/em3WMCiAqbkeQ4AzDpNqKp9sR45JfPZRokRafamFYRbZ/8pYp4nEmbUKs7JFeiNV4sitCjisIXa5xUZnLf9XwFgEC3Eno07AxjUMpA2ZFAnHiOO43L3uB3Eo9rfktjT/ArGKlI19J4LudqYFEYHyFDzP/KRMzNAO97pAjztiAEdQ9mERxD/cnT6LeLmA+6hHmcj2G8GyBY+X3HUslNgiV/KHPJDuxOaY1A62Ggbg393O3IJdtM4oJ6t4nW4CXnt3TzmTG+iQfrRtPDHq06Gw6ClntxRNFN6gmDsyB23aI9vz4VKITKuzOJKqzsPQ/Lbbq257g8PqeysBJGjw87HXIapQKX94eqeWdbl8AWiyo7FJI3nE1ckRHScQxbcNTl4MCtDHE6ECRp/LeSQuHsLtVUy3Ce+vX6WZJEW4mNYxqTyrNMCEsRL9QZGYo/crn8gjSMZCy+CvKTAscoLUIUzk1U9yhrBI7kvuZeUpBG3LfOhRQNiAj4iM71hTtyOFfR+UkuXbDGeW4Le3NZ62wkj1nfstRFLwj9AS8htHMnkxcyDokHYZqh2F+1fV7emdHjREQ/sH3ynuYbkTcUdbfOJbDulC+oJGKI8v8XNI3VAr84jozdngNzS8DRAZAs1SJPHdp8E4kGsWD4wEVX7VtDYgA7M6IioLgHZJpzTFdKNGel1rfiJ5dJgNmuE6F9tAS+yViRWVefffP2JIe7j/qYmipO8XvBGdAA8ttJRtKnpNZ+GSFygmYY/8DuQXWWqoHkDUiD8aCYqkNcNw+MuSPp4bqzsdCWRJJM0vzOjiCn58M/d5et0WpJ9lZ63NaqqG0I2Os6tIDBzTbU8/PW2VJibJXbJ5f0rlBOjqJeIwi93fx/3B6py647c3FmDT+aQZWF6RPqTvMiE8cROP7PaG84l3zVWVarx2lkfhYuSCxLjsdL6Eg92fAXj+QC6LDe48CB/7CcS5ZUP5NRvmxNnxu2T9pXgbNGBesYWuI+jWCTgu/stVFeHBfhwqx8tY1g42pMVIzOvFpcSayLI/OgC1c+F/NxU3Hd8/knnQrJKVnmzM1LOd88XK+XOa7HIWCpKT5bLRKjOJkzmqDZ9cpBwTsESyMtkkfmV2CzjC8s1b9JMmgkmm6igMCtAwWECRToaxI8ML0hDCma5VYzNFUS5XfCZl4F7th2JzRVkzyE+zFbj/fB9IM+c4/vEHu7WvWblNu5Qg6LDGdA4DK5QBv8WCv64MOwdJEIWqI/X6SZDXFAm43aS7rkwuGzEagT/ChnTa3edP0uN7jgZwzH6E1Cis0Hlgjvm8gWxo3hm6nuWi08asE6MHkKrqB+eZplBpSy71gGRNNEIjnGd5L+aY7Guj1mZ4R1D28nAzG9IlgK9zQRzLOaDtS0WTKGAY2dPHMx2Gpsw12Rqp6CGA4LSF/J7sCiC1Wxz4cciaGHbE+YRIEQ6h7JGryIr45/0HdSv+6OhNBoyzWLU2zbzJz3ZfKwtVA6RNuOh80GosUA3I2HjHMjf4GRr+90zKHy8zivn0wTK8pN14iRHsDQrGgLBm6qOVGmdgRdYPmHDr3qRWDeTrp5U272gzahXoEnZ5ZhpRlpQGU2XQcqtPqh+ngIsLzhL/mivAmsedK6XHYtmqms2ynY6n72zcgpC7nWdgas7YuW3PEiVVXM501ZttrEBFjLWgZ8iRFar07VT676ZyG0HLrspZEJl+ExgVO3D+v5d8HX2I5MCGqOPsuUh6fJp48Pa60nYsahYb0aBw==
-     * Sort : 3
-     * Pointtype : 0
+     * Pointid : 27ae79f2-ba06-4ea2-9441-2f40285ec744
+     * Lineguid : a3eec3f4-1d30-4d89-8a87-9e8117e6faee
+     * Id :
+     * Eventid :
+     * Lineid :
+     * Pointname : exuzkBP0daJrqzUIcU7yjw==
+     * Content : dub1agYeXAmiuaviT6NH0w==
+     * Sort : 10
+     * Pointtype : 2
      * Status : 0
-     * Creater : null
-     * Pointno : null
+     * Pointno : JD10
+     * Pointaddress : 终点地址
+     * Pointtask : AtXYNvVVPBn9YNRBR2Rr+x4S+qhZF5aOWj8mfWvKrM+aUAHxnE6M2DxJdEaWjXA7Ipf6mgHBU+jlG+nKQlQ58dKwm1m55xf+Ngt656cT6F7UrG5IDDvh3l3LjWyP/ocihP9xe/QaLWw/UPGeI1MZPEy+gpHLWxS4ovKQOqxZjSfltdUtdr0sgIY1Lok0jdnfBgmsP1uTwkYfwg3UR9U4z35gg5hHFRO9jqtiXxu2hLGL60KEpvcQR9zQrpSKXLM2Id6+b9T0LL36yEl93820D8mXipgLJ3rFg+vffjR7ArBkmZEPbMMwGNGCFMKefikR
+     * Pointout : WVbEhJc7U6uiLexbIdYzrg==
+     * Sketchmap : http://139.196.107.169:9000/UploadFiles/JD10_image_20170426164406.png
+     * Sketchvoice :
+     * linkno :
      */
-    private static final long serialVersionUID = 1L;
 
     @org.greenrobot.greendao.annotation.Id
     private String Pointid;
@@ -36,118 +40,222 @@ public class Point implements Serializable{
     private int Sort;
     private int Pointtype;
     private int Status;
-    private String Creater;
     private String Pointno;
+    private String Pointaddress;
+    private String Pointtask;
+    private String Pointout;
+    private String Sketchmap;
+    private String Sketchvoice;
+    private String linkno;
+
+    public String getPointid() {
+        return Pointid;
+    }
+
+    public void setPointid(String Pointid) {
+        this.Pointid = Pointid;
+    }
+
+    public String getLineguid() {
+        return Lineguid;
+    }
+
+    public void setLineguid(String Lineguid) {
+        this.Lineguid = Lineguid;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+
+    public String getEventid() {
+        return Eventid;
+    }
+
+    public void setEventid(String Eventid) {
+        this.Eventid = Eventid;
+    }
+
+    public String getLineid() {
+        return Lineid;
+    }
+
+    public void setLineid(String Lineid) {
+        this.Lineid = Lineid;
+    }
+
+    public String getPointname() {
+        return Pointname;
+    }
+
+    public void setPointname(String Pointname) {
+        this.Pointname = Pointname;
+    }
+
+    public String getContent() {
+        return Content;
+    }
+
+    public void setContent(String Content) {
+        this.Content = Content;
+    }
+
+    public int getSort() {
+        return Sort;
+    }
+
+    public void setSort(int Sort) {
+        this.Sort = Sort;
+    }
+
+    public int getPointtype() {
+        return Pointtype;
+    }
+
+    public void setPointtype(int Pointtype) {
+        this.Pointtype = Pointtype;
+    }
+
+    public int getStatus() {
+        return Status;
+    }
+
+    public void setStatus(int Status) {
+        this.Status = Status;
+    }
+
+    public String getPointno() {
+        return Pointno;
+    }
+
+    public void setPointno(String Pointno) {
+        this.Pointno = Pointno;
+    }
+
+    public String getPointaddress() {
+        return Pointaddress;
+    }
+
+    public void setPointaddress(String Pointaddress) {
+        this.Pointaddress = Pointaddress;
+    }
+
+    public String getPointtask() {
+        return Pointtask;
+    }
+
+    public void setPointtask(String Pointtask) {
+        this.Pointtask = Pointtask;
+    }
+
+    public String getPointout() {
+        return Pointout;
+    }
+
+    public void setPointout(String Pointout) {
+        this.Pointout = Pointout;
+    }
+
+    public String getSketchmap() {
+        return Sketchmap;
+    }
+
+    public void setSketchmap(String Sketchmap) {
+        this.Sketchmap = Sketchmap;
+    }
+
+    public String getSketchvoice() {
+        return Sketchvoice;
+    }
+
+    public void setSketchvoice(String Sketchvoice) {
+        this.Sketchvoice = Sketchvoice;
+    }
+
+    public String getLinkno() {
+        return linkno;
+    }
+
+    public void setLinkno(String linkno) {
+        this.linkno = linkno;
+    }
+
+
+    private static final long serialVersionUID = 1L;
 
     // 手动添加的字段，返回数据中没有
     private String matchuserid;
     private String Pointtime;
-
-    @Generated(hash = 368747484)
-    public Point(String Pointid, String Lineguid, String Id, String Eventid, String Lineid, String Pointname, String Content, int Sort, int Pointtype, int Status, String Creater, String Pointno, String matchuserid, String Pointtime) {
-        this.Pointid = Pointid;
-        this.Lineguid = Lineguid;
-        this.Id = Id;
-        this.Eventid = Eventid;
-        this.Lineid = Lineid;
-        this.Pointname = Pointname;
-        this.Content = Content;
-        this.Sort = Sort;
-        this.Pointtype = Pointtype;
-        this.Status = Status;
-        this.Creater = Creater;
-        this.Pointno = Pointno;
-        this.matchuserid = matchuserid;
-        this.Pointtime = Pointtime;
-    }
+    
     @Generated(hash = 1977038299)
     public Point() {
     }
-    public String getPointid() {
-        return this.Pointid;
-    }
-    public void setPointid(String Pointid) {
+
+    @Generated(hash = 2141329829)
+    public Point(String Pointid, String Lineguid, String Id, String Eventid, String Lineid, String Pointname, String Content, int Sort, int Pointtype, int Status, String Pointno, String Pointaddress, String Pointtask, String Pointout, String Sketchmap, String Sketchvoice, String linkno, String matchuserid, String Pointtime, String tasklogo,
+            String logopic) {
         this.Pointid = Pointid;
-    }
-    public String getLineguid() {
-        return this.Lineguid;
-    }
-    public void setLineguid(String Lineguid) {
         this.Lineguid = Lineguid;
-    }
-    public String getId() {
-        return this.Id;
-    }
-    public void setId(String Id) {
         this.Id = Id;
-    }
-    public String getEventid() {
-        return this.Eventid;
-    }
-    public void setEventid(String Eventid) {
         this.Eventid = Eventid;
-    }
-    public String getLineid() {
-        return this.Lineid;
-    }
-    public void setLineid(String Lineid) {
         this.Lineid = Lineid;
-    }
-    public String getPointname() {
-        return this.Pointname;
-    }
-    public void setPointname(String Pointname) {
         this.Pointname = Pointname;
-    }
-    public String getContent() {
-        return this.Content;
-    }
-    public void setContent(String Content) {
         this.Content = Content;
-    }
-    public int getSort() {
-        return this.Sort;
-    }
-    public void setSort(int Sort) {
         this.Sort = Sort;
-    }
-    public int getPointtype() {
-        return this.Pointtype;
-    }
-    public void setPointtype(int Pointtype) {
         this.Pointtype = Pointtype;
-    }
-    public int getStatus() {
-        return this.Status;
-    }
-    public void setStatus(int Status) {
         this.Status = Status;
-    }
-    public String getCreater() {
-        return this.Creater;
-    }
-    public void setCreater(String Creater) {
-        this.Creater = Creater;
-    }
-    public String getPointno() {
-        return this.Pointno;
-    }
-    public void setPointno(String Pointno) {
         this.Pointno = Pointno;
+        this.Pointaddress = Pointaddress;
+        this.Pointtask = Pointtask;
+        this.Pointout = Pointout;
+        this.Sketchmap = Sketchmap;
+        this.Sketchvoice = Sketchvoice;
+        this.linkno = linkno;
+        this.matchuserid = matchuserid;
+        this.Pointtime = Pointtime;
+        this.tasklogo = tasklogo;
+        this.logopic = logopic;
     }
+
     public String getMatchuserid() {
-        return this.matchuserid;
+        return matchuserid;
     }
+
     public void setMatchuserid(String matchuserid) {
         this.matchuserid = matchuserid;
     }
+
     public String getPointtime() {
-        return this.Pointtime;
-    }
-    public void setPointtime(String Pointtime) {
-        this.Pointtime = Pointtime;
+        return Pointtime;
     }
 
+    public void setPointtime(String pointtime) {
+        Pointtime = pointtime;
+    }
 
+    // 添加两个字段
 
+    private String tasklogo;
+
+    private String logopic;
+
+    public String getTasklogo() {
+        return tasklogo;
+    }
+
+    public void setTasklogo(String tasklogo) {
+        this.tasklogo = tasklogo;
+    }
+
+    public String getLogopic() {
+        return logopic;
+    }
+
+    public void setLogopic(String logopic) {
+        this.logopic = logopic;
+    }
 }
