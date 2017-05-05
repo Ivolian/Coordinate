@@ -4,14 +4,28 @@ package com.unicorn.coordinate.task.model;
 public class Task  {
 
     /**
-     * matchuserid : a7fad144-0764-465d-95f1-74d7fed33f0d
-     * lines_id : 1159c597-4e45-49f1-b23a-5a58354ac34d
+     * matchuserid : adebff57-b727-44b4-9c2c-21604b098ed0
+     * lines_id : a3eec3f4-1d30-4d89-8a87-9e8117e6faee
+     * teamname : nPanI7zQJ1u4JDpKiXwsLg==
+     * linename : TfoDIz5aRqX4J5BK1e69Bw==
+     * nickname : AJOBgX7zsnpbB4nak1s3cg==
+     * match_name : 0IHLXWQjnLdrKWlbs9BDrmQjmIiMgr4eaA+Bw+1oVQzPSTOikRQI+kYsxCcETH27FaOExxAGc38srMImcb3n8g==
      * isdown : 2
+     * teamno : 30001
+     * tasklogo : shanghai_2017.jpg
+     * logopic : log_shanghai.png
      */
 
     private String matchuserid;
     private String lines_id;
+    private String teamname;
+    private String linename;
+    private String nickname;
+    private String match_name;
     private String isdown;
+    private String teamno;
+    private String tasklogo;
+    private String logopic;
 
     public String getMatchuserid() {
         return matchuserid;
@@ -29,12 +43,68 @@ public class Task  {
         this.lines_id = lines_id;
     }
 
+    public String getTeamname() {
+        return teamname;
+    }
+
+    public void setTeamname(String teamname) {
+        this.teamname = teamname;
+    }
+
+    public String getLinename() {
+        return linename;
+    }
+
+    public void setLinename(String linename) {
+        this.linename = linename;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getMatch_name() {
+        return match_name;
+    }
+
+    public void setMatch_name(String match_name) {
+        this.match_name = match_name;
+    }
+
     public String getIsdown() {
         return isdown;
     }
 
     public void setIsdown(String isdown) {
         this.isdown = isdown;
+    }
+
+    public String getTeamno() {
+        return teamno;
+    }
+
+    public void setTeamno(String teamno) {
+        this.teamno = teamno;
+    }
+
+    public String getTasklogo() {
+        return tasklogo;
+    }
+
+    public void setTasklogo(String tasklogo) {
+        this.tasklogo = tasklogo;
+    }
+
+    public String getLogopic() {
+        return logopic;
+    }
+
+    public void setLogopic(String logopic) {
+        this.logopic = logopic;
     }
 
 }
