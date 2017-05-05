@@ -123,6 +123,8 @@ public class TaskHelper {
         for (Point point : pointList) {
             point.setLineid(task.getLines_id());
             point.setMatchuserid(task.getMatchuserid());
+            point.setTasklogo(task.getTasklogo());
+            point.setLogopic(task.getLogopic());
         }
 
         PointDao pointDao = PointHelper.getPointDao();
