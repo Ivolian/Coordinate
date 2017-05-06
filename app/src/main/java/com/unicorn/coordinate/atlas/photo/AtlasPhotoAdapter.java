@@ -60,6 +60,7 @@ public class AtlasPhotoAdapter extends RecyclerView.Adapter<AtlasPhotoAdapter.Vi
 
     private void startPhotoDisplayActivity(Context context, String imgUrl) {
         Intent intent = new Intent(context, AtlasDisplayActivity.class);
+        intent.putExtra(Constant.K_TITLE, "照片详情");
         intent.putExtra(Constant.K_IMG_URL, imgUrl);
         context.startActivity(intent);
     }

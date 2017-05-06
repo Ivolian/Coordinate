@@ -2,6 +2,7 @@ package com.unicorn.coordinate.atlas.photo;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.f2prateek.dart.InjectExtra;
 import com.unicorn.coordinate.R;
@@ -28,6 +29,7 @@ public class AtlasDisplayActivity extends BaseActivity {
     }
 
     public void initViews() {
+        tvTitle.setText(title);
         initPhoto();
     }
 
@@ -37,12 +39,16 @@ public class AtlasDisplayActivity extends BaseActivity {
     @InjectExtra(Constant.K_IMG_URL)
     String imgUrl;
 
+    @InjectExtra(Constant.K_TITLE)
+    String title;
 
     // ====================== views ======================
 
     @BindView(R.id.photo)
     ImageView photo;
 
+    @BindView(R.id.tvTitle)
+    TextView tvTitle;
 
     // ====================== back ======================
 
