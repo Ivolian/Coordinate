@@ -1,6 +1,11 @@
 package com.unicorn.coordinate.task.model;
 
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
+
+@Entity
 public class Task  {
 
     /**
@@ -16,6 +21,7 @@ public class Task  {
      * logopic : log_shanghai.png
      */
 
+    @Id
     private String matchuserid;
     private String lines_id;
     private String teamname;
@@ -26,6 +32,25 @@ public class Task  {
     private String teamno;
     private String tasklogo;
     private String logopic;
+
+    @Generated(hash = 1874138248)
+    public Task(String matchuserid, String lines_id, String teamname, String linename, String nickname,
+            String match_name, String isdown, String teamno, String tasklogo, String logopic) {
+        this.matchuserid = matchuserid;
+        this.lines_id = lines_id;
+        this.teamname = teamname;
+        this.linename = linename;
+        this.nickname = nickname;
+        this.match_name = match_name;
+        this.isdown = isdown;
+        this.teamno = teamno;
+        this.tasklogo = tasklogo;
+        this.logopic = logopic;
+    }
+
+    @Generated(hash = 733837707)
+    public Task() {
+    }
 
     public String getMatchuserid() {
         return matchuserid;
