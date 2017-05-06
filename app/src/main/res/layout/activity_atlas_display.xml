@@ -35,11 +35,11 @@
 
         <!-- 标题 -->
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="照片详情"
             android:textColor="@color/md_white"
             app:layout_marginRightPercent="8%sh"
             app:layout_textSizePercent="3%sh" />
