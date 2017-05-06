@@ -47,6 +47,8 @@ public class Constant {
 
     public static final String K_POINT = "point";
 
+    public static final String K_LINK_NO = "linkNo";
+
     //
 
     public static final String K_LAST_POINT = "last_point";
