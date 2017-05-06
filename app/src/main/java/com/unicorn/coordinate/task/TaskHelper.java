@@ -7,11 +7,13 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
 import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.task.model.PointDao;
 import com.unicorn.coordinate.task.model.Task;
+import com.unicorn.coordinate.task.model.TaskDao;
 import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.volley.SimpleVolley;
 
@@ -59,6 +61,10 @@ public class TaskHelper {
         // 目前只有一个 task
         Task task = taskList.get(0);
         copeTask(task);
+
+        TaskDao taskDao = SimpleApplication.getInstance().getTaskDao();
+        taskDao.deleteAll();
+        taskDao.insert(task);
     }
 
     private static void copeTask(Task task) {
