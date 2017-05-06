@@ -45,6 +45,8 @@ public class Constant {
 
     public static final String K_MATCH_USER_ID = "matchuserid";
 
+    public static final String K_POINT = "point";
+
     //
 
     public static final String K_LAST_POINT = "last_point";
