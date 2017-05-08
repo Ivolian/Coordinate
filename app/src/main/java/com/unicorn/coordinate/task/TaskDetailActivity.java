@@ -18,7 +18,6 @@ import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.utils.AESUtils;
-import com.unicorn.coordinate.utils.ConfigUtils;
 import com.unicorn.coordinate.utils.GlideUtils;
 
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class TaskDetailActivity extends BaseActivity {
 
     @Override
     public void initViews() {
-        GlideUtils.loadPicture(ConfigUtils.getImageBaseUrl() + point.getTasklogo(), ivTaskLogo);
+        GlideUtils.loadPicture(point.getTasklogo(), ivTaskLogo);
         tvPointName.setText(AESUtils.decrypt(point.getPointname()));
         tvPointAddress.setText(point.getPointaddress());
         tvPointTask.setText(Html.fromHtml(AESUtils.decrypt(point.getPointtask())));
