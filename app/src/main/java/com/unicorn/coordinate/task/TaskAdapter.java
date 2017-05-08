@@ -14,7 +14,7 @@ import com.mikepenz.iconics.view.IconicsImageView;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
-import com.unicorn.coordinate.profile.matchCert.MatchCertDetailActivity2;
+import com.unicorn.coordinate.profile.matchCert.MatchFinishCertActivity;
 import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.utils.AESUtils;
 
@@ -75,29 +75,27 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                         if (getAdapterPosition() == PointHelper.getCurrentPosition() &&
                                 currentPoint.getPointtype() == PointType.LAST_POINT) {
                             Context context = name.getContext();
-                            startMatchCertDetailActivity2(context, currentPoint.getMatchuserid());
+                            startMatchFinishCertActivity(context, pointList.get(getAdapterPosition()));
                         }
                     }
                     return;
                 }
                 Context context = name.getContext();
                 Point point = pointList.get(getAdapterPosition());
-                String content = AESUtils.decrypt(point.getContent());
-                startTaskDetailActivity(context, content);
+                startTaskDetailActivity(context, point);
             }
         }
     }
 
-    private void startMatchCertDetailActivity2(Context context, final String matctUserId) {
-        Intent intent = new Intent(context, MatchCertDetailActivity2.class);
-        intent.putExtra(Constant.K_TITLE, "赛事证书");
-        intent.putExtra(Constant.K_MATCH_USER_ID, matctUserId);
+    private void startMatchFinishCertActivity(Context context,Point point) {
+        Intent intent = new Intent(context, MatchFinishCertActivity.class);
+        intent.putExtra(Constant.K_POINT,point);
         context.startActivity(intent);
     }
 
-    private void startTaskDetailActivity(Context context, final String content) {
+    private void startTaskDetailActivity(Context context, final Point point) {
         Intent intent = new Intent(context, TaskDetailActivity.class);
-        intent.putExtra(Constant.K_CONTENT, content);
+        intent.putExtra(Constant.K_POINT, point);
         context.startActivity(intent);
     }
 

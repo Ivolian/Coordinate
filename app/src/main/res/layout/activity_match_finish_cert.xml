@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 标题栏 -->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%sh">
+
+        <!-- 退回 -->
+        <com.zhy.android.percent.support.PercentFrameLayout
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%sh"
+            app:layout_widthPercent="8%sh">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                app:iiv_color="@color/md_white"
+                app:iiv_icon="ion-ios-arrow-left"
+                app:layout_heightPercent="2.8%sh"
+                app:layout_widthPercent="2.8%sh" />
+
+        </com.zhy.android.percent.support.PercentFrameLayout>
+
+        <!-- 标题 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="完赛证书"
+            android:textColor="@color/md_white"
+            app:layout_marginRightPercent="8%sh"
+            app:layout_textSizePercent="3%sh" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/match_finish_03" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/match_finish_06" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/match_finish_11" />
+
+    <com.unicorn.coordinate.profile.matchCert.UnderlineTextView
+        android:id="@+id/tvTeamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/md_black"
+        android:textSize="18dp" />
+
+    <com.unicorn.coordinate.profile.matchCert.UnderlineTextView
+        android:id="@+id/tvTeamNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/md_black"
+        android:textSize="18dp" />
+
+    <com.unicorn.coordinate.profile.matchCert.UnderlineTextView
+        android:id="@+id/tvNickName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/md_black"
+        android:textSize="18dp" />
+
+    <com.unicorn.coordinate.profile.matchCert.UnderlineTextView
+        android:id="@+id/tvLineName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/md_black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="30dp"
+        android:text="于是打发的沙发发阿斯顿发顺利完成大神发放大是发呆 发达反赛事"
+        android:textColor="@color/md_black"
+        android:textSize="19dp" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/match_finish_15" />
+
+</com.zhy.android.percent.support.PercentLinearLayout>

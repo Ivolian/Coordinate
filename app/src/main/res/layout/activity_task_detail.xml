@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_white"
+    android:background="@color/md_grey_100"
     android:orientation="vertical">
 
     <!-- 标题栏 -->
@@ -48,11 +50,172 @@
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
-    <!-- webView-->
-    <WebView
-        android:id="@+id/webView"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content">
+
+        <com.zhy.android.percent.support.PercentLinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- taskLogo-->
+            <ImageView
+                android:id="@+id/ivTaskLogo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="15%sh" />
+
+            <!-- 名称、地址 -->
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/md_white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_heightPercent="8%sh">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点标名称:"
+                    android:textColor="@color/md_black"
+                    app:layout_marginLeftPercent="6%sw"
+                    app:layout_textSizePercent="2.8%sh" />
+
+                <TextView
+                    android:id="@+id/tvPointName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="老码头3号库"
+                    android:textColor="@color/md_grey_500"
+                    app:layout_marginLeftPercent="1%sw"
+                    app:layout_textSizePercent="2.8%sh" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/md_white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_heightPercent="8%sh">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点标地址:"
+                    android:textColor="@color/md_black"
+                    app:layout_marginLeftPercent="6%sw"
+                    app:layout_textSizePercent="2.8%sh" />
+
+                <TextView
+                    android:id="@+id/tvPointAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="外马路601号"
+                    android:textColor="@color/md_grey_500"
+                    app:layout_marginLeftPercent="1%sw"
+                    app:layout_textSizePercent="2.8%sh" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/md_white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_heightPercent="8%sh">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="任务书 :"
+                    android:textColor="@color/md_black"
+                    app:layout_marginLeftPercent="6%sw"
+                    app:layout_textSizePercent="2.8%sh" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_white"
+                android:orientation="vertical">
+
+                <!-- tvPointTask-->
+                <TextView
+                    android:id="@+id/tvPointTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/md_black"
+                    app:layout_marginLeftPercent="6%sw"
+                    app:layout_marginRightPercent="6%sw"
+                    app:layout_textSizePercent="2.2%sh" />
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvLinkNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:text="回答问题" />
+
+                    <TextView
+                        android:layout_marginRight="12dp"
+                        android:id="@+id/tvSketcmap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="示意图" />
+
+                    <TextView
+                        android:layout_marginRight="12dp"
+                        android:id="@+id/tvSketvoice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="语音提示" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="有情提示:"
+                android:textColor="@color/md_black"
+                app:layout_marginLeftPercent="6%sw"
+                app:layout_textSizePercent="2.2%sh" />
+
+            <TextView
+                android:id="@+id/tvPointOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/md_grey_400"
+                app:layout_marginLeftPercent="6%sw"
+                app:layout_marginRightPercent="6%sw"
+                app:layout_textSizePercent="2.2%sh" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </ScrollView>
 
 </com.zhy.android.percent.support.PercentLinearLayout>
+
