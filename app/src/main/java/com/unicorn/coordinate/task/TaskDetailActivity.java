@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.f2prateek.dart.InjectExtra;
+import com.unicorn.coordinate.LocalHelper;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.atlas.photo.AtlasDisplayActivity;
 import com.unicorn.coordinate.base.BaseActivity;
@@ -38,7 +39,7 @@ public class TaskDetailActivity extends BaseActivity {
 
     @Override
     public void initViews() {
-        GlideUtils.loadPicture(point.getTasklogo(), ivTaskLogo);
+        GlideUtils.loadPicture(new LocalHelper().getLocalTaskLogo(), ivTaskLogo);
         tvPointName.setText(AESUtils.decrypt(point.getPointname()));
         tvPointAddress.setText(point.getPointaddress());
         tvPointTask.setText(Html.fromHtml(AESUtils.decrypt(point.getPointtask())));
