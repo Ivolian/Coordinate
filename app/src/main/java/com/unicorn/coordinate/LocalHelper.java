@@ -1,5 +1,6 @@
 package com.unicorn.coordinate;
 
+import com.unicorn.coordinate.task.model.Point;
 import com.unicorn.coordinate.task.model.Task;
 import com.unicorn.coordinate.task.model.TaskDao;
 import com.unicorn.coordinate.utils.ConfigUtils;
@@ -11,6 +12,22 @@ import java.io.File;
 import okhttp3.Call;
 
 public class LocalHelper {
+
+    public File getLocalSketcvoice(Point point) {
+        return new File(ConfigUtils.getBaseDirPath(), fileName(point.getSketchvoice()));
+    }
+
+    public File getLocalSketcmap(Point point) {
+        return new File(ConfigUtils.getBaseDirPath(), fileName(point.getSketchmap()));
+    }
+
+
+    public void localPoint(Point point) {
+        downloadFile(point.getSketchmap());
+        downloadFile(point.getSketchvoice());
+    }
+
+    //
 
     public File getLocalTaskLogo() {
         return new File(ConfigUtils.getBaseDirPath(), fileName(getTask().getTasklogo()));
@@ -25,13 +42,15 @@ public class LocalHelper {
         return taskDao.queryBuilder().unique();
     }
 
-    public void localTask() {
-        Task task = getTask();
+    public void localTask(Task task) {
         downloadFile(task.getTasklogo());
         downloadFile(task.getLogopic());
     }
 
     private void downloadFile(String url) {
+        if (url == null || url.equals("")) {
+            return;
+        }
         OkHttpUtils.get()
                 .url(url)
                 .build()
