@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.unicorn.coordinate.LocalHelper;
 import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ResponseHelper;
@@ -65,6 +66,8 @@ public class TaskHelper {
         TaskDao taskDao = SimpleApplication.getInstance().getTaskDao();
         taskDao.deleteAll();
         taskDao.insert(task);
+
+        new LocalHelper().localTask();
     }
 
     private static void copeTask(Task task) {
@@ -129,8 +132,6 @@ public class TaskHelper {
         for (Point point : pointList) {
             point.setLineid(task.getLines_id());
             point.setMatchuserid(task.getMatchuserid());
-            point.setTasklogo(task.getTasklogo());
-            point.setLogopic(task.getLogopic());
         }
 
         PointDao pointDao = PointHelper.getPointDao();
@@ -209,6 +210,7 @@ public class TaskHelper {
         builder.appendQueryParameter("matchuserid", task.getMatchuserid());
         return builder.toString();
     }
+
 
 
 }
