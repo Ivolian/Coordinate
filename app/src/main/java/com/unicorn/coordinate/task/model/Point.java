@@ -195,9 +195,8 @@ public class Point implements Serializable{
     public Point() {
     }
 
-    @Generated(hash = 2141329829)
-    public Point(String Pointid, String Lineguid, String Id, String Eventid, String Lineid, String Pointname, String Content, int Sort, int Pointtype, int Status, String Pointno, String Pointaddress, String Pointtask, String Pointout, String Sketchmap, String Sketchvoice, String linkno, String matchuserid, String Pointtime, String tasklogo,
-            String logopic) {
+    @Generated(hash = 1427496592)
+    public Point(String Pointid, String Lineguid, String Id, String Eventid, String Lineid, String Pointname, String Content, int Sort, int Pointtype, int Status, String Pointno, String Pointaddress, String Pointtask, String Pointout, String Sketchmap, String Sketchvoice, String linkno, String matchuserid, String Pointtime) {
         this.Pointid = Pointid;
         this.Lineguid = Lineguid;
         this.Id = Id;
@@ -217,9 +216,9 @@ public class Point implements Serializable{
         this.linkno = linkno;
         this.matchuserid = matchuserid;
         this.Pointtime = Pointtime;
-        this.tasklogo = tasklogo;
-        this.logopic = logopic;
     }
+
+
 
     public String getMatchuserid() {
         return matchuserid;
@@ -237,25 +236,5 @@ public class Point implements Serializable{
         Pointtime = pointtime;
     }
 
-    // 添加两个字段
 
-    private String tasklogo;
-
-    private String logopic;
-
-    public String getTasklogo() {
-        return tasklogo;
-    }
-
-    public void setTasklogo(String tasklogo) {
-        this.tasklogo = tasklogo;
-    }
-
-    public String getLogopic() {
-        return logopic;
-    }
-
-    public void setLogopic(String logopic) {
-        this.logopic = logopic;
-    }
 }
