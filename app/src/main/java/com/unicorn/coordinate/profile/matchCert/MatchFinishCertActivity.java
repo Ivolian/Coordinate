@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.unicorn.coordinate.LocalHelper;
 import com.unicorn.coordinate.R;
 import com.unicorn.coordinate.SimpleApplication;
 import com.unicorn.coordinate.base.BaseActivity;
@@ -52,7 +53,7 @@ public class MatchFinishCertActivity extends BaseActivity {
         tvTeamNo.setText("队号:  " + task.getTeamno());
         tvNickName.setText("姓名:  " + AESUtils.decrypt2(task.getNickname()));
         tvLineName.setText("线路名称:  " + AESUtils.decrypt2(task.getLinename()));
-        GlideUtils.loadPicture(task.getLogopic(), ivLogo);
+        GlideUtils.loadPicture(new LocalHelper().getLocalLogoPic(), ivLogo);
 
         String date4 = task.getDate4();
         String date = (date4 == null || date4.equals("")) ? new DateTime().toString("yyyy-MM-dd") : date4;
