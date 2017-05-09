@@ -1,6 +1,7 @@
 package com.unicorn.coordinate.atlas.photo;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +11,9 @@ import com.unicorn.coordinate.base.BaseActivity;
 import com.unicorn.coordinate.helper.ClickHelper;
 import com.unicorn.coordinate.helper.Constant;
 import com.unicorn.coordinate.helper.ImageHelper;
+import com.unicorn.coordinate.utils.GlideUtils;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,8 +40,13 @@ public class AtlasDisplayActivity extends BaseActivity {
 
     // ====================== InjectExtra ======================
 
+    @Nullable
     @InjectExtra(Constant.K_IMG_URL)
     String imgUrl;
+
+    @Nullable
+    @InjectExtra(Constant.K_SKETCMAP)
+    File sketcmap;
 
     @InjectExtra(Constant.K_TITLE)
     String title;
@@ -55,7 +64,11 @@ public class AtlasDisplayActivity extends BaseActivity {
     private void initPhoto() {
         PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(photo);
         photoViewAttacher.setScaleType(ImageView.ScaleType.FIT_START);
-        ImageHelper.loadPicture(imgUrl, photo);
+        if (imgUrl != null) {
+            ImageHelper.loadPicture(imgUrl, photo);
+        } else {
+            GlideUtils.loadPicture(sketcmap, photo);
+        }
         photoViewAttacher.update();
     }
 
