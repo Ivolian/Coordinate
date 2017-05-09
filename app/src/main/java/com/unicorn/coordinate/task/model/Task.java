@@ -8,17 +8,19 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class Task  {
 
+
     /**
-     * matchuserid : adebff57-b727-44b4-9c2c-21604b098ed0
+     * matchuserid : 2e169eb8-f8b1-4f62-a62d-eb788c126e87
      * lines_id : a3eec3f4-1d30-4d89-8a87-9e8117e6faee
-     * teamname : nPanI7zQJ1u4JDpKiXwsLg==
+     * teamname : KT9bqpanCMwGdmK0iMUFCA==
      * linename : TfoDIz5aRqX4J5BK1e69Bw==
-     * nickname : AJOBgX7zsnpbB4nak1s3cg==
+     * nickname : wMHR+nxcHXj9qdz3iLE8kQ==
      * match_name : 0IHLXWQjnLdrKWlbs9BDrmQjmIiMgr4eaA+Bw+1oVQzPSTOikRQI+kYsxCcETH27FaOExxAGc38srMImcb3n8g==
      * isdown : 2
-     * teamno : 30001
-     * tasklogo : shanghai_2017.jpg
-     * logopic : log_shanghai.png
+     * teamno : 30002
+     * tasklogo : http://img.chengshidingxiang.com/taian_2017.jpg
+     * logopic : http://img.chengshidingxiang.com/logo_taian2017.png
+     * date4 : 2017-05-20
      */
 
     @Id
@@ -32,10 +34,11 @@ public class Task  {
     private String teamno;
     private String tasklogo;
     private String logopic;
+    private String date4;
 
-    @Generated(hash = 1874138248)
+    @Generated(hash = 803651617)
     public Task(String matchuserid, String lines_id, String teamname, String linename, String nickname,
-            String match_name, String isdown, String teamno, String tasklogo, String logopic) {
+            String match_name, String isdown, String teamno, String tasklogo, String logopic, String date4) {
         this.matchuserid = matchuserid;
         this.lines_id = lines_id;
         this.teamname = teamname;
@@ -46,6 +49,7 @@ public class Task  {
         this.teamno = teamno;
         this.tasklogo = tasklogo;
         this.logopic = logopic;
+        this.date4 = date4;
     }
 
     @Generated(hash = 733837707)
@@ -132,4 +136,11 @@ public class Task  {
         this.logopic = logopic;
     }
 
+    public String getDate4() {
+        return date4;
+    }
+
+    public void setDate4(String date4) {
+        this.date4 = date4;
+    }
 }

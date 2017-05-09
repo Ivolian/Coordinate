@@ -60,6 +60,7 @@ public class SettingActivity extends BaseActivity {
                             TaskDao taskDao = SimpleApplication.getInstance().getTaskDao();
                             taskDao.deleteAll();
                             PointHelper.deleteAll();
+                            PointHelper.clearPointInfo();
                             ToastUtils.show("缓存已清除");
                         }
                     })

@@ -228,7 +228,6 @@ public class MatchDetailActivity extends BaseActivity {
         String status = myMatchStatus.getStatus();
         switch (matchStatus) {
             case "0":
-            case "4":
             case "5":
             case "8":
                 break;
@@ -241,6 +240,7 @@ public class MatchDetailActivity extends BaseActivity {
                 }
                 break;
             case "3":
+            case "4":
                 if (status.equals("6") || status.equals("7")) {
                     formalSignUp();
                 }

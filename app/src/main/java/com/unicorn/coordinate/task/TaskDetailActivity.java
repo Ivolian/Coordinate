@@ -118,9 +118,11 @@ public class TaskDetailActivity extends BaseActivity {
                 }
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.stop();
+                    tvSketvoice.setText("播放语音提示");
                 } else {
                     mediaPlayer.prepare();
                     mediaPlayer.start();
+                    tvSketvoice.setText("停止语音提示");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

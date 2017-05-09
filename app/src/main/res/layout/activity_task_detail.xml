@@ -188,7 +188,7 @@
                         android:id="@+id/tvSketvoice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="语音提示" />
+                        android:text="播放语音提示" />
 
                 </com.zhy.android.percent.support.PercentLinearLayout>
 

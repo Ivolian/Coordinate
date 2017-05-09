@@ -80,16 +80,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                     }
                     return;
                 }
-                Context context = name.getContext();
                 Point point = pointList.get(getAdapterPosition());
-                startTaskDetailActivity(context, point);
+                startTaskDetailActivity(name.getContext(), point);
             }
         }
     }
 
-    private void startMatchFinishCertActivity(Context context,Point point) {
+    private void startMatchFinishCertActivity(Context context, Point point) {
         Intent intent = new Intent(context, MatchFinishCertActivity.class);
-        intent.putExtra(Constant.K_POINT,point);
         context.startActivity(intent);
     }
 
