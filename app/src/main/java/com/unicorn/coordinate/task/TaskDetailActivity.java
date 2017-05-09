@@ -99,7 +99,7 @@ public class TaskDetailActivity extends BaseActivity {
         if (ClickHelper.isSafe()) {
             Intent intent = new Intent(this, AtlasDisplayActivity.class);
             intent.putExtra(Constant.K_TITLE, "示意图");
-            intent.putExtra(Constant.K_IMG_URL, point.getSketchmap());
+            intent.putExtra(Constant.K_SKETCMAP, new LocalHelper().getLocalSketcmap(point));
             startActivity(intent);
         }
     }
@@ -115,7 +115,7 @@ public class TaskDetailActivity extends BaseActivity {
             try {
                 if (mediaPlayer == null) {
                     mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setDataSource(point.getSketchvoice());
+                    mediaPlayer.setDataSource(new LocalHelper().getLocalSketcvoice(point).getAbsolutePath());
                 }
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.stop();
