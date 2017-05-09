@@ -67,7 +67,7 @@ public class TaskHelper {
         taskDao.deleteAll();
         taskDao.insert(task);
 
-        new LocalHelper().localTask();
+        new LocalHelper().localTask(task);
     }
 
     private static void copeTask(Task task) {
@@ -128,10 +128,12 @@ public class TaskHelper {
         List<Point> pointList = new Gson().fromJson(data.toString(), new TypeToken<List<Point>>() {
         }.getType());
 
+        LocalHelper localHelper = new LocalHelper();
         // lineid 和 matchuserid 返回数据中没有，保存到数据库中
         for (Point point : pointList) {
             point.setLineid(task.getLines_id());
             point.setMatchuserid(task.getMatchuserid());
+            localHelper.localPoint(point);
         }
 
         PointDao pointDao = PointHelper.getPointDao();
@@ -210,7 +212,6 @@ public class TaskHelper {
         builder.appendQueryParameter("matchuserid", task.getMatchuserid());
         return builder.toString();
     }
-
 
 
 }
