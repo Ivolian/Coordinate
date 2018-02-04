@@ -1,10 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.unicorn.coordinate"
@@ -30,10 +29,10 @@ dependencies {
     compile 'com.android.support:design:24.2.0'
     //  butterknife
     compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     //  dart
     compile 'com.f2prateek.dart:dart:2.0.1'
-    provided 'com.f2prateek.dart:dart-processor:2.0.1'
+    annotationProcessor 'com.f2prateek.dart:dart-processor:2.0.1'
     //  color
     compile 'com.wada811:android-material-design-colors:3.0.0'
     //  percent layout
@@ -63,7 +62,7 @@ dependencies {
     compile 'com.journeyapps:zxing-android-embedded:3.5.0'
     compile 'commons-io:commons-io:2.4'
     compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:multidex:1.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.kbeanie:multipicker:1.1.31@aar'
     compile files('libs/alipaySingle-20161222.jar')

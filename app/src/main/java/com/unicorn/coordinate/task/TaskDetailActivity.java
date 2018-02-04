@@ -42,6 +42,7 @@ public class TaskDetailActivity extends BaseActivity {
         GlideUtils.loadPicture(new LocalHelper().getLocalTaskLogo(), ivTaskLogo);
         tvPointName.setText(AESUtils.decrypt(point.getPointname()));
         tvPointAddress.setText(point.getPointaddress());
+        // TODO
         tvPointTask.setText(Html.fromHtml(AESUtils.decrypt(point.getPointtask())));
         tvPointOut.setText(AESUtils.decrypt(point.getPointout()));
         initSketc();
